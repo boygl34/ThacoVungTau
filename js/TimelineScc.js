@@ -8,7 +8,7 @@ var options = {
                 hiddenDates: [  {start: '2017-03-05 00:00:00',end: '2017-03-06 00:00:00',repeat: 'weekly'},
                                 { start: '2017-03-04 17:00:00',end: '2017-03-05 08:00:00',repeat: 'daily'}],
                 onMove: function (item) {   let text = "Thay Đổi kế hoạch xe "+item.content;
-                                            if (confirm(text) == true) { capnhatthoigian(item)} else {loadData()};
+                                            if (confirm(text) == true) { capnhatthoigian(item)} else {LoadTimeLine()};
                                          },
                 onAdd: function (item) {   },                  
                 onUpdate: function (item) { var BienSo = item.content.slice(0,item.content.indexOf(" "))
@@ -19,7 +19,8 @@ var options = {
                                             $("#ChieuDaiChip").val(chiudaichip)
                                             document.getElementById("BienSoXe").value=BienSo
                                             changvalue()
-                                            timeSuaChua() 
+                                            //timeSuaChua() 
+                                            $("#inputThoiGianSCC").val(chiudaichip*1/(60*60*1000))
                                         },
                 orientation: 'top',
                 start:(new Date( (new Date()).valueOf())).setHours(6),
@@ -175,6 +176,7 @@ timeline.on('contextmenu', function (props) {
                                 var end = new Date(DoiNgayDangKy(ojb[a].TimeEndGJ));
                                 var chiudaichip = end-start
                                 $("#ChieuDaiChip").val(chiudaichip)
+                                $("#inputThoiGianSCC").val(chiudaichip*1/(60*60*1000))
                                 $("#biensomenu").html(ojb[a].BienSoXe)
                                 changvalue();
                                 timeSuaChua() 

@@ -1,143 +1,135 @@
 function postData(data,url,methor){
-    fetch(url, {
-    method: methor, // or 'PUT'
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-    getData(urlTX)
-    $("#mesenge").html("<div class='alert alert-success'>Đăng Ký Thành Công</div>")
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    });
+        fetch(url, {
+        method: methor, // or 'PUT'
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+        getData()
+        $("#mesenge").html("<div class='alert alert-success'>Đăng Ký Thành Công</div>")
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
 }
 function deleteData(url){
-  fetch(url, {
-  method: "DELETE", // or 'PUT'
-  headers: {'Content-Type': 'application/json'},
-  })
-  .then(response => response.json())
-  .then(data => {
-  getData(urlTX)
-  })
-  .catch((error) => {
-  console.error('Error:', error);
-  });
+        fetch(url, {
+        method: "DELETE", // or 'PUT'
+        headers: {'Content-Type': 'application/json'},
+        })
+        .then(response => response.json())
+        .then(data => {
+        getData(urlTX)
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
 }
 
 function checkID(MaSo){
-var ojb =  useCaher
-for(var a in ojb){
-  if(ojb[a].MaSo == MaSo){return ojb[a].id }
-}
+        var ojb =  useCaher
+        for(var a in ojb){
+        if(ojb[a].MaSo == MaSo){return ojb[a].id }
+        }
 }
 
-  function KhoangSCChang(){
-    var json2 = {
+function KhoangSCChang(){
+        var json2 = {
         KhoangSuaChua: $('#KhoangSuaChua').val()
-      }
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
- 
-  }
+        }
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
 
-  function CoVanChange(){
-    var json2 = {
-      CoVanDichVu: $('#CoVanDichVu').val()
-      }
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
- 
-  }
+}
 
-  function RuaXechange(){
-    var json2 = {
-      KhachRuaXe: $('#KhachRX').val()
-      }
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
- 
-  }
-  function KTV1change(){
-    var json2 = {
-        KyThuatVien1: $('#KyThuatVien1').val()
-      }
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-  
-  }
-  function KTV2change(){
-    var json2 = {KyThuatVien2: $('#KyThuatVien2').val()}
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+function CoVanChange(){
+        var json2 = {
+            CoVanDichVu: $('#CoVanDichVu').val()
+            }
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
 
-  }
-  function Nhomchange(){
-    var json2 = {KyThuatVien2: $('#KyThuatVien2').val()}
-    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-  }
-  function KetThuc(){
-        var TThaiXuong
-        if(document.getElementById("KhachRX").value=="Rửa Xe"){TThaiXuong="06 Chờ Rửa Xe"}else{TThaiXuong="08 Chờ Giao Xe"}
-            var json2 = {
+}
+
+function RuaXechange(){
+        var json2 = {
+        KhachRuaXe: $('#KhachRX').val()
+        }
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+ 
+}
+function KTV1change(){
+        var json2 = {
+            KyThuatVien1: $('#KyThuatVien1').val()
+            }
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+
+}
+function KTV2change(){
+        var json2 = {KyThuatVien2: $('#KyThuatVien2').val()}
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+
+}
+function Nhomchange(){
+        var json2 = {KyThuatVien2: $('#KyThuatVien2').val()}
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+}
+function KetThuc(){
+    var TThaiXuong
+    if(document.getElementById("KhachRX").value=="Rửa Xe"){TThaiXuong="06 Chờ Rửa Xe"}else{TThaiXuong="08 Chờ Giao Xe"}
+    var json2 = {
                 TimeEndGJ: TimesClick(),
                 TrangThaiSCC:"Đã SC",
                 TrangThaiXuong:TThaiXuong,
                 BaiDauXe:"Rửa Xe"
                 }
-        $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
-          $('#ModalSCC').modal('hide')
+    $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
+    $('#ModalSCC').modal('hide')
+    var ojb =  useCaher 
         var ojb =  useCaher 
-        for(var a in ojb){
+    var ojb =  useCaher 
+    for(var a in ojb){
         if(ojb[a].MaSo ==  document.getElementById("MaSo").value){   
-          
-          if(ojb[a].KhachRuaXe){}else{$('#DKRUAXetitle').html(ojb[a].BienSoXe);$('#RuaXeModal').modal('show');}
-          
+        if(ojb[a].KhachRuaXe){}
+        else{$('#DKRUAXetitle').html(ojb[a].BienSoXe)
+            $('#RuaXeModal').modal('show');}
         }
-      }
-        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-      
-        
-  }
-  
-  function Khongruaxe(){
-    var json2 = {
-      KhachRuaXe: "Không Rửa"
-      }
-      setTimeout($('#RuaXeModal').modal('hide'), 3000);
+    }
     postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-    }
-    
-    function Coruaxe(){
-      var json2 = {
-        KhachRuaXe: "Rửa Xe"
-        }
-      postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-      setTimeout($('#RuaXeModal').modal('hide'), 3000);
-   
-    }
+}
   
-  
-
-  
-
-  
-  function DungCongViecGJ(){
+function Khongruaxe(){
     var json2 = {
-          TimeStopGJ: TimesClick(),
-          TrangThaiSCC:"Dừng CV",
-          TrangThaiXuong: "05 Dừng Công Việc",
+        KhachRuaXe: "Không Rửa"
+        }
+        setTimeout($('#RuaXeModal').modal('hide'), 3000);
+    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+}
+    
+function Coruaxe(){
+    var json2 = {
+    KhachRuaXe: "Rửa Xe"
+    }
+    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+    setTimeout($('#RuaXeModal').modal('hide'), 3000);
+
+}
+  
+function DungCongViecGJ(){
+    var json2 = {
+            TimeStopGJ: TimesClick(),
+            TrangThaiSCC:"Dừng CV",
+            TrangThaiXuong: "05 Dừng Công Việc",
         }
 
-  $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
-  postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-  }
+    $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
+    postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+}
   function BatDauSC(){
     if(document.getElementById("KyThuatVien1").value==""){$("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Tên KTV!</div>');return false}
     if(document.getElementById("GioKetThucSC").value==""){$("#mesenge").html('<div class="alert alert-danger" role="alert">Chưa Có Thời Gian Sữa Chữa!</div>'); return false}
     if(document.getElementById("KhoangSuaChua").value==""){$("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Khoang Làm Việc!</div>');return false}
-    if(document.getElementById("CoVanDichVu").value==""){$("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Cố Vấn!</div>');return false}
-        
-    
+    if(document.getElementById("CoVanDichVu").value==""){$("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Cố Vấn!</div>');return false} 
     var json2 = {
-
           TimeStartGJ: TimesClick(),
           TrangThaiSCC:"Đang SC",
           TrangThaiXuong: "05 Đang Sửa Chữa",
@@ -163,37 +155,41 @@ for(var a in ojb){
   postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH") 
   }
 
-  function BatDauSC2(){
-    if(document.getElementById("KyThuatVien1").value==""){alert("Chưa Có KTV");return false}
-    
-
-    var GioKetThucChip = new Date($("#ChieuDaiChip").val()*1 + (new Date()).valueOf());
-    var json2 = {
-
-          TimeStartGJ: TimesClick(),
-          TrangThaiSCC:"Đang SC",
-          TrangThaiXuong: "05 Đang Sửa Chữa",
-          KhoangSuaChua: $('#KhoangSuaChua').val() ,
-          TimeEndGJ: TimesClick(GioKetThucChip),
-          KyThuatVien1  :$('#KyThuatVien1').val() ,
-          KyThuatVien2  :$('#KyThuatVien2').val() ,
-          NhomKTV:$('#NhomKTV').val(),
-          BaiDauXe :$('#KhoangSuaChua').val(),
+function BatDauSC2(){
+        if(document.getElementById("KyThuatVien1").value==""){alert("Chưa Có KTV");return false}
+        var GioKetThucChip = new Date($("#ChieuDaiChip").val()*1 + (new Date()).valueOf());
+        var json2 = {
+        TimeStartGJ: TimesClick(),
+        TrangThaiSCC:"Đang SC",
+        TrangThaiXuong: "05 Đang Sửa Chữa",
+        KhoangSuaChua: $('#KhoangSuaChua').val() ,
+        TimeEndGJ: TimesClick(GioKetThucChip),
+        KyThuatVien1  :$('#KyThuatVien1').val() ,
+        KyThuatVien2  :$('#KyThuatVien2').val() ,
+        NhomKTV:$('#NhomKTV').val(),
+        BaiDauXe :$('#KhoangSuaChua').val(),
         }
- 
+        var ojb =  useCaher 
   var ojb =  useCaher 
-      for(var a in ojb){
+        var ojb =  useCaher 
+        for(var a in ojb){
+        if(ojb[a].MaSo ==  document.getElementById("MaSo").value){   
       if(ojb[a].MaSo ==  document.getElementById("MaSo").value){   
+        if(ojb[a].MaSo ==  document.getElementById("MaSo").value){   
         if(ojb[a].TDKetThucTiepKhach){   }else{json2["TDKetThucTiepKhach"]=TimesClick();}
         if(ojb[a].KhachHangDoi){   }else{json2["KhachHangDoi"]="Khách Đợi"}
         if(ojb[a].KhachRuaXe){}else{$('#DKRUAXetitle').html(ojb[a].BienSoXe);$('#RuaXeModal').modal('hide');$('#RuaXeModal').modal('show')}
         if(ojb[a].TDHenGiaoXe){   }else{json2["TDHenGiaoXe"]=TimesClick(new Date(1000 * 60 * 29 + (new Date(DoiNgayDangKy($('#GioKetThucSC').val()))).valueOf()));}
-      }
-    }
-  
-  $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>')
+        }
+        }
+
+        $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>')
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH") 
   postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH") 
-  }
+        postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH") 
+}
+}
+}
   
   NhomSC(NhomKTV)
   function NhomSC(values){
@@ -240,7 +236,7 @@ for(var a in ojb){
         option2.text = values[i];
         list2.appendChild(option2);
       }
-  }
+    }
   KhoangSuaChua(KhoangSC) 
   function KhoangSuaChua(values) { 	
      var list = document.getElementById('KhoangSuaChua');   
@@ -250,7 +246,7 @@ for(var a in ojb){
         option.text = values[i];
         list.appendChild(option);
       }
-  } 
+    }
   CoVanlist(NhomCV)
   function CoVanlist(values) { 	
     var list = document.getElementById('CoVanDichVu');   
@@ -260,7 +256,7 @@ for(var a in ojb){
        option.text = values[i];
        list.appendChild(option);
      }
- }  
+    }
   function GioKetThucSCC(){
      var homnay=new Date()
       homnay = new Date (homnay*1+7*60*60*1000)
@@ -285,7 +281,7 @@ for(var a in ojb){
     document.getElementById("GioKetThucSC").value=TimesClick(bb)
    return bb
   }
-  
+
   function timeSuaChua(){
       var timeBD = new Date(document.getElementById("GioBatDauSCC").value)
       var timeKT =  new Date(document.getElementById("GioKetThucSC").value)
@@ -323,31 +319,11 @@ for(var a in ojb){
   var output = document.getElementById("inputThoiGianSCC");
   output.value = slider.value;
   slider.oninput = function() {
-  output.value = this.value/6;
+    output.value = Math.round((this.value/6)*100)/100
   GioKetThucSCC()
   }
   
-  function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("data-table");
-    tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[3];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "none";
-        } else {
-          tr[i].style.display = "";
-        }
-      }
-    }
-  }
+ 
   $('.Ngay').datetimepicker({
      format: 'dd/mm/yyyy HH:MM:00 ',
               uiLibrary: 'bootstrap4',

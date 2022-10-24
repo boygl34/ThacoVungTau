@@ -68,7 +68,7 @@
                                     <a class="nav-link" href="DatHen.html">Đặt Hẹn</a>
                                     <a class="nav-link" onclick='ClickHtml("LeTan.html")'>Lễ Tân</a>
                                     <a class="nav-link" href="CoVan.html">Cố Vấn</a>
-                                    <a class="nav-link" onclick="ClickHtml('TienDoScc.html')">Tiến Độ SCC</a>
+                                    <a class="nav-link" onclick="test()">Tiến Độ SCC</a>
                                     <a class="nav-link" href="TienDoDongSon.html">Tiến Độ ĐS</a>
                                 </nav>
                             </div>
@@ -133,15 +133,15 @@
     <script >
        // if(localStorage.getItem("trangvuavao")){ ClickHtml(localStorage.getItem("trangvuavao"))}
         
-            function ClickHtml(urlhtml){
-                localStorage.setItem("trangvuavao",urlhtml)    
-                $.ajax({
-                url: urlhtml,
-                cache: false
-                })
-                .done(function( html ) {
-                $( "#layoutSidenav_content" ).html( html );
-                });
+       function test(){
+
+$.ajax({
+    url: "TienDoScc.html",
+    cache: false
+    })
+    .done(function( html ) {
+    $( "#layoutSidenav_content" ).html( html );
+    });
 
     }
         </script>

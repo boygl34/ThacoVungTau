@@ -25,17 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-function ClickHtml(urlhtml){
 
-    $.ajax({
-        url: urlhtml,
-        cache: false
-        })
-        .done(function( html ) {
-        $( "#layoutSidenav_content" ).html( html );
-        });
-
-        }
 
 
 

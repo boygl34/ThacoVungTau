@@ -274,8 +274,18 @@
   <script>
 fetchHtml()
 function fetchHtml() {
-    $.ajax({url: "tables.html", success: function(result){
-   console.log(result)
+    $.ajax({url: "tables.html",
+            method: "GET",
+            mode: 'same-origin',
+            headers:{
+        
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+},
+            credentials: 'omit', 
+            referrerPolicy: 'no-referrer',
+            success: function(result){
+            console.log(result)
   }});
 }
 

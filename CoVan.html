@@ -154,7 +154,14 @@
      <script>
         function test(){
 
-            $("#layoutSidenav_content").html('<main ><include src="./tables2.html"></include></main>')
+            $.ajax({
+  url: "table2.html",
+  cache: false
+})
+  .done(function( html ) {
+    $( "#layoutSidenav_content" ).append( html );
+  });
+
         }
      </script>
     </body>

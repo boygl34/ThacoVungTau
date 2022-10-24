@@ -151,6 +151,8 @@
         <script src="js/scripts.js"></script>
         <script src="js/Background.js"></script>
         <script src="js/Onload.js"></script>
+        <script src="js/TimelineScc.js"></script>
+        <script src="js/MainSCC.js"></script>
      <script>
         function test(){
 
@@ -160,7 +162,7 @@
                 })
                 .done(function( html ) {
                 $( "#layoutSidenav_content" ).html( html );
-                });
+                }).then(function(){ getData() });
 
                 }
      </script>

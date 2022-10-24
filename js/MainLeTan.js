@@ -16,7 +16,7 @@ function postData(data,url,methor){
     })
     .then(response => response.json())
     .then(data => {
-    getData(urlTX)
+    getData()
     $("#mesenge").html("<div class='alert alert-success'>Đăng Ký Thành Công</div>")
     document.getElementById("myForm").reset()
     })
@@ -31,7 +31,7 @@ function deleteData(url){
   })
   .then(response => response.json())
   .then(data => {
-  getData(urlTX)
+  getData()
   })
   .catch((error) => {
   console.error('Error:', error);

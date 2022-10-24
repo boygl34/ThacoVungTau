@@ -75,7 +75,7 @@ var options = {
       document.getElementById('ThoiGianHen').disabled=false;
       if(localStorage.getItem("userName")==emailnhanvienhen){document.getElementById('TrangThaiHen').disabled=false}
       $('#MaSo').val(item.id);
-      alert($('#MaSo').val())
+      
       changvalue()
       DanhSachCoVan()
       changvalue()

@@ -8,7 +8,8 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
+  
+   
     // Toggle the side navigation
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
@@ -25,7 +26,29 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-
-
+if(localStorage.getItem("TabDaDong")!==""){test(localStorage.getItem("TabDaDong"))}
+function test(value){
+    localStorage.setItem("TabDaDong",value)
+    $.ajax({
+    url: value,
+    cache: false
+    })
+    .done(function( html ) {
+    $( "#layoutSidenav_content" ).html( html );
+    }).then(function(){ getData() });
+    }
+    
+    function Logout(){
+    localStorage.setItem("userName","")
+    localStorage.setItem("Password","")
+    localStorage.setItem("Ten","")
+    localStorage.setItem("id","")
+    localStorage.setItem("PhanQuyen","")
+    localStorage.setItem("BoPhan","")
+    console.log("logout")
+    window.location="login.html";
+    }
+    
+    
 
 

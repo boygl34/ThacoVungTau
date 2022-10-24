@@ -17,7 +17,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
         <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-        
+        <script src="https://unpkg.com/htmlincludejs"></script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -271,26 +271,7 @@
     </ul>
 </div>
 
-  <script>
-fetchHtml()
-function fetchHtml() {
-    $.ajax({url: "tables.html",
-            method: "GET",
-            mode: 'same-origin',
-            headers:{
-        
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-},
-            credentials: 'omit', 
-            referrerPolicy: 'no-referrer',
-            success: function(result){
-            console.log(result)
-  }});
-}
 
-
-  </script>
 
  
                     

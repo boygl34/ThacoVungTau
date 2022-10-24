@@ -66,7 +66,7 @@
                                     <a class="nav-link" href="DatHen.html">Đặt Hẹn</a>
                                     <a class="nav-link" href="LeTan.html">Lễ Tân</a>
                                     <a class="nav-link" href="CoVan.html">Cố Vấn</a>
-                                    <a class="nav-link" onclick="test()">Tiến Độ SCC</a>
+                                    <a class="nav-link" onclick="test('TienDoScc.html')">Tiến Độ SCC</a>
                                     <a class="nav-link" href="TienDoDongSon.html">Tiến Độ ĐS</a>
                                 </nav>
                             </div>
@@ -149,10 +149,10 @@
                     
         
      <script>
-        function test(){
+        function test(value){
 
             $.ajax({
-                url: "TienDoScc.html",
+                url: value,
                 cache: false
                 })
                 .done(function( html ) {
@@ -160,6 +160,8 @@
                 }).then(function(){ getData() });
 
                 }
+
+
      </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

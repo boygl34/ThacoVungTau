@@ -1,17 +1,9 @@
 
 
 //getData(urlTX).then(DanhSachCoVan()).then(loadData ())
-setInterval(function (){getData(urlTX)},60000);
-getData(urlTX)
+
 DanhSachCoVan2()
-function getData(url){
-  fetch(url)
-  .then(response => response.json())
-  .then(data =>{
-    useCaher=data
-    showData()
-  } );
-}
+
 
 
 

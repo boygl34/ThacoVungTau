@@ -155,14 +155,14 @@
         function test(){
 
             $.ajax({
-  url: "table2.html",
-  cache: false
-})
-  .done(function( html ) {
-    $( "#layoutSidenav_content" ).append( html );
-  });
+                url: "/table2.html",
+                cache: false
+                })
+                .done(function( html ) {
+                $( "#layoutSidenav_content" ).html( html );
+                });
 
-        }
+                }
      </script>
     </body>
 </html>

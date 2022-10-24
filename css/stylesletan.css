@@ -1,0 +1,74 @@
+input:invalid {
+  border-color: red;
+}
+input:valid {
+  background: lightgreen;
+}
+select:valid {
+  background: lightgreen;
+}
+  select:invalid {
+  border-color: red;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+
+ #dataTable td:nth-child(10) {
+       font-size: 0.5px;
+  }
+  #dataTable td:nth-child(1) {
+       font-size: 25px;
+  }
+  table.dataTable thead {background-color:#1155cc;
+  font-size: 8px;}
+
+  table.dataTableHen thead {background-color:#1155cc;
+  font-size: 10px;}
+  .DangTiepNhan{
+   color: #00ff00;
+}  
+   .SapTiepNhan{
+    color: #ff6d01;
+   }
+    .ChoTiepNhan{
+    color: #3deedf;
+   }
+  .mystyle {
+  width: 100%;
+}
+
+  #dataTableHen {
+       font-size:15.5px;
+  }
+  #dataTable td {
+    height: 50px;
+     vertical-align: middle;
+       font-size:15.5px;
+  }
+  
+   #dataTableHen td:nth-child(7) {
+      width: 35%;
+      font-size:8.5px;
+  }
+  #dataTableHen td:nth-child(2) {
+       font-size:25.5px;
+  }
+  
+  #dataTableHen td:nth-child(8) {
+       font-size:0.5px;
+  }
+  
+
+ #dataTableHen td {
+  height: 50px;
+  vertical-align: middle;
+  text-align: left;
+  color: #00ff00;
+}
+
+  

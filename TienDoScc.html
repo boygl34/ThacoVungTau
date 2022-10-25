@@ -1,5 +1,5 @@
 
-                <main>
+               
                 <div class="container-fluid px-4">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -35,20 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                </div>   
 
                 <div class="modal fade" id="ModalSCC" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -167,21 +154,21 @@
                         </div>
                         </div>
                     </div>
+                </div>
+                    
+                <div id="contextMenu2"class="timeshow"  style="display:none">
+                    <a id="ThoiGian"></a>
                     </div>
+                <div id="contextMenu" class="context-menu" style="display:none">
+                    <ul><a id="biensomenu"></a>
+                        <li><a   onclick="BatDauSC2()">Bắt Đầu</a></li>
+                        <li><a id="TimXe" onclick="KetThuc()"  >Kết Thúc</a></li>
+                        <li><a id="TimXe" onclick="DungCongViecGJ()"  >Dừng CV</a></li>
+                        <li><a id="TTHuyChip" onclick="huyChip()" >Xoá Chíp</a></li>
+                    </ul>
+                </div>     
                     
-                    
-                    
-                    <div id="contextMenu2"class="timeshow"  style="display:none">
-                        <a id="ThoiGian"></a>
-                    </div>
-                    <div id="contextMenu" class="context-menu" style="display:none">
-                        <ul><a id="biensomenu"></a>
-                            <li><a   onclick="BatDauSC2()">Bắt Đầu</a></li>
-                            <li><a id="TimXe" onclick="KetThuc()"  >Kết Thúc</a></li>
-                            <li><a id="TimXe" onclick="DungCongViecGJ()"  >Dừng CV</a></li>
-                            <li><a id="TTHuyChip" onclick="huyChip()" >Xoá Chíp</a></li>
-                        </ul>
-                    </div>    
-                    <script src="js/Onload.js"></script>
+                <script src="js/Onload.js"></script>
                     <script src="js/MainSCC.js"></script>
-                    <script src="js/TimelineScc.js"></script>
+                    <script src="js/TimelineScc.js"></script>       
+                    

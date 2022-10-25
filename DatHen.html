@@ -1,8 +1,8 @@
 
       
 
-            <div id="layoutSidenav_content">
-                <main>
+            
+              
                     <div class="container-fluid px-4">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -17,21 +17,7 @@
                                         <input type='date' id="datefield" onchange="changdate(this.value)" >
                                         
                                         <button class='next-day btn btn-outline-secondary'onclick="forwardtime()" ><i onclick="forwardtime()" class='fa fa-forward ' aria-hidden='true' ></i></button>
-                                    <script>
-                                        var today = new Date();
-                                        var dd = today.getDate();
-                                        var mm = today.getMonth()+1; //January is 0!
-                                        var yyyy = today.getFullYear();
-                                        if(dd<10){
-                                        dd='0'+dd
-                                        } 
-                                        if(mm<10){
-                                        mm='0'+mm
-                                        } 
-                                        today = yyyy+'-'+mm+'-'+dd;
-                                        document.getElementById("datefield").setAttribute("min", today);
-                                        document.getElementById("datefield").value=today
-                                    </script>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -60,16 +46,7 @@
                         </div>
                     </div>
 
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Trực Võ</div>
-                            
-                        </div>
-                    </div>
-                </footer>
-            </div>
+             
         
 
 
@@ -194,9 +171,21 @@
             
             </div>
           
-
-        
-        
+        <script>
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth()+1; //January is 0!
+          var yyyy = today.getFullYear();
+          if(dd<10){
+          dd='0'+dd
+          } 
+          if(mm<10){
+          mm='0'+mm
+          } 
+          today = yyyy+'-'+mm+'-'+dd;
+          document.getElementById("datefield").setAttribute("min", today);
+          document.getElementById("datefield").value=today
+        </script>
         <script src="js/Onload.js"></script>
         <script src="js/TimelineDathen.js"></script>
         <script src="js/MainDH.js"></script>

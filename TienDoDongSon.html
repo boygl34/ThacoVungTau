@@ -1,337 +1,336 @@
 <div class="card pmd-card"style="background-color:black">   
-    <div class="pmd-tabs">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item"><a class="nav-link " href="#BaoCaoXeGiao" aria-controls="about" role="tab" data-toggle="tab">Báo Cáo</a></li>
-            <li class="nav-item"><a class="nav-link " href="#TienDo" aria-controls="about" role="tab" data-toggle="tab">Danh Sách</a></li>
-            <li class="nav-item"><a class="nav-link active" href="#Timeline" aria-controls="home" role="tab" data-toggle="tab"ondblclick="loadData ()">Tiến Độ</a></li>
-            <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: pink" id="HideChoSC" disabled>Chờ SC</a></li>
-            <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: greenyellow" disabled>Đang SC</a></li>
-            <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: red" disabled>Dừng SC</a></li>
-            <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: gold" disabled>Đã SC</a></li>
-            <li class="nav-item"><div class="custom-control custom-checkbox checkbox-xl">
-              <input type="checkbox" class="custom-control-input" id="checkbox-3"  onchange="loadData ()">
-              <label class="custom-control-label" for="checkbox-3"style="color:white">Đã HT</label>
-            </div></li>
-            <h2 id="tieude"class="head col-3" style="color:#0072B5"></h2>
-              
-            <input type="text"  id="selection" list="BienSoXeList" placeholder="Seach!!" onselect="this.value = ''" onchange="loadData ()"  style="background-color:gray">
-          </ul>
-    </div>
-     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane " id="BaoCaoXeGiao">
+  <div class="pmd-tabs">
+      <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><a class="nav-link " href="#BaoCaoXeGiao" aria-controls="about" role="tab" data-toggle="tab">Báo Cáo</a></li>
+          <li class="nav-item"><a class="nav-link " href="#TienDo" aria-controls="about" role="tab" data-toggle="tab">Danh Sách</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#Timeline" aria-controls="home" role="tab" data-toggle="tab"ondblclick="loadData ()">Tiến Độ</a></li>
+          <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: pink" id="HideChoSC" disabled>Chờ SC</a></li>
+          <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: greenyellow" disabled>Đang SC</a></li>
+          <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: red" disabled>Dừng SC</a></li>
+          <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: gold" disabled>Đã SC</a></li>
+          <li class="nav-item"><div class="custom-control custom-checkbox checkbox-xl">
+            <input type="checkbox" class="custom-control-input" id="checkbox-3"  onchange="loadData ()">
+            <label class="custom-control-label" for="checkbox-3"style="color:white">Đã HT</label>
+          </div></li>
+          <h2 id="tieude"class="head col-3" style="color:#0072B5"></h2>
+            
+          <input type="text"  id="selection" list="BienSoXeList" placeholder="Seach!!" onselect="this.value = ''" onchange="loadData ()"  style="background-color:gray">
+        </ul>
+  </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane " id="BaoCaoXeGiao">
         <table id="table-BaoCao" class="display" style="width:100%"  >
-          <div class="form-row">
-              <div class=" col-6" >
-                <label for="regular1" class="control-label" style="color:white">Ngày Giao Xe</label>
-                <input type="date" required class="form-control"id="NgayGiaoXeBC" onchange="BaoCao()" >
-                
-              </div>
-              
-              <div class="custom-control custom-checkbox checkbox-xl">
-                <input type="checkbox" class="custom-control-input" id="TreHen"  onchange="BaoCao()">
-                <label class="custom-control-label" for="TreHen"style="color:white">Xe Trễ</label>
-              </div>
-         </div>
-          <thead>
-              <tr>
-                  <th>Biển Số</th>
-                  <th>Cố Vấn</th>
-                  <th style="width: 5%;">Model</th>
-                  <th>Nhóm Sơn</th>
-                  <th>Công Đoạn</th>
-                  <th>Trạng Thái</th>
-                  <th>Ngày Giao</th>
-                  <th>Giờ KT</th>
-                  <th style="width: 25%;">Ghi Chú</th>
-              </tr>
-          </thead>
-         
-      </table>
-      <div >
+        <div class="form-row">
+        <div class=" col-6" >
+        <label for="regular1" class="control-label" style="color:white">Ngày Giao Xe</label>
+        <input type="date" required class="form-control"id="NgayGiaoXeBC" onchange="BaoCao()" >
+
+        </div>
+
+        <div class="custom-control custom-checkbox checkbox-xl">
+        <input type="checkbox" class="custom-control-input" id="TreHen"  onchange="BaoCao()">
+        <label class="custom-control-label" for="TreHen"style="color:white">Xe Trễ</label>
+        </div>
+        </div>
+        <thead>
+        <tr>
+        <th>Biển Số</th>
+        <th>Cố Vấn</th>
+        <th style="width: 5%;">Model</th>
+        <th>Nhóm Sơn</th>
+        <th>Công Đoạn</th>
+        <th>Trạng Thái</th>
+        <th>Ngày Giao</th>
+        <th>Giờ KT</th>
+        <th style="width: 25%;">Ghi Chú</th>
+        </tr>
+        </thead>
+
+        </table>
+        <div >
         <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=1036835817&amp;single=true&amp;widget=true&amp;headers=false"style="width: 100%;height: 700px;"></iframe>
         </div>
-     </div> 
+        </div> 
         <div role="tabpanel" class="tab-pane " id="TienDo" > 
           <table id="table-Dung" class="display" style="width:100%"ondblclick="clickTableDung()"style="overflow-x:auto;" >
-            <thead>
-                <tr>
-                    <th>Biển Số</th>
-                    <th>Cố Vấn</th>
-                    <th >Model</th>
-                    <th>Nhóm Sơn</th>
-                    <th>Công Đoạn</th>
-                    <th>Trạng Thái</th>
-                    <th>Ngày Giao</th>
-                    <th>TD Dừng CV</th>
-                    <th style="width: 25%;">LD Dừng CV</th>
+          <thead>
+          <tr>
+          <th>Biển Số</th>
+          <th>Cố Vấn</th>
+          <th >Model</th>
+          <th>Nhóm Sơn</th>
+          <th>Công Đoạn</th>
+          <th>Trạng Thái</th>
+          <th>Ngày Giao</th>
+          <th>TD Dừng CV</th>
+          <th style="width: 25%;">LD Dừng CV</th>
+          </tr>
+          </thead>
 
-                </tr>
-            </thead>
-           
-        </table>
-            <table id="table-TimXe" class="display" style="width:100%"ondblclick="clickTableTiepNhan()" >
-              <thead>
-                  <tr>
-                      <th>Biển Số</th>
-                      <th>Cố Vấn</th>
-                      <th style="width: 5%;">Model</th>
-                      <th>Nhóm Sơn</th>
-                      <th>Công Đoạn</th>
-                      <th>Trạng Thái</th>
-                      <th>Ngày Giao</th>
-                      <th>Giờ KT</th>
-
-                  </tr>
-              </thead>
-             
           </table>
-          <table id="table-ChoSC" class="display" style="width:100%"ondblclick="clickTableCho()" >
-            <thead>
-                <tr>
-                    <th>Biển Số</th>
-                    <th>Cố Vấn</th>
-                    <th style="width: 5%;">Model</th>
-                    <th>Nhóm Sơn</th>
-                    <th>Công Đoạn</th>
-                    <th>Trạng Thái</th>
-                    <th>Ngày Giao</th>
-                    <th>Giờ KT</th>
+        <table id="table-TimXe" class="display" style="width:100%"ondblclick="clickTableTiepNhan()" >
+        <thead>
+        <tr>
+          <th>Biển Số</th>
+          <th>Cố Vấn</th>
+          <th style="width: 5%;">Model</th>
+          <th>Nhóm Sơn</th>
+          <th>Công Đoạn</th>
+          <th>Trạng Thái</th>
+          <th>Ngày Giao</th>
+          <th>Giờ KT</th>
 
-                </tr>
-            </thead>
-           
+        </tr>
+        </thead>
+
+        </table>
+        <table id="table-ChoSC" class="display" style="width:100%"ondblclick="clickTableCho()" >
+        <thead>
+        <tr>
+        <th>Biển Số</th>
+        <th>Cố Vấn</th>
+        <th style="width: 5%;">Model</th>
+        <th>Nhóm Sơn</th>
+        <th>Công Đoạn</th>
+        <th>Trạng Thái</th>
+        <th>Ngày Giao</th>
+        <th>Giờ KT</th>
+
+        </tr>
+        </thead>
+
         </table>
 
-          
-        </div>
-         <div role="tabpanel" class="tab-pane active" id="Timeline">
-           <div  id="mytimeline"  ></div>
-        </div> 
-          
-     </div>
- </div>
- <datalist id = "BienSoXeList">
 
- </datalist>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="Timeline">
+          <div  id="mytimeline"  ></div>
+        </div> 
+        
+    </div>
+</div>
  <!--modalDS-->
- <div class="modal fade" id="ModalDongSon" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="ModalDongSon" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 style="float: right" id="biensods"></h3>
- 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form autocomplete="off" id="FormDS">
-             <div id="alert"><div class='alert alert-success'>Wellcome !!</div></div>
-           <div class="btn-group" role="group"  id="ButEnd">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h3 style="float: right" id="biensods"></h3>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form autocomplete="off" id="FormDS">
+          <div id="alert"><div class='alert alert-success'>Wellcome !!</div></div>
+        <div class="btn-group" role="group"  id="ButEnd">
+            </div>
+    <div class="form-group col-6"style="display:none">
+            <label for="MaSo">Mã Số</label>
+            <input required class="form-control"  id="MaSo"  name="MaSo" disabled>
+          </div> 
+        <div class="form-row">
+            <div class=" form-group col-6 "  >
+              <label for="NhomSC">Nhóm Sơn</label>
+              <select id="NhomSon" class="form-control"  onChange="NhomSonChange()">
+              <option ></option>'
+              
+              <option value="Đình">Đình</option>'
+              <option value="Thiên">Thiên</option>'
+              </select>
+            </div>
+            <div class=" form-group  col-6">
+              <label for="KTVDS2" class="control-label">Kỹ Thuật Viên</label>
+              <select    class="form-control"id="KTVDS1" required>
+                <option></option>
+              </select>
+            </div>
+              
+            <div class=" form-group col-4" > 
+              <label for="propeller-select">Công Đoạn</label>
+              <select id="CongDoanDongSon" class="form-control" onchange="ChangCongDoan(this.value)" >
+              <option ></option>'
+              <option value="Chờ SC">Chờ SC</option>'
+              <option value="Đồng">Đồng</option>'
+              <option value="Nền">Nền</option>'
+              <option value="Sơn">Sơn</option>'
+              <option value="Pass">Pass</option>'
+              <option value="Lắp Ráp">Lắp Ráp</option>'
+              <option value="QC">QC</option>'
+              </select>
+            </div>
+            <div class="form-group col-4">
+              <label for="PhongSon">Phòng Sơn</label>
+              <select id="PhongSon" required class="form-control" onChange="PhongSonChange()">
+                <option ></option>
+                <option value = "Phòng Sơn 1">Phòng Sơn 1</option>
+                <option value = "Phòng Sơn 2">Phòng Sơn 2</option>
+                <option value = "Phòng Sơn 3">Phòng Sơn 3</option> 
+            </select>
+            </div> 
+            <div class=" form-group  col-4" >
+              <label for="regular1" class="control-label">Loại SC</label>
+                <select id="LoaiSC" required class="form-control" >
+                <option value="DongSon">Đồng Sơn</option>
+                <option value = "Dong">Đồng ko Sơn</option>
+                <option value = "Son">Sơn Không Đồng</option>
+                <option value = "Pass">Pass</option> 
+            </select>
+            </div>
+          </div> 
+    <div class="form-row">
+            <div class=" form-group  col-6" style="display:none">
+              <label for="regular1" class="control-label">Ngày Bắt Đầu SC</label>
+              <input type="datetime-local" required class="form-control"id="NgayBDSC"  >
+            </div>
+            <div class=" form-group  col-6">  
+              <label class="control-label" for="NgayKTSC" >Ngày Giờ KT</label>
+              <input type="datetime-local" required min="2015-02-20 10:00:00" class="form-control" id="NgayKTSC" onchange="timeSuaChua()" required>
+            </div> 
+              <div class=" form-group  col-3">  
+              <label class="control-label" for="NgayKTSC" >Thời GSCĐ</label>
+              <input type="number" class="form-control" step="0.5" id="ThoiGSCD"  required>
+            </div>
+              <div class="form-group col-3">
+                <label class="control-label" for="NgayKTSC" >&nbsp</label>
+                <button  type="button" class="btn btn-primary me-2 form-control" onclick="LuuKeHoach()">L Hoạch</button>
+            </div>
+          </div> 
+          <div class="form-row ">
+              <div class="col-12">
+                <div class="slidecontainer">
+                  <label class="control-label" for="NgayKTSC" >Thời Gian SCT</label>
+                  <input style="width:100%" type="range" min="1" max="90" class="slider" id="myRangeBP">
+                  <div class="row form-group col-12">
+                  <div class="col-6">
+                    <input type="number"   id="inputThoiGianBP"  class="form-control col-6 " onchange="GioKetThucBP()">
+                  </div>
+                  <div class="col-6">
+                  <button  type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">Đổi Giờ KT!</button>
+                </div> 
                 </div>
-        <div class="form-group col-6"style="display:none">
-                <label for="MaSo">Mã Số</label>
-                <input required class="form-control"  id="MaSo"  name="MaSo" disabled>
-              </div> 
-           <div class="form-row">
-                <div class=" form-group col-6 "  >
-                  <label for="NhomSC">Nhóm Sơn</label>
-                  <select id="NhomSon" class="form-control"  onChange="NhomSonChange()">
-                  <option ></option>'
-                  
-                  <option value="Đình">Đình</option>'
-                  <option value="Thiên">Thiên</option>'
-                  </select>
-                </div>
-                <div class=" form-group  col-6">
-                  <label for="KTVDS2" class="control-label">Kỹ Thuật Viên</label>
-                  <select    class="form-control"id="KTVDS1" required>
-                    <option></option>
-                  </select>
-                </div>
-                 
-                <div class=" form-group col-4" > 
-                  <label for="propeller-select">Công Đoạn</label>
-                  <select id="CongDoanDongSon" class="form-control" onchange="ChangCongDoan(this.value)" >
+              </div>
+          </div>
+          </div> 
+
+          <div class="form-row">
+              <div class="  form-group col-6" style="display:none"> 
+                <label for="propeller-select">Trạng Thái</label>
+                <select id="TrangThaiDongSon" required class="form-control">
                   <option ></option>'
                   <option value="Chờ SC">Chờ SC</option>'
-                  <option value="Đồng">Đồng</option>'
-                  <option value="Nền">Nền</option>'
-                  <option value="Sơn">Sơn</option>'
-                  <option value="Pass">Pass</option>'
-                  <option value="Lắp Ráp">Lắp Ráp</option>'
-                  <option value="QC">QC</option>'
-                  </select>
-                </div>
-                <div class="form-group col-4">
-                  <label for="PhongSon">Phòng Sơn</label>
-                  <select id="PhongSon" required class="form-control" onChange="PhongSonChange()">
-                    <option ></option>
-                    <option value = "Phòng Sơn 1">Phòng Sơn 1</option>
-                    <option value = "Phòng Sơn 2">Phòng Sơn 2</option>
-                    <option value = "Phòng Sơn 3">Phòng Sơn 3</option> 
+                  <option value="Chờ QC">Chờ QC</option>'
+                  <option value="Chờ Pass">Chờ Pass</option>'
+                  <option value="Chờ Lắp">Chờ Lắp</option>'
+                  <option value="Chờ Sơn">Chờ Sơn</option>'
+                  <option value="Dừng SC">Dừng SC</option>'
+                  <option value="Đang SC">Đang SC</option>'
+                  <option value="Đã SC">Đã SC</option>'
                 </select>
-                </div> 
-                <div class=" form-group  col-4" >
-                  <label for="regular1" class="control-label">Loại SC</label>
-                   <select id="LoaiSC" required class="form-control" >
-                    <option value="DongSon">Đồng Sơn</option>
-                    <option value = "Dong">Đồng ko Sơn</option>
-                    <option value = "Son">Sơn Không Đồng</option>
-                    <option value = "Pass">Pass</option> 
-                </select>
-                </div>
               </div> 
-       <div class="form-row">
-                <div class=" form-group  col-6" style="display:none">
-                  <label for="regular1" class="control-label">Ngày Bắt Đầu SC</label>
-                  <input type="datetime-local" required class="form-control"id="NgayBDSC"  >
-                </div>
-                <div class=" form-group  col-6">  
-                  <label class="control-label" for="NgayKTSC" >Ngày Giờ KT</label>
-                  <input type="datetime-local" required min="2015-02-20 10:00:00" class="form-control" id="NgayKTSC" onchange="timeSuaChua()" required>
-                </div> 
-                 <div class=" form-group  col-3">  
-                  <label class="control-label" for="NgayKTSC" >Thời GSCĐ</label>
-                  <input type="number" class="form-control" step="0.5" id="ThoiGSCD"  required>
-                </div>
-                 <div class="form-group col-3">
-                   <label class="control-label" for="NgayKTSC" >&nbsp</label>
-                   <button  type="button" class="btn btn-primary me-2 form-control" onclick="LuuKeHoach()">L Hoạch</button>
-                </div>
-              </div> 
-             <div class="form-row ">
-                 <div class="col-12">
-                    <div class="slidecontainer">
-                      <label class="control-label" for="NgayKTSC" >Thời Gian SCT</label>
-                      <input style="width:100%" type="range" min="1" max="90" class="slider" id="myRangeBP">
-                      <div class="row form-group col-12">
-                      <div class="col-6">
-                        <input type="number"   id="inputThoiGianBP"  class="form-control col-6 " onchange="GioKetThucBP()">
-                      </div>
-                      <div class="col-6">
-                      <button  type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">Đổi Giờ KT!</button>
-                    </div> 
-                    </div>
-                 </div>
-              </div>
-              </div> 
- 
-              <div class="form-row">
-                  <div class="  form-group col-6" style="display:none"> 
-                    <label for="propeller-select">Trạng Thái</label>
-                    <select id="TrangThaiDongSon" required class="form-control">
-                      <option ></option>'
-                      <option value="Chờ SC">Chờ SC</option>'
-                      <option value="Chờ QC">Chờ QC</option>'
-                      <option value="Chờ Pass">Chờ Pass</option>'
-                      <option value="Chờ Lắp">Chờ Lắp</option>'
-                      <option value="Chờ Sơn">Chờ Sơn</option>'
-                      <option value="Dừng SC">Dừng SC</option>'
-                      <option value="Đang SC">Đang SC</option>'
-                      <option value="Đã SC">Đã SC</option>'
-                    </select>
-                  </div> 
-              </div>              
-             
-           <div class="form-row">
-              
-              <div class="form-group col-6" style="display:none">
-                <label for="KhoangSuaChua">Biển Số Xe</label>
-                <input required class="form-control"  id="BienSoXe"  name="BienSoXe" disabled>
-              </div> 
-              <div class="form-group col-6" >
-                <label for="Model">Model</label>
-                <input required class="form-control"  id="KieuXe"  name="KieuXe" list="listKieuXe" onchange="KieuXeChange()">
-                  
-                
-              </div> 
-              <datalist id="listKieuXe">
-                <option></option>
-              </datalist>
+          </div>              
+          
+        <div class="form-row">
+          
+          <div class="form-group col-6" style="display:none">
+            <label for="KhoangSuaChua">Biển Số Xe</label>
+            <input required class="form-control"  id="BienSoXe"  name="BienSoXe" disabled>
           </div> 
-              <div class="form-row col-12">
-                
-                <div class=" form-group  col-6" style="display:none">  
-                  <label class="control-label" for="KTVDS2" >Kỹ Thuật Viên 2</label>
-                  <input type="text" class="form-control" required list="listTenNhanVien" id="KTVDS2">
-                </div>                   
-              </div>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"> 
-              <div class="col-6">
-            <button  type="button" class="btn btn-danger me-2" onclick="DungCongviecBP()">Dừng Công Việc!</button>
-            </div>
-            <div class="col-6">
-            <button type="button"id="bnt-ChoGiaoXe" style="float: right" class="btn btn-success" onclick="ChoGiaoXeBP()">Chờ Giao Xe</button>  
-            </div>  
-        </div>
-                
-                  
-            </div>
-        </form>
-
-        
-
-
-  
-
-
-
-
-      </div>
-    </div>
-
-      </div>
-      <div class="modal fade" id="ModalDangKy" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form autocomplete="off" id="FormDK">
-                   <div id="alertDK"><div class='alert alert-success'>Wellcome !!</div></div>
-                      </div> 
-                 <div class="form-row">
-                     <div class=" form-group  col-6" >
-                        <label for="regular1" class="control-label">Biển Số Xe</label>
-                       <input type="text" class="form-control" id="BienSoDK" name="BienSo"  placeholder="Biển Số" list="BienSoList" required style="font-weight:bold;" onkeyup="this.value = suabienso(this.value)">
-                      </div>
-                       <div class=" form-group  col-6" >
-                        <label for="regular1" class="control-label">Ngày Bắt Giao Xe</label>
-                        <input type="datetime-local" required class="form-control"id="NgayGiaXeDK"  >
-                      </div>
-                       <div class=" form-group  col-6" >
-                        <label for="regular1" class="control-label">Cố Vấn</label>
-                        <select type="datetime-local" required class="form-control"id="CoVanDK"  >
-                         <option value ></option>
-                          </select>
-                      </div> 
-                      <div class=" form-group  col-6" >
-                        <label for="regular1" class="control-label">Nhóm Sơn</label>
-                        <select type="datetime-local" required class="form-control"id="NhomSonDK"  >
-                         <option ></option>'
-                          </select>
-                      </div>
-                  </div> 
-                  <div class="col-6">
-                  <button type="button"id="bnt-DangKy" style="float: right" class="btn btn-success" >Đăng Ký</button>  
-                  </div>  
-              </div>    
-                  </div>
-              </form>        
-            </div>
-      
-            <div id="contextMenu" class="context-menu" 
-              style="display:none">
-              <ul>
-                  <li><button id="TTHuyChip" class="btn btn-danger" onclick="huyChipcongdoan()">Xóa Chíp</button></li>
-                  <li><button id="TimXe" onclick="TimXe()"  class="btn btn-success">Tìm Xe</button></li>
-                  <li><button onclick="loadData()"  class="btn btn-success">Làm Mới!!</button></li>
-              </ul>
+          <div class="form-group col-6" >
+            <label for="Model">Model</label>
+            <input required class="form-control"  id="KieuXe"  name="KieuXe" list="listKieuXe" onchange="KieuXeChange()">
+              
+            
+          </div> 
+          <datalist id="listKieuXe">
+            <option></option>
+          </datalist>
+      </div> 
+          <div class="form-row col-12">
+            
+            <div class=" form-group  col-6" style="display:none">  
+              <label class="control-label" for="KTVDS2" >Kỹ Thuật Viên 2</label>
+              <input type="text" class="form-control" required list="listTenNhanVien" id="KTVDS2">
+            </div>                   
           </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"> 
+          <div class="col-6">
+        <button  type="button" class="btn btn-danger me-2" onclick="DungCongviecBP()">Dừng Công Việc!</button>
+        </div>
+        <div class="col-6">
+        <button type="button"id="bnt-ChoGiaoXe" style="float: right" class="btn btn-success" onclick="ChoGiaoXeBP()">Chờ Giao Xe</button>  
+        </div>  
+    </div>
+            
+              
+        </div>
+    </form>
+
+    
+
+
+
+
+
+
+
+  </div>
+  </div>
+
+  </div>
+
+  <div class="modal fade" id="ModalDangKy" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+  <form autocomplete="off" id="FormDK">
+  <div id="alertDK"><div class='alert alert-success'>Wellcome !!</div></div>
+  </div> 
+  <div class="form-row">
+  <div class=" form-group  col-6" >
+  <label for="regular1" class="control-label">Biển Số Xe</label>
+  <input type="text" class="form-control" id="BienSoDK" name="BienSo"  placeholder="Biển Số" list="BienSoList" required style="font-weight:bold;" onkeyup="this.value = suabienso(this.value)">
+  </div>
+  <div class=" form-group  col-6" >
+  <label for="regular1" class="control-label">Ngày Bắt Giao Xe</label>
+  <input type="datetime-local" required class="form-control"id="NgayGiaXeDK"  >
+  </div>
+  <div class=" form-group  col-6" >
+  <label for="regular1" class="control-label">Cố Vấn</label>
+  <select type="datetime-local" required class="form-control"id="CoVanDK"  >
+    <option value ></option>
+    </select>
+  </div> 
+  <div class=" form-group  col-6" >
+  <label for="regular1" class="control-label">Nhóm Sơn</label>
+  <select type="datetime-local" required class="form-control"id="NhomSonDK"  >
+    <option ></option>'
+    </select>
+  </div>
+  </div> 
+  <div class="col-6">
+  <button type="button"id="bnt-DangKy" style="float: right" class="btn btn-success" >Đăng Ký</button>  
+  </div>  
+  </div>    
+  </div>
+  </form>        
+  </div>
+      
+  <div id="contextMenu" class="context-menu" style="display:none">
+    <ul>
+        <li><button id="TTHuyChip" class="btn btn-danger" onclick="huyChipcongdoan()">Xóa Chíp</button></li>
+        <li><button id="TimXe" onclick="TimXe()"  class="btn btn-success">Tìm Xe</button></li>
+        <li><button onclick="loadData()"  class="btn btn-success">Làm Mới!!</button></li>
+    </ul>
+  </div>
+  <datalist id = "BienSoXeList">
+
+ </datalist>
           <script src="js/Onload.js"></script>
           <script src="js/mainBP.js"></script>
           <script src="js/TimelineBP.js"></script>

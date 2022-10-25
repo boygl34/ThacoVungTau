@@ -26,8 +26,10 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-if(localStorage.getItem("TabDaDong")!==""){test(localStorage.getItem("TabDaDong"))}
-function test(value){
+        if(localStorage.getItem("TabDaDong")!==""){gethtml(localStorage.getItem("TabDaDong"))}
+
+
+function gethtml(value){
     localStorage.setItem("TabDaDong",value)
     $.ajax({
     url: value,

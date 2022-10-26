@@ -3,7 +3,7 @@
       <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item"><a class="nav-link " href="#BaoCaoXeGiao" aria-controls="about" role="tab" data-toggle="tab">Báo Cáo</a></li>
           <li class="nav-item"><a class="nav-link " href="#TienDo" aria-controls="about" role="tab" data-toggle="tab">Danh Sách</a></li>
-          <li class="nav-item"><a class="nav-link active" href="#Timeline" aria-controls="home" role="tab" data-toggle="tab"ondblclick="loadData ()">Tiến Độ</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#Timeline" aria-controls="home" role="tab" data-toggle="tab"ondblclick="LoadTimeLine ()">Tiến Độ</a></li>
           <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: pink" id="HideChoSC" disabled>Chờ SC</a></li>
           <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: greenyellow" disabled>Đang SC</a></li>
           <li class="nav-item" disabled><a class="nav-link "   style="color:black;background-color: red" disabled>Dừng SC</a></li>
@@ -14,7 +14,7 @@
           </div></li>
           <h2 id="tieude"class="head col-3" style="color:#0072B5"></h2>
             
-          <input type="text"  id="selection" list="BienSoXeList" placeholder="Seach!!" onselect="this.value = ''" onchange="loadData ()"  style="background-color:gray">
+          <input type="text"  id="selection" list="BienSoXeList" placeholder="Seach!!" onselect="this.value = ''" onchange="LoadTimeLine ()"  style="background-color:gray">
         </ul>
   </div>
     <div class="tab-content">

@@ -142,7 +142,9 @@ $("#HideChoSC").dblclick(function(){
  
 var timeline = new vis.Timeline(container, items,groups, options);
 
- function loadData () {
+ function LoadTimeLine () {
+    dataTableTimXe()
+    BaoCao()
             items.clear()
             var dataArray0 =   useCaher
             var dataArray1= dataArray0.filter(function(r){return (r.LoaiHinhDongSon==="Đồng Sơn"&&r.CongDoanDongSon!=="QC"&&r.TrangThaiDongSon!=="Chờ Giao")})

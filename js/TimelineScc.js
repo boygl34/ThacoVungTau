@@ -47,6 +47,61 @@ groups.add({
  
 
 var timeline = new vis.Timeline(container, items,groups, options);
+
+
+
+$('#mytimeline').mouseleave(function(){
+    document.getElementById("contextMenu2").style.display = 'none';
+});
+timeline.on('mouseOver', function (properties) {
+  document.getElementById("contextMenu2").style.display = 'none';
+  
+})
+
+timeline.on('mouseMove', function (properties) {
+ // if(properties.item!==null){
+  var menu = document.getElementById("contextMenu2")
+  menu.style.display = 'block';
+  menu.style.left = properties.pageX + "px";
+  menu.style.top =(properties.pageY+30 ) + "px";
+  $("#ThoiGian").html(TimesClick(properties.time))
+  //}else{document.getElementById("contextMenu2").style.display = 'none'}
+})
+
+
+timeline.on('click', function (props) {document.getElementById("contextMenu").style.display = "none";})
+timeline.on('contextmenu', function (props) {
+  $("#biensomenu").html("")
+  document.getElementById('FormSCC').reset()
+  if(props.item){
+    console.log(props)
+  if (document.getElementById("contextMenu").style.display == "block")
+      { document.getElementById("contextMenu").style.display = "none"
+      }else {
+      var menu = document.getElementById("contextMenu")
+      menu.style.display = 'block';
+      menu.style.left = props.pageX + "px";
+      menu.style.top = props.pageY + "px";
+  }
+  var ojb =  useCaher
+    for(var a in ojb){
+    if(ojb[a].MaSo == props.item){
+      document.getElementById("BienSoXe").value=ojb[a].BienSoXe;
+      var start = new Date(DoiNgayDangKy(ojb[a].TimeStartGJ));
+      var end = new Date(DoiNgayDangKy(ojb[a].TimeEndGJ));
+
+      var chiudaichip = end-start
+      
+      $("#ChieuDaiChip").val(chiudaichip)
+    
+      $("#biensomenu").html(ojb[a].BienSoXe)
+      changvalue();
+      timeSuaChua() 
+    }}
+  $("#TTHuyChip").val(props.item)}
+props.event.preventDefault();
+});
+
 function LoadTimeLine () {
     items.clear();
     $("#XeChoSuaChua").html("");
@@ -156,36 +211,7 @@ function additembiensodung(value,MaSo){
                         )
 }
 
-timeline.on('click', function (props) {document.getElementById("contextMenu").style.display = "none"})
 
-timeline.on('contextmenu', function (props) {
-    $("#biensomenu").html("")
-    document.getElementById('FormSCC').reset()
-    if(props.item){if (document.getElementById("contextMenu").style.display == "block")
-                    { document.getElementById("contextMenu").style.display = "none"}
-                    else {  var menu = document.getElementById("contextMenu")
-                            menu.style.display = 'block';
-                            menu.style.left = props.pageX + "px";
-                            menu.style.top = props.pageY + "px";
-                    }
-                    var ojb =  useCaher
-                    for(var a in ojb){
-                            if(ojb[a].MaSo == props.item){
-                                document.getElementById("BienSoXe").value=ojb[a].BienSoXe;
-                                var start = new Date(DoiNgayDangKy(ojb[a].TimeStartGJ));
-                                var end = new Date(DoiNgayDangKy(ojb[a].TimeEndGJ));
-                                var chiudaichip = end-start
-                                $("#ChieuDaiChip").val(chiudaichip)
-                                $("#inputThoiGianSCC").val(chiudaichip*1/(60*60*1000))
-                                $("#biensomenu").html(ojb[a].BienSoXe)
-                                changvalue();
-                                timeSuaChua() 
-                            }
-                        }
-                    $("#TTHuyChip").val(props.item)
-                }
-    props.event.preventDefault();
-});
 function showtime(event){
     event.dataTransfer.effectAllowed = 'move';
     var timelineProperties = timeline.getEventProperties(event);

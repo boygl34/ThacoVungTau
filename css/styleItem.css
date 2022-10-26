@@ -97,4 +97,72 @@ li.item.EM60:after {
 }
 
 
+body {font-family: "Roboto", sans-serif}
+.w3-bar-block .w3-bar-item {
+  padding: 16px;
+  font-weight: bold;
+}
+.checkbox-xl .custom-control-label::before, 
+.checkbox-xl .custom-control-label::after {
+  padding-left: 10px;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.checkbox-xl .custom-control-label {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.checked {
+  color: white;
+}
+  .unchecked {
+  color: gray;
+}
+.CongDoan{
+  color: blue;
+}
+.BigStar{color: white}
+
+     
+table.dataTable td{
+    vertical-align: middle;
+    }
+
+
+.DangSuaChua{
+   color: #00ff00;
+}
+.ChoSuaChua{
+   color: yellow;
+}
+.ChuaSuaChua{
+   color: pink;
+}
+.DungSuaChua{
+   color: red;
+}
+table tbody {
+   color: white;
+}
+
+
+      
+table thead {background-color:#1155cc;
+  font-size: 10px;}
+  
+  
+
+   input:invalid {
+  border-color: red;
+}
+input:valid {
+  background: lightgreen;
+}
+select:valid {
+  background: lightgreen;
+}
+  select:invalid {
+  border-color: red;
+}
 

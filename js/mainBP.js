@@ -1,21 +1,4 @@
-var useCaher,useCaher2={}
-var emailnhanvienhen = "quipham@toyotavungtau.com";
-var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong"
-var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao"
-setInterval(function (){getData(urlTX)},60000);
-getData(urlTX)
 
- 
-function getData(url){
-  fetch(url)
-  .then(response => response.json())
-  .then(data =>{
-    useCaher=data
-    loadData ()
-    dataTableTimXe(data)
-    BaoCao(data)
-  } );
-} 
 
   
 
@@ -25,7 +8,7 @@ function getData(url){
  
 
 
-BANGTIENDO(localStorage.getItem("BangTD"))
+
 function postData(data,url,methor){
     fetch(url, {
     method: methor, // or 'PUT'
@@ -34,7 +17,7 @@ function postData(data,url,methor){
     })
     .then(response => response.json())
     .then(data => {
-    getData(urlTX)
+    getData()
     $("#alert").html("<div class='alert alert-success'>Thành Công</div>")
     //document.getElementById("FormDS").reset() 
     })
@@ -71,7 +54,7 @@ for(var a in ojb){
 
 
 function dataTableTimXe(value){  
-  let dataArray0=value
+  let dataArray0=useCaher
   let dataArray1= dataArray0.filter(function(r){return (r.LoaiHinhDongSon==="Đồng Sơn")})
     
   // for (var a in dataArray1) {

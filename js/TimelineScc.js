@@ -34,7 +34,7 @@ var options = {
     //timeSuaChua()
     $("#inputThoiGianSCC").val((chiudaichip * 1) / (60 * 60 * 1000));
   },
-  timeAxis: { scale: "minute", step: 30 },
+  timeAxis: { scale: "minute", step: 15 },
   orientation: "top",
   start: new Date(new Date().valueOf()).setHours(6),
   end: new Date(new Date().valueOf()).setHours(17),

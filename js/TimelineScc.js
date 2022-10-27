@@ -8,7 +8,9 @@ var options = {
                 hiddenDates: [  {start: '2017-03-05 00:00:00',end: '2017-03-06 00:00:00',repeat: 'weekly'},
                                 { start: '2017-03-04 17:00:00',end: '2017-03-05 08:00:00',repeat: 'daily'}],
                 onMove: function (item) {   let text = "Thay Đổi kế hoạch xe "+item.content;
-                                            if (confirm(text) == true) { capnhatthoigian(item)} else {LoadTimeLine()};
+                if(item){
+                    capnhatthoigian(item)}
+                                            //if (confirm(text) == true) { capnhatthoigian(item)} else {LoadTimeLine()};
                                          },
                 onAdd: function (item) {   },                  
                 onUpdate: function (item) { var BienSo = item.content.slice(0,item.content.indexOf(" "))
@@ -22,11 +24,12 @@ var options = {
                                             //timeSuaChua() 
                                             $("#inputThoiGianSCC").val(chiudaichip*1/(60*60*1000))
                                         },
+                timeAxis: {scale: 'minute', step: 30},                                     
                 orientation: 'top',
                 start:(new Date( (new Date()).valueOf())).setHours(6),
                 end: (new Date( (new Date()).valueOf())).setHours(17),
                 editable: true,
-                autoResize:true,
+                autoResize:false,
                 margin: {  item: 0.5,  // distance between items
                                     axis: 0.5,  // distance between items and the time axis
                                 },
@@ -64,7 +67,8 @@ timeline.on('mouseMove', function (properties) {
   menu.style.display = 'block';
   menu.style.left = properties.pageX + "px";
   menu.style.top =(properties.pageY+30 ) + "px";
-  $("#ThoiGian").html(TimesClick(properties.time))
+  var aa = TimesClick(properties.time)
+  $("#ThoiGian").html(TimesClick(properties.time).slice(11,16))
   //}else{document.getElementById("contextMenu2").style.display = 'none'}
 })
 

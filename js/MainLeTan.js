@@ -173,7 +173,7 @@ function getValueALL(){
       var ojb =  useCaher
     getValueALL()
     NutNhan.innerHTML="";
-    document.getElementById("MaSo").value = TaoMaSo()+BienSoXe.value;
+    document.getElementById("MaSo").value = TaoMaSo()+ $("#BienSoXe").val();
      $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>")
      NutNhan.innerHTML = '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>'
       for(var a in ojb){

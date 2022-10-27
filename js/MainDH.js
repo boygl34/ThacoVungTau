@@ -42,7 +42,19 @@ function checkID(MaSo){
 }
 }
  
-
+KhuVuc()
+function KhuVuc() { 
+  var values = KhuVucVT;
+   var list = document.getElementById('KhuVuc'); 
+   for (var i = 0; i < values.length; i++) {
+    var option = document.createElement("option");
+ 
+     option.value = values[i];
+     option.text = values[i];
+     list.appendChild(option);
+   
+   }
+ }
 
 
 function DanhSachCoVan2() { 

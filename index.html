@@ -22,7 +22,18 @@
         <script src="https://unpkg.com/htmlincludejs"></script>
     </head>
     <body>
-        
+        <div id="contextMenu2"class="timeshow"  style="display:none">
+            <a id="ThoiGian"></a>
+        </div>
+        <div id="ChieuDaiChip" style="display:none"></div> 
+        <div id="contextMenu" class="context-menu" style="display:none">
+            <ul><a id="biensomenu"></a>
+                <li><a   onclick="BatDauSC2()">Bắt Đầu</a></li>
+                <li><a id="TimXe" onclick="KetThuc()"  >Kết Thúc</a></li>
+                <li><a id="TimXe" onclick="DungCongViecGJ()"  >Dừng CV</a></li>
+                <li><a id="TTHuyChip" onclick="huyChip()" >Xoá Chíp</a></li>
+            </ul>
+        </div> 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Toyota Vũng Tàu</a>
@@ -48,6 +59,7 @@
                 </li>
             </ul>
         </nav>
+        
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -115,17 +127,18 @@
                             </a>
                         </div>
                     </div>
+                    
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         Start Bootstrap
                     </div>
                 </nav>
             </div>
-            <div id="contextMenu2"class="timeshow"  style="display:none">
-                <a id="ThoiGian"></a>
-            </div>
+           
             <div id="layoutSidenav_content">
-               
+               <main>
+
+               </main>
             </div>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -135,9 +148,12 @@
                     </div>
                 </div>
             </footer> 
-       </div>
+        </div>
+      </div>    
+            
+     
         
-
+          
                 
            
 

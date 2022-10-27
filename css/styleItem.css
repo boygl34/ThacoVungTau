@@ -54,6 +54,10 @@ li.item {
 li.item.ChuaSuaChua {
  background:#ffc107 ;
 }
+li.item.DungCongViec {
+  background:#ff0707 ;
+  color: white;
+ }
 li.item.DangSuaChua {
  background:greenyellow ;
 }

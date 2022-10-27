@@ -144,29 +144,13 @@ function LoadTimeLine() {
         remove: false, // delete an item by tapping the delete button top right
         overrideItems: true, // allow these options to override item.editable
       };
-    if (r.LoaiHinhSuaChua == "SCC") {
-      khoang = 2;
-    } else {
-      khoang = 1;
-    }
-    if (r.TrangThaiSCC == "Đang SC") {
-      mau = "green";
-    }
-    if (r.TrangThaiSCC == "Dừng SC") {
-      mau = "red";
-    }
-    if (r.TrangThaiSCC == "Chờ SC") {
-      mau = "orange";
-    }
-    if (r.TrangThaiSCC == "Đã SC") {
-      mau = "magenta";
-    }
-    if (r.TrangThaiHen == "Đúng Giờ") {
-      tthen = "DungGio";
-    }
-    if (r.TrangThaiHen == "Đến Sớm") {
-      tthen = "DenSom";
-    }
+    if (r.LoaiHinhSuaChua == "SCC") {khoang = 2;} else {khoang = 1;}
+    if (r.TrangThaiSCC == "Đang SC") { mau = "green";}
+    if (r.TrangThaiSCC == "Dừng SC") {mau = "red";}
+    if (r.TrangThaiSCC == "Chờ SC") {mau = "orange";}
+    if (r.TrangThaiSCC == "Đã SC") {mau = "magenta";}
+    if (r.TrangThaiHen == "Đúng Giờ") {tthen = "DungGio";}
+    if (r.TrangThaiHen == "Đến Sớm") {tthen = "DenSom";}
     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận") {
       additembienso(
         r.BienSoXe,
@@ -185,14 +169,11 @@ function LoadTimeLine() {
         r.LoaiHinhSuaChua
       );
     }
-    if (
-      r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
-      r.TrangThaiXuong == "02 Chuẩn Bị Tiếp"
-    ) {
+    if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
       additembienso(r.BienSoXe, r.MaSo, "ChoSuaChua", tthen, r.LoaiHinhSuaChua);
     }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
-      additembiensodung(r.BienSoXe, r.MaSo);
+      additembiensodung(r.BienSoXe, r.MaSo,"DungCongViec",r.LoaiHinhSuaChua);
     }
     if (r.TimeEndGJ) {
       var endRX = new Date(
@@ -202,6 +183,7 @@ function LoadTimeLine() {
     if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) {
       mau = "magenta";
     }
+    if( r.TrangThaiSCC !== "Dừng CV"){
     if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
       items.add({
         className: mau,
@@ -284,6 +266,7 @@ function LoadTimeLine() {
     timeline.redraw();
   }
 }
+}
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
@@ -300,14 +283,18 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
       "</li>"
   );
 }
-function additembiensodung(value, MaSo) {
+function additembiensodung(value, MaSo,trangthai,LoaiHinh) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-      '<li draggable="true"  ondrag="showtime(event)" ondragend="handleDragStart(event)" class="item DungCongViec" value="' +
-      MaSo +
-      '">' +
-      value +
-      "</li>"
+    '<li draggable="true"  ondrag="showtime(event)" ondragend="handleDragStart(event)" class="item ' +
+    trangthai +
+    " " +
+    LoaiHinh +
+    '" value="' +
+    MaSo +
+    '">' +
+    value +
+    "</li>"
   );
 }
 
@@ -412,27 +399,25 @@ function huyChip(item) {
       delete ojb[a].TimeEndGJ;
       ojb[a].TrangThaiSCC = "Chờ SC";
       ojb[a].TrangThaiXuong = "04 Đã Tiếp Nhận";
-      try {
+      
         let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb[a].BienSoXe;
         if (
-          confirm(text) == true &&
-          localStorage.getItem("PhanQuyen") == "DieuPhoi"
+          confirm(text) == true &&(
+          localStorage.getItem("PhanQuyen") == "DieuPhoi"||localStorage.getItem("PhanQuyen") == "admin")
         ) {
-          alert(urlTX + "/" + ojb[a].id);
+          
           $.ajax({
             url: urlTX + "/" + ojb[a].id,
             type: "PUT",
             data: ojb[a],
             success: function (data) {
-              LoadTimeLine();
+              getData();
             },
           });
         } else {
           alert("Bạn không Thể xóa chíp");
         }
-      } catch (eros) {
-        alert(eros);
-      }
+      
     }
   }
 }

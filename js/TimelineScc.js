@@ -424,7 +424,7 @@ function huyChip(item) {
             type: "PUT",
             data: ojb[a],
             success: function (data) {
-              loadData();
+              LoadTimeLine();
             },
           });
         } else {

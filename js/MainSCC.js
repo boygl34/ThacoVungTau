@@ -1,6 +1,9 @@
 function postData(data, url, methor) {
   fetch(url, {
-    method: methor, // or 'PUT'
+    method: methor, 
+    //mode: 'cors', // no-cors, *cors, same-origin
+    //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+   // credentials: 'omit', // or 'PUT'
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
@@ -9,9 +12,9 @@ function postData(data, url, methor) {
       getData()
       $("#mesenge").html("<div class='alert alert-success'>Đăng Ký Thành Công</div>")
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    
+    
+    
 }
 function deleteData(url) {
   fetch(url, {
@@ -258,6 +261,15 @@ function CoVanlist(values) {
     option.text = values[i];
     list.appendChild(option);
   }
+}
+function CapNhatGioSC(){
+  if(document.getElementById("GioKetThucSC").value=="")
+  {$("#mesenge").html('<div class="alert alert-danger" role="alert">Chưa Có thời gian sc</div>')
+  var json2 = {
+      TimeEndGJ: $('#GioKetThucSC').val(),
+    }
+  postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+}
 }
 function GioKetThucSCC() {
   var homnay = new Date()

@@ -59,16 +59,16 @@ function DanhSachCoVan2() {
 
 function getValueALL(){
     var use={
-        MaSo : MaSo.value,
-        BienSoXe: BienSoXe.value,
-        TenKH : TenKH.value,
-        SoThe: SoThe.value,
-        TrangThaiHen : document.getElementById("TrangThaiHen").value,
-        LoaiHinhSuaChua : LoaiHinh.value,
-        LoaiHinhDongSon : LoaiHinhBP.value,
+        MaSo : $("#MaSo").val(),
+        BienSoXe: $("#BienSoXe").val(),
+        TenKH : $("#TenKH").val(),
+        SoThe: $("#SoThe").val(),
+        TrangThaiHen : $("#TrangThaiHen").val(),
+        LoaiHinhSuaChua :$("#LoaiHinh").val() ,
+        LoaiHinhDongSon :$("#LoaiHinhBP").val() ,
         TDGapLeTan:TimesClick(),
         TrangThaiXuong:"02 Chờ Tiếp Nhận",
-        CoVanDichVu : CoVanDichVu.value}
+        CoVanDichVu : $("#CoVanDichVu").val()}
         if(LoaiHinh.value){use["TrangThaiSCC"]="Chờ SC"}else{use["TrangThaiSCC"]=""}
         if(LoaiHinhBP.value){use["CongDoanDongSon"]="Chờ SC";
         use["TrangThaiDongSon"]="Chờ SC";}else{use["CongDoanDongSon"]="";
@@ -151,20 +151,20 @@ function getValueALL(){
   function CapNhat(){
      $("#mesenge").html("<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Cập Nhật</div>")
      var use={
-        MaSo : MaSo.value,
-        BienSoXe: BienSoXe.value,
-        TenKH : TenKH.value,
-        SoThe: SoThe.value,
-        TrangThaiHen : document.getElementById("TrangThaiHen").value,
-        LoaiHinhSuaChua : LoaiHinh.value,
-        LoaiHinhDongSon : LoaiHinhBP.value,
+        MaSo : $("#MaSo").val(),
+        BienSoXe: $("#BienSoXe").val(),
+        TenKH : $("#TenKH").val(),
+        SoThe:$("#SoThe").val(),
+        TrangThaiHen : $("#TrangThaiHen").val() ,
+        LoaiHinhSuaChua : $("#LoaiHinh").val() ,
+        LoaiHinhDongSon : $("#LoaiHinhBP").val() ,
         TrangThaiXuong:"02 Chờ Tiếp Nhận",
-        CoVanDichVu : CoVanDichVu.value}
+        CoVanDichVu : $("#CoVanDichVu").val()}
         if(LoaiHinh.value){use["TrangThaiSCC"]="Chờ SC"}else{use["TrangThaiSCC"]=""}
         if(LoaiHinhBP.value){use["CongDoanDongSon"]="Chờ SC";
         use["TrangThaiDongSon"]="Chờ SC";}else{use["CongDoanDongSon"]="";
         use["TrangThaiDongSon"]=""}
-     postData(use,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
+     postData(use,urlTX+"/"+checkID( $("#MaSo").val()),"PATCH")
   }
   
   
@@ -178,8 +178,8 @@ function getValueALL(){
      NutNhan.innerHTML = '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>'
       for(var a in ojb){
       NutNhan.innerHTML = '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>'
-          if(ojb[a].BienSoXe == BienSoXe.value){
-        document.getElementById("BienSoXe").value = ojb[a].BienSoXe
+          if(ojb[a].BienSoXe == $("#BienSoXe").val()){
+            document.getElementById("BienSoXe").value = ojb[a].BienSoXe
       if(ojb[a].MaSo){	document.getElementById("MaSo").value = ojb[a].MaSo}
       if(ojb[a].CoVanDichVu){	document.getElementById("CoVanDichVu").value = ojb[a].CoVanDichVu}
       if(ojb[a].LoaiHinhDongSon){	document.getElementById("LoaiHinhBP").value = ojb[a].LoaiHinhDongSon}

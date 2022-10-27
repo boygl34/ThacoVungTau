@@ -55,7 +55,13 @@ function KhuVuc() {
    
    }
  }
-
+ function ChangKhuVuc(){
+  var MaSo = $('#MaSo').val()
+  console.log(MaSo)
+   var json2 = { KhuVuc: $('#KhuVuc').val(),
+             }
+postData(json2,urlTX+"/"+checkID(MaSo),"PATCH")
+}
 
 function DanhSachCoVan2() { 
     var values = NhomCV;
@@ -330,6 +336,7 @@ catch(error) {
        if(ojb[a].LoaiHinhSuaChua){document.getElementById("LoaiHinhSuaChua").value = ojb[a].LoaiHinhSuaChua} 
        if(ojb[a].TenKH){document.getElementById("TenKH").value = ojb[a].TenKH} 
        if(ojb[a].SoDT){document.getElementById("SoDT").value = ojb[a].SoDT} 
+       if(ojb[a].KhuVuc){document.getElementById("KhuVuc").value = ojb[a].KhuVuc}  
        if(ojb[a].NoiDungHen){document.getElementById("NoiDungHen").value = ojb[a].NoiDungHen}
        if(ojb[a].ThoiGianHen){document.getElementById("ThoiGianHen").value = ojb[a].ThoiGianHen} 
        if(ojb[a].NguoiDatHen){document.getElementById("NguoiDatHen").value = ojb[a].NguoiDatHen} 

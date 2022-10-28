@@ -1,39 +1,97 @@
-<div class="container-fluid px-4">
-    <div class="card mb-4">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-5">
-                    <i class="fas fa-table me-1"></i>
-                    Tiến Độ SCC
-                </div>
-                <div class="custom-control custom-checkbox checkbox-xl col-3">
-                    <input type="checkbox" class="custom-control-input" id="checkbox-3" onchange="LoadTimeLine ()">
-                    <label class="custom-control-label" for="checkbox-3">Đã HT</label>
-                </div>
-                <div class="custom-control custom-checkbox checkbox-xl col-3">
-                    <input type="checkbox" class="custom-control-input" id="checkbox-hen" onchange="LoadTimeLine ()">
-                    <label class="custom-control-label" for="checkbox-hen">Xe Hẹn</label>
-                </div>
 
+<main>
+    <div class="container-fluid px-4">
+        <!--bat dau Thông tin card -->
+        <div class="row" style="display: none;">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">Primary Card</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">Warning Card</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Success Card</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">Danger Card</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="container" style="width: 10%;">
+        <!--ket thuc Thông tin card -->
+       <!--  Màng hình làm việc chính o đây-->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-5">
+                        <i class="fas fa-table me-1"></i>
+                        Tiến Độ SCC
+                    </div>
+                    <div class="custom-control custom-checkbox checkbox-xl col-3">
+                        <input type="checkbox" class="custom-control-input" id="checkbox-3" onchange="LoadTimeLine ()">
+                        <label class="custom-control-label" for="checkbox-3">Đã HT</label>
+                    </div>
+                    <div class="custom-control custom-checkbox checkbox-xl col-3">
+                        <input type="checkbox" class="custom-control-input" id="checkbox-hen" onchange="LoadTimeLine ()">
+                        <label class="custom-control-label" for="checkbox-hen">Xe Hẹn</label>
+                    </div>
+    
+                </div>
+            </div>
+
+            <div class="card-body" id="MangHinhLamViec">
+               <!--  Màng hình  đây-->
+               <div class="row">
+                <div class="col-xl-1">
                     <P class="tab-pane " style="text-align:center;background:gray;width: 100%;">Xe Chờ SC</P>
                     <div class="items" id="XeChoSuaChua"></div>
                 </div>
-                <div style="width: 80%;">
-                    <div id="mytimeline" ondragover="event.preventDefault()" ondrop="onDrop(event)"></div>
+                <div class="col-xl-10 "id="mytimeline"ondragover="event.preventDefault()" ondrop="onDrop(event)">
+                  
                 </div>
-                <div class="container" style="width: 10%;">
+                <div class="col-xl-1 ">
                     <P class="tab-pane " style="text-align:center;background:red;width: 100%;">Xe Dừng CV</P>
-                    <ul class="items" id="XeDungCV"></ul>
-                </div>
+                    <div class="items" id="XeDungCV"></div>
+               </div>           
+                <!--  Màng hình  đây-->
             </div>
         </div>
     </div>
-</div>
+</main>
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <div class="modal fade" id="ModalSCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

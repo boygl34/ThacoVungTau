@@ -375,7 +375,7 @@ function handleDragStart(event) {
   var json2 = {
     TimeStartGJ: TimesClick(new Date(timelineProperties.time)),
     TrangThaiSCC: "Chờ SC",
-    TrangThaiXuong: "04 Đã Tiếp Nhận",
+    //TrangThaiXuong: "04 Đã Tiếp Nhận",
     KhoangSuaChua: timelineProperties.group,
     TimeEndGJ: TimesClick(
       new Date(1000 * 60 * 60 + new Date(timelineProperties.time).valueOf())

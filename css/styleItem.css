@@ -68,14 +68,14 @@ li.item.DungGio:before {
   content: "[Đ]";
   font-family: Arial, sans-serif;
   display: inline-block;
-  
+  font-size: 10px;
  
 }
 li.item.DenSom:before {
   content: "[S]";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 8px;
+  font-size: 10px;
 
 }
 li.item.SCC:after {

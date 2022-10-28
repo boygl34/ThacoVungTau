@@ -45,19 +45,19 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-7">
                         <i class="fas fa-table me-1"></i>
                         Tiến Độ SCC
                     </div>
-                    <div class="custom-control custom-checkbox checkbox-xl col-3">
-                        <input type="checkbox" class="custom-control-input" id="checkbox-3" onchange="LoadTimeLine ()">
-                        <label class="custom-control-label" for="checkbox-3">Đã HT</label>
+                    <div class="form-check col-2 ">
+                        <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
+                        <label class="form-check-label" for="checkbox-3">Đã HT</label>
                     </div>
-                    <div class="custom-control custom-checkbox checkbox-xl col-3">
-                        <input type="checkbox" class="custom-control-input" id="checkbox-hen" onchange="LoadTimeLine ()">
-                        <label class="custom-control-label" for="checkbox-hen">Xe Hẹn</label>
+                    <div class="form-check col-2">
+                        <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()">
+                        <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -100,7 +100,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Sữa Chữa Chung</h5>
                 <h5 style="float: right" id="biensoscc"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="hidemodal()")>
                     <span aria-hidden="true">&times;</span>
                   </button>
             </div>

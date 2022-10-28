@@ -28,6 +28,9 @@ window.addEventListener('DOMContentLoaded', event => {
 
         if(localStorage.getItem("TabDaDong")!==""){gethtml(localStorage.getItem("TabDaDong"))}
 
+        function hidemodal(){
+    $('.modal').modal('hide')  
+}
 
 function gethtml(value){
     localStorage.setItem("TabDaDong",value)

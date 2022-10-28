@@ -485,9 +485,9 @@ function capnhatthoigian(item) {
     TimeStartGJ: TimesClick(item.start),
     TimeEndGJ: TimesClick(item.end),
     KhoangSuaChua: item.group,
-    KyThuatVien1: KTV1,
-    KyThuatVien2: KTV2,
-    NhomKTV: NhomSC,
+    // KyThuatVien1: KTV1,
+    // KyThuatVien2: KTV2,
+    // NhomKTV: NhomSC,
   };
   postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
 }

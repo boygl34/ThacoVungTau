@@ -49,7 +49,7 @@ li.item {
   border-radius: 2px;
  text-align: center;
   font-weight: bolder;
-  
+  font-size: 12px;
 }
 li.item.ChuaSuaChua {
  background:#ffc107 ;

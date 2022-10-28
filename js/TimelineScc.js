@@ -73,7 +73,7 @@ timeline.on("mouseMove", function (properties) {
   var menu = document.getElementById("contextMenu2");
   menu.style.display = "block";
   menu.style.left = properties.pageX + "px";
-  menu.style.top = properties.pageY + 30 + "px";
+  menu.style.top = properties.pageY + 8 + "px";
   var aa = TimesClick(properties.time);
   timekeo = properties.time
   $("#ThoiGian").html(TimesClick(properties.time).slice(11, 16));
@@ -306,7 +306,7 @@ function showtime(event) {
   var menu = document.getElementById("contextMenu2");
   menu.style.display = "block";
   menu.style.left = timelineProperties.pageX + "px";
-  menu.style.top = timelineProperties.pageY + 25 + "px";
+  menu.style.top = timelineProperties.pageY + 15 + "px";
   $("#ThoiGian").html(
     TimesClick(timelineProperties.time) + "<br>" + timelineProperties.group
   );

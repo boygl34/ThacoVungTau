@@ -45,8 +45,9 @@ color: black;
     left: 0;
     top: 0;
     width: 100%;
-    color: white;
+    color: rgb(10, 10, 10);
     box-sizing: border-box;
+    min-height: 32.5px;
     }
 .vis-timeline {
     border: 1px solid;
@@ -128,6 +129,10 @@ color: black;
   border-color: purple;
   color: white;
  }
+ .vis-time-axis .vis-grid.vis-minor {
+  border-color: rgb(255, 252, 252);
+}
+
   .vis-item.orange {
   background-color: #ffd966;
   border-color: orange;
@@ -136,13 +141,19 @@ color: black;
  }
  .vis-time-axis .vis-text {
     position: absolute;
-    color: white;
+    color: rgb(10, 10, 10);
     padding: 3px;
     overflow: hidden;
     box-sizing: border-box;
     white-space: nowrap;
+    font-size: 8px;
  }
- 
+ .vis-foreground .vis-group {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #bfbfbf;
+ min-height: 32.5px;
+}
  
  
  @media only screen and (max-width: 600px) {

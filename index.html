@@ -166,6 +166,7 @@
             //var urluser = "login.json"
             var password = localStorage.getItem("Password")
             var use = localStorage.getItem("id")
+            if(use==null){ window.location = "login.html"}
             if (password !== "" && use !== "") {
                 fetch(urluser + use)
                     .then(response => response.json())

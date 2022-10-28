@@ -49,7 +49,7 @@ li.item {
   border-radius: 2px;
  text-align: center;
   font-weight: bolder;
-  font-size: 10px;
+  
 }
 li.item.ChuaSuaChua {
  background:#ffc107 ;
@@ -68,55 +68,41 @@ li.item.DungGio:before {
   content: "[Đ]";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 10px;
+  
  
 }
 li.item.DenSom:before {
   content: "[S]";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 10px;
+  font-size: 8px;
 
 }
 li.item.SCC:after {
   content: "_SCC";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 10px;
+  font-size: 8px;
   
 }
 li.item.EM:after {
   content: "_EM";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 10px;
+  font-size: 8px;
   
 }
 li.item.EM60:after {
   content: "_EM60";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 10px;
+  font-size: 8px;
   cursor: move;
 }
 
 
-body {font-family: "Roboto", sans-serif}
-.w3-bar-block .w3-bar-item {
-  padding: 16px;
-  font-weight: bold;
-}
-.checkbox-xl .custom-control-label::before, 
-.checkbox-xl .custom-control-label::after {
-  padding-left: 10px;
-  width: 1.85rem;
-  height: 1.85rem;
-}
 
-.checkbox-xl .custom-control-label {
-  padding-top: 10px;
-  padding-left: 10px;
-}
+
 .checked {
   color: white;
 }

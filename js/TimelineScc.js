@@ -40,6 +40,7 @@ var options = {
   end: new Date(new Date().valueOf()).setHours(17),
   editable: true,
   autoResize: false,
+  zoomable:false,
   margin: {
     item: 0.5, // distance between items
     axis: 0.5, // distance between items and the time axis
@@ -66,7 +67,7 @@ $("#mytimeline").mouseleave(function () {
 timeline.on("mouseOver", function (properties) {
   document.getElementById("contextMenu2").style.display = "none";
 });
-
+var timekeo
 timeline.on("mouseMove", function (properties) {
   // if(properties.item!==null){
   var menu = document.getElementById("contextMenu2");
@@ -74,6 +75,7 @@ timeline.on("mouseMove", function (properties) {
   menu.style.left = properties.pageX + "px";
   menu.style.top = properties.pageY + 30 + "px";
   var aa = TimesClick(properties.time);
+  timekeo = properties.time
   $("#ThoiGian").html(TimesClick(properties.time).slice(11, 16));
   //}else{document.getElementById("contextMenu2").style.display = 'none'}
 });
@@ -480,14 +482,17 @@ function capnhatthoigian(item) {
     KTV1 = "Thiên";
     KTV2 = "";
   }
-
+  var a = (new Date(item.start)).valueOf()
+  var b = (new Date(timekeo)).valueOf()
+if(item.id&&a<b){
   var json2 = {
     TimeStartGJ: TimesClick(item.start),
-    TimeEndGJ: TimesClick(item.end),
+    TimeEndGJ: TimesClick(timekeo),
     KhoangSuaChua: item.group,
     // KyThuatVien1: KTV1,
     // KyThuatVien2: KTV2,
     // NhomKTV: NhomSC,
   };
   postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
+}else{ alert(item.id+' loi')}
 }

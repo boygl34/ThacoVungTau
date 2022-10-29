@@ -482,6 +482,7 @@ function capnhatthoigian(item) {
     KTV1 = "Thiên";
     KTV2 = "";
   }
+  if(item.end){timekeo=item.end}
   var a = (new Date(item.start)).valueOf()
   var b = (new Date(timekeo)).valueOf()
 if(item.id&&a<b){

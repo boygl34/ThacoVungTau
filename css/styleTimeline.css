@@ -68,7 +68,7 @@ color: black;
  
     .vis-drag-right::before {
       font-family: "Font Awesome 5 Free"; 
-      font-weight: 900; 
+     
       content: "\f054";
       display: inline-flex;
       position: absolute;
@@ -77,31 +77,20 @@ color: black;
     }  
     .vis-drag-left::after {
       font-family: "Font Awesome 5 Free"; 
-      font-weight: 900; 
+     
       content: "\f053";
       display: inline-flex;
       position: absolute;
       vertical-align: middle;
 
     }  
-    .vis-item.vis-range .vis-drag-left {
+  .vis-item.vis-range .vis-drag-left {
       position: absolute;
-      width: 24px;
-      max-width: 20%;
-      min-width: 2px;
-      height: 100%;
-      top: 0;
       cursor: e-resize;
       background-color: rgb(40, 128, 13);
   }
 .vis-item.vis-range .vis-drag-right {
     position: absolute;
-    width: 24px;
-    max-width: 20%;
-    min-width: 2px;
-    height: 100%;
-    top: 0;
-    
     cursor: e-resize;
     background-color: rgb(40, 128, 13);
 }

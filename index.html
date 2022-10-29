@@ -75,10 +75,12 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Trang Chính</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" onclick="gethtml('Home.html')">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Home!!
                         </a>
+
+
                         <div class="sb-sidenav-menu-heading"></div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -96,7 +98,49 @@
                                 <a class="nav-link" onclick="gethtml('TienDoDongSon.html')">Tiến Độ ĐS</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+
+                        
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                            data-bs-target="#collapseLayouts-kd" aria-expanded="false" aria-controls="collapseLayouts-kd">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Kinh Doanh
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts-kd" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('DatHen.html')">Đặt Hẹn</a>
+                                <a class="nav-link" onclick="gethtml('PDS.html')">PDS</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                            data-bs-target="#collapseLayouts-pk" aria-expanded="false" aria-controls="collapseLayouts-pk">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Phụ Kiện
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts-pk" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('DatHen.html')">Đặt Hẹn</a>  
+                                <a class="nav-link" onclick="gethtml('TienDoScc.html')">Tiến Độ PK</a>     
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" data-bs-toggle="collapse" 
+                            data-bs-target="#collapseLayouts-mh" aria-expanded="false" aria-controls="collapseLayouts-mh">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Màng Hình
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts-mh" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" onclick="gethtml('DatHen.html')">Đặt Hẹn</a>      
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"  style="display: none;" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Pages
@@ -138,12 +182,9 @@
                         <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
+                            CheckSheet 5S
                         </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
+                        
                     </div>
                 </div>
 

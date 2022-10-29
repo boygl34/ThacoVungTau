@@ -129,14 +129,10 @@ table.dataTable td{
 .DungSuaChua{
    color: red;
 }
-table tbody {
-   color: white;
-}
 
 
-      
-table thead {background-color:#1155cc;
-  font-size: 10px;}
+
+
   
   
 
@@ -219,8 +215,7 @@ select:valid {
   border-bottom: 1px solid blue;
   margin: auto;
 }
-table thead {background-color:#1155cc;
-  font-size: 10px;}
+
 #table-TimXe .DangSuaChua{
    color: #00ff00;
 }

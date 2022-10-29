@@ -77,7 +77,6 @@ color: black;
     }  
     .vis-drag-left::after {
       font-family: "Font Awesome 5 Free"; 
-     
       content: "\f053";
       display: inline-flex;
       position: absolute;

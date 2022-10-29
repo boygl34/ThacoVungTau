@@ -270,10 +270,10 @@ function LoadTimeLine() {
 }
 }
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
-  
+
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
-      '<li draggable="true"  ondrag="showtime(event)" ondragend="handleDragStart(event)" class=" item ' +
+      '<li draggable="true"  ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class=" item ' +
       trangthai +
       " " +
       tthen +
@@ -300,7 +300,22 @@ function additembiensodung(value, MaSo,trangthai,LoaiHinh) {
     "</li>"
   );
 }
+function teststart(e){
 
+  var dt = e.dataTransfer;
+  dt.effectAllowed = "move";
+  console.log(dt)
+  if (dt) {
+    dt.effectAllowed = 'move';
+    dt.setData('text', 'dummy');
+    dragging = $(this);
+    var dragIcon = document.createElement('img');
+    dragIcon.src = 'https://www.w3schools.com/w3images/fjords.jpg';
+    dragIcon.width = 10;
+    dt.setDragImage(dragIcon, 0, 0);
+  }
+
+}
 function showtime(event) {
   event.dataTransfer.effectAllowed = "move";
   var timelineProperties = timeline.getEventProperties(event);

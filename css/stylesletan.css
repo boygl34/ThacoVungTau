@@ -21,9 +21,7 @@ select:valid {
  #dataTable td:nth-child(10) {
        font-size: 0.5px;
   }
-  #dataTable td:nth-child(1) {
-       font-size: 25px;
-  }
+  
   table.dataTable thead {background-color:#1155cc;
   font-size: 8px;}
 
@@ -42,22 +40,14 @@ select:valid {
   width: 100%;
 }
 
-  #dataTableHen {
-       font-size:15.5px;
-  }
+  
   #dataTable td {
     height: 50px;
      vertical-align: middle;
-       font-size:15.5px;
+       
   }
   
-   #dataTableHen td:nth-child(7) {
-      width: 35%;
-      font-size:8.5px;
-  }
-  #dataTableHen td:nth-child(2) {
-       font-size:25.5px;
-  }
+  
   
   #dataTableHen td:nth-child(8) {
        font-size:0.5px;

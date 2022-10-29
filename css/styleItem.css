@@ -208,7 +208,7 @@ select:valid {
     }
   #tablehen td:nth-child(0) {
         width: 10%;
-        font-size: 14px;
+       
   }
    #table-TimXe   td {
    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1200 - 300)));

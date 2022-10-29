@@ -270,6 +270,7 @@ function LoadTimeLine() {
 }
 }
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
+  
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
       '<li draggable="true"  ondrag="showtime(event)" ondragend="handleDragStart(event)" class=" item ' +

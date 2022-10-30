@@ -14,25 +14,24 @@ var newitems = new vis.DataSet();
 
 groups.add({
   id: NhomDH[0],
-  content:
-    "<br><br><br><br><br><br>" + NhomDH[0] + "<br><br><br><br><br><br><br>",
+  content: NhomDH[0] ,
   className: NhomDH[0],
 });
 groups.add({
   id: NhomDH[1],
-  content: "<br><br><br>" + NhomDH[1] + "<br><br><br><br>",
+  content:NhomDH[1] ,
   className: NhomDH[1],
 });
 
 groups.add({
   id: NhomDH[2],
-  content: "<br><br>" + NhomDH[2] + "<br><br>",
+  content:  NhomDH[2] ,
   className: NhomDH[2],
 });
 
 groups.add({
   id: NhomDH[3],
-  content: "<br><br>" + NhomDH[3] + "<br><br>",
+  content:  NhomDH[3] ,
   className: NhomDH[3],
 });
 

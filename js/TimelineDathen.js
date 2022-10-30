@@ -115,7 +115,7 @@ var options = {
     changvalue();
     if (
       localStorage.getItem("userName") === $("#NguoiDatHen").val() ||
-      localStorage.getItem("userName") == emailnhanvienhen
+      localStorage.getItem("PhanQuyen") == "AdminHen"||localStorage.getItem("PhanQuyen") == "admin"
     ) {
       if ($("#TrangThaiXuong").val() == "00 Có Hẹn") {
         $("#buttonSCC").html(

@@ -157,7 +157,7 @@ function LoadTimeLine() {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "ChuaSuaChua",
+        "ChoSuaChua",
         tthen,
         r.LoaiHinhSuaChua
       );
@@ -172,7 +172,7 @@ function LoadTimeLine() {
       );
     }
     if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-      additembienso(r.BienSoXe, r.MaSo, "ChoSuaChua", tthen, r.LoaiHinhSuaChua);
+      additembienso(r.BienSoXe, r.MaSo, "ChuaSuaChua", tthen, r.LoaiHinhSuaChua);
     }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
       additembiensodung(r.BienSoXe, r.MaSo,"DungCongViec",r.LoaiHinhSuaChua);

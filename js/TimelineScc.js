@@ -158,7 +158,7 @@ function LoadTimeLine() {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "success",
+        "success Datiepnhan",
         tthen,
         r.LoaiHinhSuaChua
       );
@@ -167,7 +167,7 @@ function LoadTimeLine() {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "success btn-sm",
+        "success",
         tthen,
         r.LoaiHinhSuaChua
       );

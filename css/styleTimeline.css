@@ -30,7 +30,7 @@
 .vis-labelset .vis-label.Đồng { min-height: 72px; }
 .vis-labelset .vis-label.Báo { min-height: 72px; }
 @media only screen and (max-width: 600px) {
-  .vis-foreground .vis-group.EM { max-height: 161.85px; }
+.vis-foreground .vis-group.EM { max-height: 161.85px; }
 .vis-foreground .vis-group.SCC { max-height: 107.9px; }
 .vis-foreground .vis-group.Đồng { max-height: 53.95px; }
 .vis-foreground .vis-group.Báo { max-height: 53.95px; }
@@ -38,8 +38,8 @@
 .vis-labelset .vis-label.SCC { max-height: 107.9px; }
 .vis-labelset .vis-label.Đồng { max-height: 53.95px; }
 .vis-labelset .vis-label.Báo { max-height: 53.95px; }
-  .vis-panel > .vis-content { font-size: 8px; position: relative; }
-  .vis-item { border-color: rgb(249, 145, 163); font-family: Arial, sans-serif; background-color: pink; font-size: 7pt; }
+.vis-panel > .vis-content { font-size: 8px; position: relative; }
+.vis-item { border-color: rgb(249, 145, 163); font-family: Arial, sans-serif; background-color: pink; font-size: 7pt; }
 }
 @media only screen and (min-width: 2600px) {
   .vis-panel > .vis-content { font-size: 13px; position: relative; }

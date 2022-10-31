@@ -1,66 +1,79 @@
+<style>
+  #TbodyBaoCao td {
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: left;
+    border: 1px solid black;
+    border-bottom: 1px solid blue;
+    margin: auto;
+  }
+</style>
+<main style="background-color: black">
+  <div class="container-fluid px-4" style="background-color: black">
+    <h4 class="mt-4" id="tieude" style="color: white">Thông Tin Xe Dịch Vụ</h4>
 
-                <style>
-                    #TbodyBaoCao td {
-                    font-size: 18px;
-                    vertical-align: middle;
-                    text-align: left;
-                    border: 1px solid black;
-                    border-bottom: 1px solid blue;
-                    margin: auto;
-                    }
-                </style>
-                <main style="background-color: black;">
-                    <div class="container-fluid px-4" style="background-color: black;">
-                        <h4 class="mt-4"  id="tieude"style="color: white;">Thông Tin Xe Dịch Vụ</h4>
-                        
-                        <div class="row" >
-                            <div class="btn-group" style="font-size: 18px; "role="group" aria-label="Basic example"id = "TongKetTT">
-                                
-                              </div>
-                        </div>
+    <div class="row">
+      <div
+        class="btn-group"
+        style="font-size: 18px"
+        role="group"
+        aria-label="Basic example"
+        id="TongKetTT"></div>
+    </div>
 
-                        <div class="row" style="display: none;">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="row" style="display: none">
+      <div class="col-xl-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-chart-area me-1"></i>
+            Area Chart Example
+          </div>
+          <div class="card-body">
+            <canvas id="myAreaChart" width="100%" height="40"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            Bar Chart Example
+          </div>
+          <div class="card-body">
+            <canvas id="myBarChart" width="100%" height="40"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                        <div class="card mb-4"style="background-color: black;">                           
-                            <div class="card-body">
-                                <table id="TableBaoCao" style="font-weight:bold;text-align:center-left;vertical-align: middle ;width:100%;background-color:black" >
-                                    <!-- TABLE DATA IS ADDED BY THE showData() JAVASCRIPT FUNCTION ABOVE -->
-                                            <thead  style="background-color:#1155cc;font-size: 18px;">
-                                              <tr >
-                                                <th >Biển Số</th>
-                                                <th >Trạng Thái</th>
-                                                <th  >Cố Vấn</th>
-                                                <th>KH Chờ</th>
-                                                <th  >LH GJ</th>
-                                                <th  >LH BP</th>
-                                                <th   >TimeGX</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody id="TbodyBaoCao" class="px5" style="color:white ;" >
-                                            </tbody>
-                          </table>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                <script src="js/Background.js"></script>
-                <script src="assets/demo/datatables-demo.js"></script>         
+    <div class="card mb-4" style="background-color: black">
+      <div class="card-body">
+        <table
+          id="TableBaoCao"
+          style="
+            font-weight: bold;
+            text-align: center-left;
+            vertical-align: middle;
+            width: 100%;
+            background-color: black;
+          ">
+          <!-- TABLE DATA IS ADDED BY THE showData() JAVASCRIPT FUNCTION ABOVE -->
+          <thead style="background-color: #1155cc; font-size: 18px">
+            <tr>
+              <th>Biển Số</th>
+              <th>Trạng Thái</th>
+              <th>Cố Vấn</th>
+              <th>KH Chờ</th>
+              <th>LH GJ</th>
+              <th>LH BP</th>
+              <th>TimeGX</th>
+            </tr>
+          </thead>
+          <tbody id="TbodyBaoCao" class="px5" style="color: white"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="js/Background.js"></script>
+<script src="assets/demo/datatables-demo.js"></script>

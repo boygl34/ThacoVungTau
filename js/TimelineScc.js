@@ -157,7 +157,7 @@ function LoadTimeLine() {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "ChoSuaChua",
+        "success",
         tthen,
         r.LoaiHinhSuaChua
       );
@@ -166,16 +166,16 @@ function LoadTimeLine() {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "DangSuaChua",
+        "success btn-sm",
         tthen,
         r.LoaiHinhSuaChua
       );
     }
     if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-      additembienso(r.BienSoXe, r.MaSo, "ChuaSuaChua", tthen, r.LoaiHinhSuaChua);
+      additembienso(r.BienSoXe, r.MaSo, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua);
     }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
-      additembiensodung(r.BienSoXe, r.MaSo,"DungCongViec",r.LoaiHinhSuaChua);
+      additembiensodung(r.BienSoXe, r.MaSo,"danger",r.LoaiHinhSuaChua);
     }
     if (r.TimeEndGJ) {
       var endRX = new Date(
@@ -273,7 +273,7 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
 
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
-      '<li draggable="true"  ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class=" item ' +
+      '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
       trangthai +
       " " +
       tthen +
@@ -283,13 +283,13 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
       MaSo +
       '">' +
       value +
-      "</li>"
+      "</button >"
   );
 }
 function additembiensodung(value, MaSo,trangthai,LoaiHinh) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-    '<li draggable="true"  ondrag="showtime(event)" ondragend="handleDragStart(event)" class="item ' +
+    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' +
     trangthai +
     " " +
     LoaiHinh +
@@ -297,7 +297,7 @@ function additembiensodung(value, MaSo,trangthai,LoaiHinh) {
     MaSo +
     '">' +
     value +
-    "</li>"
+    "</button>"
   );
 }
 function teststart(e){

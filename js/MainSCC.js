@@ -1,122 +1,123 @@
 function postData(data, url, methor) {
   fetch(url, {
-    method: methor, 
+    method: methor,
     //mode: 'cors', // no-cors, *cors, same-origin
     //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-   // credentials: 'omit', // or 'PUT'
-    headers: { 'Content-Type': 'application/json' },
+    // credentials: 'omit', // or 'PUT'
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   })
-    .then(response => response.json())
-    .then(data => {
-      getData()
-      $("#mesenge").html("<div class='alert alert-success'>Đăng Ký Thành Công</div>")
-    })
-    
-    
-    
+    .then((response) => response.json())
+    .then((data) => {
+      getData();
+      $("#mesenge").html(
+        "<div class='alert alert-success'>Đăng Ký Thành Công</div>"
+      );
+    });
 }
 function deleteData(url) {
   fetch(url, {
     method: "DELETE", // or 'PUT'
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   })
-    .then(response => response.json())
-    .then(data => {
-      getData(urlTX)
+    .then((response) => response.json())
+    .then((data) => {
+      getData(urlTX);
     })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error("Error:", error);
     });
 }
 
 function checkID(MaSo) {
-  var ojb = useCaher
+  var ojb = useCaher;
   for (var a in ojb) {
-    if (ojb[a].MaSo == MaSo) { return ojb[a].id }
+    if (ojb[a].MaSo == MaSo) {
+      return ojb[a].id;
+    }
   }
 }
 
 function KhoangSCChang() {
   var json2 = {
-    KhoangSuaChua: $('#KhoangSuaChua').val()
-  }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-
+    KhoangSuaChua: $("#KhoangSuaChua").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
 function CoVanChange() {
   var json2 = {
-    CoVanDichVu: $('#CoVanDichVu').val()
-  }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-
+    CoVanDichVu: $("#CoVanDichVu").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
 function RuaXechange() {
   var json2 = {
-    KhachRuaXe: $('#KhachRX').val()
-  }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-
+    KhachRuaXe: $("#KhachRX").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function KTV1change() {
   var json2 = {
-    KyThuatVien1: $('#KyThuatVien1').val()
-  }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-
+    KyThuatVien1: $("#KyThuatVien1").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function KTV2change() {
-  var json2 = { KyThuatVien2: $('#KyThuatVien2').val() }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-
+  var json2 = { KyThuatVien2: $("#KyThuatVien2").val() };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function Nhomchange() {
-  var json2 = { KyThuatVien2: $('#KyThuatVien2').val() }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+  var json2 = { KyThuatVien2: $("#KyThuatVien2").val() };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function KetThuc() {
-  var TThaiXuong
-  if (document.getElementById("KhachRX").value == "Rửa Xe") { TThaiXuong = "06 Chờ Rửa Xe" } else { TThaiXuong = "08 Chờ Giao Xe" }
+  var TThaiXuong;
+  if (document.getElementById("KhachRX").value == "Rửa Xe") {
+    TThaiXuong = "06 Chờ Rửa Xe";
+  } else {
+    TThaiXuong = "08 Chờ Giao Xe";
+  }
   var json2 = {
     TimeEndGJ: TimesClick(),
     TrangThaiSCC: "Đã SC",
     TrangThaiXuong: TThaiXuong,
-    BaiDauXe: "Rửa Xe"
-  }
-  $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
-  $('#ModalSCC').modal('hide')
-  var ojb = useCaher
-  var ojb = useCaher
-  var ojb = useCaher
+    BaiDauXe: "Rửa Xe",
+  };
+  $("#mesenge").html(
+    '<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>'
+  );
+  $("#ModalSCC").modal("hide");
+  var ojb = useCaher;
+  var ojb = useCaher;
+  var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].MaSo == document.getElementById("MaSo").value) {
-      if (ojb[a].KhachRuaXe) { }
-      else {
-        $('#DKRUAXetitle').html(ojb[a].BienSoXe)
-        $('#RuaXeModal').modal('show');
+      if (ojb[a].KhachRuaXe) {
+      } else {
+        $("#DKRUAXetitle").html(ojb[a].BienSoXe);
+        $("#RuaXeModal").modal("show");
       }
     }
   }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
 function Khongruaxe() {
   var json2 = {
-    KhachRuaXe: "Không Rửa"
-  }
-  setTimeout($('#RuaXeModal').modal('hide'), 3000);
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+    KhachRuaXe: "Không Rửa",
+  };
+  setTimeout($("#RuaXeModal").modal("hide"), 3000);
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
 function Coruaxe() {
   var json2 = {
-    KhachRuaXe: "Rửa Xe"
-  }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-  setTimeout($('#RuaXeModal').modal('hide'), 3000);
-
+    KhachRuaXe: "Rửa Xe",
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+  setTimeout($("#RuaXeModal").modal("hide"), 3000);
 }
 
 function DungCongViecGJ() {
@@ -124,81 +125,150 @@ function DungCongViecGJ() {
     TimeStopGJ: TimesClick(),
     TrangThaiSCC: "Dừng CV",
     TrangThaiXuong: "05 Dừng Công Việc",
-  }
+  };
 
-  $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>')
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+  $("#mesenge").html(
+    '<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>'
+  );
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function BatDauSC() {
-  if (document.getElementById("KyThuatVien1").value == "") { $("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Tên KTV!</div>'); return false }
-  if (document.getElementById("GioKetThucSC").value == "") { $("#mesenge").html('<div class="alert alert-danger" role="alert">Chưa Có Thời Gian Sữa Chữa!</div>'); return false }
-  if (document.getElementById("KhoangSuaChua").value == "") { $("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Khoang Làm Việc!</div>'); return false }
-  if (document.getElementById("CoVanDichVu").value == "") { $("#mesenge").html('<div class="alert alert-danger" role="alert"> Chưa Có Cố Vấn!</div>'); return false }
+  if (document.getElementById("KyThuatVien1").value == "") {
+    $("#mesenge").html(
+      '<div class="alert alert-danger" role="alert"> Chưa Có Tên KTV!</div>'
+    );
+    return false;
+  }
+  if (document.getElementById("GioKetThucSC").value == "") {
+    $("#mesenge").html(
+      '<div class="alert alert-danger" role="alert">Chưa Có Thời Gian Sữa Chữa!</div>'
+    );
+    return false;
+  }
+  if (document.getElementById("KhoangSuaChua").value == "") {
+    $("#mesenge").html(
+      '<div class="alert alert-danger" role="alert"> Chưa Có Khoang Làm Việc!</div>'
+    );
+    return false;
+  }
+  if (document.getElementById("CoVanDichVu").value == "") {
+    $("#mesenge").html(
+      '<div class="alert alert-danger" role="alert"> Chưa Có Cố Vấn!</div>'
+    );
+    return false;
+  }
   var json2 = {
     TimeStartGJ: TimesClick(),
     TrangThaiSCC: "Đang SC",
     TrangThaiXuong: "05 Đang Sửa Chữa",
-    KhoangSuaChua: $('#KhoangSuaChua').val(),
-    TimeEndGJ: $('#GioKetThucSC').val(),
-    KyThuatVien1: $('#KyThuatVien1').val(),
-    KyThuatVien2: $('#KyThuatVien2').val(),
-    NhomKTV: $('#NhomKTV').val(),
-    BaiDauXe: $('#KhoangSuaChua').val(),
-  }
+    KhoangSuaChua: $("#KhoangSuaChua").val(),
+    TimeEndGJ: $("#GioKetThucSC").val(),
+    KyThuatVien1: $("#KyThuatVien1").val(),
+    KyThuatVien2: $("#KyThuatVien2").val(),
+    NhomKTV: $("#NhomKTV").val(),
+    BaiDauXe: $("#KhoangSuaChua").val(),
+  };
 
-  var ojb = useCaher
+  var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].MaSo == document.getElementById("MaSo").value) {
-      if (ojb[a].TDKetThucTiepKhach) { } else { json2["TDKetThucTiepKhach"] = TimesClick(); }
-      if (ojb[a].KhachHangDoi) { } else { json2["KhachHangDoi"] = "Khách Đợi" }
-      if (ojb[a].KhachRuaXe) { } else { $('#DKRUAXetitle').html(ojb[a].BienSoXe); $('#RuaXeModal').modal('hide'); $('#RuaXeModal').modal('show') }
-      if (ojb[a].TDHenGiaoXe) { } else { json2["TDHenGiaoXe"] = TimesClick(new Date(1000 * 60 * 29 + (new Date(DoiNgayDangKy($('#GioKetThucSC').val()))).valueOf())); }
+      if (ojb[a].TDKetThucTiepKhach) {
+      } else {
+        json2["TDKetThucTiepKhach"] = TimesClick();
+      }
+      if (ojb[a].KhachHangDoi) {
+      } else {
+        json2["KhachHangDoi"] = "Khách Đợi";
+      }
+      if (ojb[a].KhachRuaXe) {
+      } else {
+        $("#DKRUAXetitle").html(ojb[a].BienSoXe);
+        $("#RuaXeModal").modal("hide");
+        $("#RuaXeModal").modal("show");
+      }
+      if (ojb[a].TDHenGiaoXe) {
+      } else {
+        json2["TDHenGiaoXe"] = TimesClick(
+          new Date(
+            1000 * 60 * 29 +
+              new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
+          )
+        );
+      }
     }
   }
 
-  $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>')
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+  $("#mesenge").html(
+    '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
+  );
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
 function BatDauSC2() {
-  if (document.getElementById("KyThuatVien1").value == "") { alert("Chưa Có KTV"); return false }
-  var GioKetThucChip = new Date($("#ChieuDaiChip").val() * 1 + (new Date()).valueOf());
+  if (document.getElementById("KyThuatVien1").value == "") {
+    alert("Chưa Có KTV");
+    return false;
+  }
+  var GioKetThucChip = new Date(
+    $("#ChieuDaiChip").val() * 1 + new Date().valueOf()
+  );
   var json2 = {
     TimeStartGJ: TimesClick(),
     TrangThaiSCC: "Đang SC",
     TrangThaiXuong: "05 Đang Sửa Chữa",
-    KhoangSuaChua: $('#KhoangSuaChua').val(),
+    KhoangSuaChua: $("#KhoangSuaChua").val(),
     TimeEndGJ: TimesClick(GioKetThucChip),
-    KyThuatVien1: $('#KyThuatVien1').val(),
-    KyThuatVien2: $('#KyThuatVien2').val(),
-    NhomKTV: $('#NhomKTV').val(),
-    BaiDauXe: $('#KhoangSuaChua').val(),
-  }
-  var ojb = useCaher
-  var ojb = useCaher
-  var ojb = useCaher
+    KyThuatVien1: $("#KyThuatVien1").val(),
+    KyThuatVien2: $("#KyThuatVien2").val(),
+    NhomKTV: $("#NhomKTV").val(),
+    BaiDauXe: $("#KhoangSuaChua").val(),
+  };
+  var ojb = useCaher;
+  var ojb = useCaher;
+  var ojb = useCaher;
   for (var a in ojb) {
     if (ojb[a].MaSo == document.getElementById("MaSo").value) {
       if (ojb[a].MaSo == document.getElementById("MaSo").value) {
         if (ojb[a].MaSo == document.getElementById("MaSo").value) {
-          if (ojb[a].TDKetThucTiepKhach) { } else { json2["TDKetThucTiepKhach"] = TimesClick(); }
-          if (ojb[a].KhachHangDoi) { } else { json2["KhachHangDoi"] = "Khách Đợi" }
-          if (ojb[a].KhachRuaXe) { } else { $('#DKRUAXetitle').html(ojb[a].BienSoXe); $('#RuaXeModal').modal('hide'); $('#RuaXeModal').modal('show') }
-          if (ojb[a].TDHenGiaoXe) { } else { json2["TDHenGiaoXe"] = TimesClick(new Date(1000 * 60 * 29 + (new Date(DoiNgayDangKy($('#GioKetThucSC').val()))).valueOf())); }
+          if (ojb[a].TDKetThucTiepKhach) {
+          } else {
+            json2["TDKetThucTiepKhach"] = TimesClick();
+          }
+          if (ojb[a].KhachHangDoi) {
+          } else {
+            json2["KhachHangDoi"] = "Khách Đợi";
+          }
+          if (ojb[a].KhachRuaXe) {
+          } else {
+            $("#DKRUAXetitle").html(ojb[a].BienSoXe);
+            $("#RuaXeModal").modal("hide");
+            $("#RuaXeModal").modal("show");
+          }
+          if (ojb[a].TDHenGiaoXe) {
+          } else {
+            json2["TDHenGiaoXe"] = TimesClick(
+              new Date(
+                1000 * 60 * 29 +
+                  new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
+              )
+            );
+          }
         }
       }
 
-      $("#mesenge").html('<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>')
-      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
+      $("#mesenge").html(
+        '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
+      );
+      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
     }
   }
 }
 
-NhomSC(NhomKTV)
+NhomSC(NhomKTV);
 function NhomSC(values) {
-  var list = document.getElementById('NhomKTV');
+  var list = document.getElementById("NhomKTV");
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");
     option.value = values[i];
@@ -207,31 +277,37 @@ function NhomSC(values) {
   }
 }
 function changeNhom() {
-  var nhom = document.getElementById('NhomKTV').value
+  var nhom = document.getElementById("NhomKTV").value;
   var json2 = {
-    NhomKTV: $('#NhomKTV').val()
+    NhomKTV: $("#NhomKTV").val(),
+  };
+  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+  if (nhom == "Bạo") {
+    NhanVienDropDown(KTVBao);
   }
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH")
-  if (nhom == "Bạo") { NhanVienDropDown(KTVBao) }
-  if (nhom == "Hoan") { NhanVienDropDown(KTVHoan) }
-  if (nhom == "EM") { NhanVienDropDown(KTVEM) }
+  if (nhom == "Hoan") {
+    NhanVienDropDown(KTVHoan);
+  }
+  if (nhom == "EM") {
+    NhanVienDropDown(KTVEM);
+  }
 }
 function NhanVienDropDown(values) {
-  var list = document.getElementById('KyThuatVien1');
-  var option = document.createElement("option")
-  list.innerHTML = ""
+  var list = document.getElementById("KyThuatVien1");
+  var option = document.createElement("option");
+  list.innerHTML = "";
   option.value = "";
   option.text = "";
-  list.appendChild(option)
+  list.appendChild(option);
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");
     option.value = values[i];
     option.text = values[i];
     list.appendChild(option);
   }
-  var list2 = document.getElementById('KyThuatVien2');
+  var list2 = document.getElementById("KyThuatVien2");
   var option2 = document.createElement("option");
-  list2.innerHTML = ""
+  list2.innerHTML = "";
   option2.value = "";
   option2.text = "";
   list2.appendChild(option2);
@@ -242,9 +318,9 @@ function NhanVienDropDown(values) {
     list2.appendChild(option2);
   }
 }
-KhoangSuaChua(KhoangSC)
+KhoangSuaChua(KhoangSC);
 function KhoangSuaChua(values) {
-  var list = document.getElementById('KhoangSuaChua');
+  var list = document.getElementById("KhoangSuaChua");
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");
     option.value = values[i];
@@ -252,9 +328,9 @@ function KhoangSuaChua(values) {
     list.appendChild(option);
   }
 }
-CoVanlist(NhomCV)
+CoVanlist(NhomCV);
 function CoVanlist(values) {
-  var list = document.getElementById('CoVanDichVu');
+  var list = document.getElementById("CoVanDichVu");
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");
     option.value = values[i];
@@ -262,156 +338,199 @@ function CoVanlist(values) {
     list.appendChild(option);
   }
 }
-function CapNhatGioSC(){
-  if(document.getElementById("GioKetThucSC").value=="")
-  {$("#mesenge").html('<div class="alert alert-danger" role="alert">Chưa Có thời gian sc</div>')
-  var json2 = {
-      TimeEndGJ: $('#GioKetThucSC').val(),
-    }
-  postData(json2,urlTX+"/"+checkID($(MaSo).val()),"PATCH")
-}
+function CapNhatGioSC() {
+  if (document.getElementById("GioKetThucSC").value == "") {
+    $("#mesenge").html(
+      '<div class="alert alert-danger" role="alert">Chưa Có thời gian sc</div>'
+    );
+    var json2 = {
+      TimeEndGJ: $("#GioKetThucSC").val(),
+    };
+    postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+  }
 }
 function GioKetThucSCC() {
-  var homnay = new Date()
-  homnay = new Date(homnay * 1 + 7 * 60 * 60 * 1000)
-  homnay = homnay.toJSON()
-  homnay = homnay.slice(0, homnay.length - 5)
+  var homnay = new Date();
+  homnay = new Date(homnay * 1 + 7 * 60 * 60 * 1000);
+  homnay = homnay.toJSON();
+  homnay = homnay.slice(0, homnay.length - 5);
   if (document.getElementById("GioBatDauSCC").value == 0) {
-    document.getElementById("GioBatDauSCC").value = TimesClick(homnay)
+    document.getElementById("GioBatDauSCC").value = TimesClick(homnay);
   }
-  var hh = new Date(homnay)
-  var TGianSuaChua = document.getElementById("inputThoiGianSCC").value
+  var hh = new Date(homnay);
+  var TGianSuaChua = document.getElementById("inputThoiGianSCC").value;
   var div = Math.trunc(TGianSuaChua / 8);
-  var TGDu = TGianSuaChua - div * 8
-  var GioBatDau = hh.getHours()
-  var NgayHoanThanh = new Date(hh * 1 + div * 24 * 60 * 60 * 1000)
-  if (TGDu < 4) { TGDu = TGDu } else { TGDu = TGDu * 1 + 1 }
-  NgayHoanThanh = new Date(NgayHoanThanh * 1 + TGDu * 60 * 60 * 1000)
-  if (NgayHoanThanh.getHours() >= 17) { NgayHoanThanh = new Date(NgayHoanThanh * 1 + 15 * 60 * 60 * 1000) }
-  if (NgayHoanThanh.getHours() == 12) { NgayHoanThanh = new Date(NgayHoanThanh * 1 + 60 * 60 * 1000) }
-  if (NgayHoanThanh.getDay() == 0) { NgayHoanThanh = new Date(NgayHoanThanh * 1 + 24 * 60 * 60 * 1000) }
-  NgayHoanThanh = new Date(NgayHoanThanh * 1 + 7 * 60 * 60 * 1000)
-  var aa = NgayHoanThanh.toJSON()
-  var bb = aa.slice(0, aa.length - 5)
-  document.getElementById("GioKetThucSC").value = TimesClick(bb)
-  return bb
+  var TGDu = TGianSuaChua - div * 8;
+  var GioBatDau = hh.getHours();
+  var NgayHoanThanh = new Date(hh * 1 + div * 24 * 60 * 60 * 1000);
+  if (TGDu < 4) {
+    TGDu = TGDu;
+  } else {
+    TGDu = TGDu * 1 + 1;
+  }
+  NgayHoanThanh = new Date(NgayHoanThanh * 1 + TGDu * 60 * 60 * 1000);
+  if (NgayHoanThanh.getHours() >= 17) {
+    NgayHoanThanh = new Date(NgayHoanThanh * 1 + 15 * 60 * 60 * 1000);
+  }
+  if (NgayHoanThanh.getHours() == 12) {
+    NgayHoanThanh = new Date(NgayHoanThanh * 1 + 60 * 60 * 1000);
+  }
+  if (NgayHoanThanh.getDay() == 0) {
+    NgayHoanThanh = new Date(NgayHoanThanh * 1 + 24 * 60 * 60 * 1000);
+  }
+  NgayHoanThanh = new Date(NgayHoanThanh * 1 + 7 * 60 * 60 * 1000);
+  var aa = NgayHoanThanh.toJSON();
+  var bb = aa.slice(0, aa.length - 5);
+  document.getElementById("GioKetThucSC").value = TimesClick(bb);
+  return bb;
 }
 
 function timeSuaChua() {
-  var timeBD = new Date(document.getElementById("GioBatDauSCC").value)
-  var timeKT = new Date(document.getElementById("GioKetThucSC").value)
-  var time = timeKT - timeBD
-  document.getElementById("inputThoiGianSCC").value = time / (60 * 60 * 1000)
-  document.getElementById("rangerThoiGianSCC").value = time / (60 * 60 * 1000)
+  var timeBD = new Date(document.getElementById("GioBatDauSCC").value);
+  var timeKT = new Date(document.getElementById("GioKetThucSC").value);
+  var time = timeKT - timeBD;
+  document.getElementById("inputThoiGianSCC").value = time / (60 * 60 * 1000);
+  document.getElementById("rangerThoiGianSCC").value = time / (60 * 60 * 1000);
 }
 
 function changvalue() {
-  var ojb = useCaher
+  var ojb = useCaher;
   for (var a in ojb) {
-    $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>")
+    $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
     if (ojb[a].BienSoXe == BienSoXe.value) {
-      if (ojb[a].TDHenGiaoXe) { $("#mesenge").html("<div class='alert alert-success'>Giờ Giao Xe : " + datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) + "</div>") }
-      if (ojb[a].MaSo) { document.getElementById("MaSo").value = ojb[a].MaSo }
-      if (ojb[a].TrangThaiXuong) { document.getElementById("TrangThai").value = ojb[a].TrangThaiXuong }
-      if (ojb[a].NhomKTV) { document.getElementById("NhomKTV").value = ojb[a].NhomKTV; changeNhom() }
-      if (ojb[a].CoVanDichVu) { document.getElementById("CoVanDichVu").value = ojb[a].CoVanDichVu }
-      if (ojb[a].KhoangSuaChua) { document.getElementById("KhoangSuaChua").value = ojb[a].KhoangSuaChua }
-      if (ojb[a].TimeStartGJ) { document.getElementById("GioBatDauSCC").value = TimesClick(DoiNgayDangKy(ojb[a].TimeStartGJ)) }
-      if (ojb[a].TimeEndGJ) { document.getElementById("GioKetThucSC").value = TimesClick(DoiNgayDangKy(ojb[a].TimeEndGJ)) }
-      if (ojb[a].KyThuatVien1) { document.getElementById("KyThuatVien1").value = ojb[a].KyThuatVien1 }
-      if (ojb[a].KyThuatVien2) { document.getElementById("KyThuatVien2").value = ojb[a].KyThuatVien2 }
-      if (ojb[a].KhachRuaXe) { document.getElementById("KhachRX").value = ojb[a].KhachRuaXe }
+      if (ojb[a].TDHenGiaoXe) {
+        $("#mesenge").html(
+          "<div class='alert alert-success'>Giờ Giao Xe : " +
+            datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) +
+            "</div>"
+        );
+      }
+      if (ojb[a].MaSo) {
+        document.getElementById("MaSo").value = ojb[a].MaSo;
+      }
+      if (ojb[a].TrangThaiXuong) {
+        document.getElementById("TrangThai").value = ojb[a].TrangThaiXuong;
+      }
+      if (ojb[a].NhomKTV) {
+        document.getElementById("NhomKTV").value = ojb[a].NhomKTV;
+        changeNhom();
+      }
+      if (ojb[a].CoVanDichVu) {
+        document.getElementById("CoVanDichVu").value = ojb[a].CoVanDichVu;
+      }
+      if (ojb[a].KhoangSuaChua) {
+        document.getElementById("KhoangSuaChua").value = ojb[a].KhoangSuaChua;
+      }
+      if (ojb[a].TimeStartGJ) {
+        document.getElementById("GioBatDauSCC").value = TimesClick(
+          DoiNgayDangKy(ojb[a].TimeStartGJ)
+        );
+      }
+      if (ojb[a].TimeEndGJ) {
+        document.getElementById("GioKetThucSC").value = TimesClick(
+          DoiNgayDangKy(ojb[a].TimeEndGJ)
+        );
+      }
+      if (ojb[a].KyThuatVien1) {
+        document.getElementById("KyThuatVien1").value = ojb[a].KyThuatVien1;
+      }
+      if (ojb[a].KyThuatVien2) {
+        document.getElementById("KyThuatVien2").value = ojb[a].KyThuatVien2;
+      }
+      if (ojb[a].KhachRuaXe) {
+        document.getElementById("KhachRX").value = ojb[a].KhachRuaXe;
+      }
       if (ojb[a].TrangThaiSCC == "Đang SC") {
-        $("#buttonSCC").html('<button  type="button" class="btn btn-danger me-2" onclick="DungCongViecGJ()">Dừng CV!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="KetThuc()">Kết Thúc!</button>')
-        return
-      } else { $("#buttonSCC").html('<button  type="button" class="btn btn-success me-2" onclick="BatDauSC()">Bắt Đầu!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="KeHoach()">Kế Hoạch!</button>'); return }
-      return
+        $("#buttonSCC").html(
+          '<button  type="button" class="btn btn-danger me-2" onclick="DungCongViecGJ()">Dừng CV!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="KetThuc()">Kết Thúc!</button>'
+        );
+        return;
+      } else {
+        $("#buttonSCC").html(
+          '<button  type="button" class="btn btn-success me-2" onclick="BatDauSC()">Bắt Đầu!</button>&nbsp &nbsp <button  type="button" class="btn btn-primary me-2" onclick="KeHoach()">Kế Hoạch!</button>'
+        );
+        return;
+      }
+      return;
     }
   }
 }
-
-
 
 var slider = document.getElementById("rangerThoiGianSCC");
 var output = document.getElementById("inputThoiGianSCC");
 output.value = slider.value;
 slider.oninput = function () {
-  output.value = Math.round((this.value / 6) * 100) / 100
-  GioKetThucSCC()
-}
+  output.value = Math.round((this.value / 6) * 100) / 100;
+  GioKetThucSCC();
+};
 
-
-$('.Ngay').datetimepicker({
-  format: 'dd/mm/yyyy HH:MM:00 ',
-  uiLibrary: 'bootstrap4',
+$(".Ngay").datetimepicker({
+  format: "dd/mm/yyyy HH:MM:00 ",
+  uiLibrary: "bootstrap4",
   modal: true,
   footer: true,
   datepicker: {
     disableDates: function (date) {
       const currentDate = new Date().setHours(0, 0, 0, 0);
       return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
-    }
-  }
+    },
+  },
 });
 
-$('#GioBatDauSCC').datetimepicker({
-  format: 'dd/mm/yyyy HH:MM:00 ',
-  uiLibrary: 'bootstrap4',
+$("#GioBatDauSCC").datetimepicker({
+  format: "dd/mm/yyyy HH:MM:00 ",
+  uiLibrary: "bootstrap4",
   modal: true,
   footer: true,
   datepicker: {
     disableDates: function (date) {
       const currentDate = new Date().setHours(0, 0, 0, 0);
       return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
-    }
-  }
+    },
+  },
 });
-
 
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 
 var recognition = new SpeechRecognition();
 recognition.onaudioend = function () {
-
-  console.log('Audio capturing ended');
-}
+  console.log("Audio capturing ended");
+};
 recognition.continuous = false;
-recognition.lang = 'vi-VN';
+recognition.lang = "vi-VN";
 recognition.interimResults = true;
 //recognition.maxAlternatives = 1;
 
-
-
 function start() {
-  document.getElementById('textbienso').innerHTML = "";
+  document.getElementById("textbienso").innerHTML = "";
   recognition.onresult = function (event) {
     var value = event.results[0][0].transcript;
 
-    document.getElementById('bStart').innerHTML = "Stop"
+    document.getElementById("bStart").innerHTML = "Stop";
     //document.getElementById('textbienso').innerHTML=suabiensospeech(value)
     for (i in useCaher2) {
-      var a = suabiensospeech(useCaher2[i].BienSoXe).indexOf(suabiensospeech(value))
+      var a = suabiensospeech(useCaher2[i].BienSoXe).indexOf(
+        suabiensospeech(value)
+      );
       if (a > 0) {
-        document.getElementById('FormSCC').reset()
-        $('#ModalSCC').modal('show')
-        document.getElementById("BienSoXe").value = useCaher2[i].BienSoXe
-        changvalue()
-        timeSuaChua()
-        recognition.stop()
+        document.getElementById("FormSCC").reset();
+        $("#ModalSCC").modal("show");
+        document.getElementById("BienSoXe").value = useCaher2[i].BienSoXe;
+        changvalue();
+        timeSuaChua();
+        recognition.stop();
       }
-    } recognition.stop()
-
-  }
+    }
+    recognition.stop();
+  };
   recognition.start();
 }
 
-
-
 function suabiensospeech(myValue) {
-  var myValue2 = myValue.toUpperCase()
-  myValue = myValue2.replaceAll(" ", "")
-  myValue = myValue.replaceAll(".", "")
-  myValue = myValue.replaceAll("-", "")
+  var myValue2 = myValue.toUpperCase();
+  myValue = myValue2.replaceAll(" ", "");
+  myValue = myValue.replaceAll(".", "");
+  myValue = myValue.replaceAll("-", "");
 
   return myValue;
-} 
+}

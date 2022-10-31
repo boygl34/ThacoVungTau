@@ -40,7 +40,7 @@ var options = {
   end: new Date(new Date().valueOf()).setHours(17),
   editable: true,
   autoResize: false,
-  zoomable:false,
+  zoomable: false,
   margin: {
     item: 0.5, // distance between items
     axis: 0.5, // distance between items and the time axis
@@ -67,7 +67,7 @@ $("#mytimeline").mouseleave(function () {
 timeline.on("mouseOver", function (properties) {
   document.getElementById("contextMenu2").style.display = "none";
 });
-var timekeo
+var timekeo;
 timeline.on("mouseMove", function (properties) {
   // if(properties.item!==null){
   var menu = document.getElementById("contextMenu2");
@@ -75,7 +75,7 @@ timeline.on("mouseMove", function (properties) {
   menu.style.left = properties.pageX + "px";
   menu.style.top = properties.pageY + 8 + "px";
   var aa = TimesClick(properties.time);
-  timekeo = properties.time
+  timekeo = properties.time;
   $("#ThoiGian").html(TimesClick(properties.time).slice(11, 16));
   //}else{document.getElementById("contextMenu2").style.display = 'none'}
 });
@@ -130,7 +130,9 @@ function LoadTimeLine() {
       r.LoaiHinhSuaChua === "EM60"
     );
   });
-  dataArray1.sort(function(a, b) {return (a.TrangThaiXuong< b.TrangThaiXuong ? 1 : -1);})
+  dataArray1.sort(function (a, b) {
+    return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1;
+  });
   for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;
@@ -147,13 +149,29 @@ function LoadTimeLine() {
         remove: false, // delete an item by tapping the delete button top right
         overrideItems: true, // allow these options to override item.editable
       };
-    if (r.LoaiHinhSuaChua == "SCC") {khoang = 2;} else {khoang = 1;}
-    if (r.TrangThaiSCC == "Đang SC") { mau = "green";}
-    if (r.TrangThaiSCC == "Dừng SC") {mau = "red";}
-    if (r.TrangThaiSCC == "Chờ SC") {mau = "orange";}
-    if (r.TrangThaiSCC == "Đã SC") {mau = "magenta";}
-    if (r.TrangThaiHen == "Đúng Giờ") {tthen = "DungGio";}
-    if (r.TrangThaiHen == "Đến Sớm") {tthen = "DenSom";}
+    if (r.LoaiHinhSuaChua == "SCC") {
+      khoang = 2;
+    } else {
+      khoang = 1;
+    }
+    if (r.TrangThaiSCC == "Đang SC") {
+      mau = "green";
+    }
+    if (r.TrangThaiSCC == "Dừng SC") {
+      mau = "red";
+    }
+    if (r.TrangThaiSCC == "Chờ SC") {
+      mau = "orange";
+    }
+    if (r.TrangThaiSCC == "Đã SC") {
+      mau = "magenta";
+    }
+    if (r.TrangThaiHen == "Đúng Giờ") {
+      tthen = "DungGio";
+    }
+    if (r.TrangThaiHen == "Đến Sớm") {
+      tthen = "DenSom";
+    }
     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận") {
       additembienso(
         r.BienSoXe,
@@ -164,19 +182,22 @@ function LoadTimeLine() {
       );
     }
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
+      additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua);
+    }
+    if (
+      r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
+      r.TrangThaiXuong == "02 Chuẩn Bị Tiếp"
+    ) {
       additembienso(
         r.BienSoXe,
         r.MaSo,
-        "success",
+        "outline-secondary btn-sm",
         tthen,
         r.LoaiHinhSuaChua
       );
     }
-    if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-      additembienso(r.BienSoXe, r.MaSo, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua);
-    }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
-      additembiensodung(r.BienSoXe, r.MaSo,"danger",r.LoaiHinhSuaChua);
+      additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua);
     }
     if (r.TimeEndGJ) {
       var endRX = new Date(
@@ -186,92 +207,91 @@ function LoadTimeLine() {
     if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) {
       mau = "magenta";
     }
-    if( r.TrangThaiSCC !== "Dừng CV"){
-    if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
-      items.add({
-        className: mau,
-        id: r.MaSo,
-        group: r.KhoangSuaChua,
-        start: start,
-        end: end,
-        editable: edit1,
-        //title:r.CoVanDichVu,
-        content: r.BienSoXe + " " + r.KyThuatVien1,
-      });
-    }
-    if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
-      items.add({
-        className: mau,
-        id: r.MaSo,
-        group: r.KhoangSuaChua,
-        start: start,
-        end: end,
-        editable: edit1,
-        //title:r.CoVanDichVu,
-        content: r.BienSoXe + " " + r.KyThuatVien1,
-      });
-    }
-    if (
-      r.KhachRuaXe == "Rửa Xe" &&
-      r.TrangThaiXuong != "08 Chờ Giao Xe" &&
-      r.TimeEndGJ
-    ) {
-      var classname2 = "orange";
-      if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-        classname2 = "green";
-      }
-      items.add({
-        className: classname2,
-        id: r.BienSoXe + "_RuaXe",
-        group: "Rửa Xe",
-        start: end,
-        end: endRX,
-        editable: edit1,
-        content: r.BienSoXe + " " + r.CoVanDichVu,
-      });
-    }
-    if (r.ThoiGianHen && document.getElementById("checkbox-hen").checked) {
-      if (r.TimeStartGJ) {
-      } else {
-        var start = DoiNgayDangKy(r.ThoiGianHen);
-        var end;
-        if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") {
-          end = new Date(1000 * 60 * 29 + new Date(start).valueOf());
-        }
-        if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") {
-          end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-        }
-        if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
-          end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-        }
-        if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) {
-          end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-        }
-        if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) {
-          end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-        }
-        var classnamehen = "blue";
-        if (r.TDGapLeTan) {
-          classnamehen = "orange";
-        }
+    if (r.TrangThaiSCC !== "Dừng CV") {
+      if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
         items.add({
-          className: classnamehen,
-          id: r.BienSoXe + "_Hen",
+          className: mau,
+          id: r.MaSo,
           group: r.KhoangSuaChua,
           start: start,
           end: end,
           editable: edit1,
-          content: r.BienSoXe + " [H]",
-          title: r.BienSoXe + "<br>" + r.NoiDungHen + "<br>" + r.NguoiDatHen,
+          //title:r.CoVanDichVu,
+          content: r.BienSoXe + " " + r.KyThuatVien1,
         });
       }
+      if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
+        items.add({
+          className: mau,
+          id: r.MaSo,
+          group: r.KhoangSuaChua,
+          start: start,
+          end: end,
+          editable: edit1,
+          //title:r.CoVanDichVu,
+          content: r.BienSoXe + " " + r.KyThuatVien1,
+        });
+      }
+      if (
+        r.KhachRuaXe == "Rửa Xe" &&
+        r.TrangThaiXuong != "08 Chờ Giao Xe" &&
+        r.TimeEndGJ
+      ) {
+        var classname2 = "orange";
+        if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
+          classname2 = "green";
+        }
+        items.add({
+          className: classname2,
+          id: r.BienSoXe + "_RuaXe",
+          group: "Rửa Xe",
+          start: end,
+          end: endRX,
+          editable: edit1,
+          content: r.BienSoXe + " " + r.CoVanDichVu,
+        });
+      }
+      if (r.ThoiGianHen && document.getElementById("checkbox-hen").checked) {
+        if (r.TimeStartGJ) {
+        } else {
+          var start = DoiNgayDangKy(r.ThoiGianHen);
+          var end;
+          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") {
+            end = new Date(1000 * 60 * 29 + new Date(start).valueOf());
+          }
+          if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          var classnamehen = "blue";
+          if (r.TDGapLeTan) {
+            classnamehen = "orange";
+          }
+          items.add({
+            className: classnamehen,
+            id: r.BienSoXe + "_Hen",
+            group: r.KhoangSuaChua,
+            start: start,
+            end: end,
+            editable: edit1,
+            content: r.BienSoXe + " [H]",
+            title: r.BienSoXe + "<br>" + r.NoiDungHen + "<br>" + r.NguoiDatHen,
+          });
+        }
+      }
+      timeline.redraw();
     }
-    timeline.redraw();
   }
 }
-}
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
-
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
       '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
@@ -287,35 +307,33 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
       "</button >"
   );
 }
-function additembiensodung(value, MaSo,trangthai,LoaiHinh) {
+function additembiensodung(value, MaSo, trangthai, LoaiHinh) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-    trangthai +
-    " " +
-    LoaiHinh +
-    '" value="' +
-    MaSo +
-    '">' +
-    value +
-    "</button>"
+      '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' +
+      trangthai +
+      " " +
+      LoaiHinh +
+      '" value="' +
+      MaSo +
+      '">' +
+      value +
+      "</button>"
   );
 }
-function teststart(e){
-
+function teststart(e) {
   var dt = e.dataTransfer;
   dt.effectAllowed = "move";
-  console.log(dt)
+  console.log(dt);
   if (dt) {
-    dt.effectAllowed = 'move';
-    dt.setData('text', 'dummy');
+    dt.effectAllowed = "move";
+    dt.setData("text", "dummy");
     dragging = $(this);
-    var dragIcon = document.createElement('img');
-    dragIcon.src = 'https://www.w3schools.com/w3images/fjords.jpg';
+    var dragIcon = document.createElement("img");
+    dragIcon.src = "https://www.w3schools.com/w3images/fjords.jpg";
     dragIcon.width = 10;
     dt.setDragImage(dragIcon, 0, 0);
   }
-
 }
 function showtime(event) {
   event.dataTransfer.effectAllowed = "move";
@@ -418,25 +436,24 @@ function huyChip(item) {
       delete ojb[a].TimeEndGJ;
       ojb[a].TrangThaiSCC = "Chờ SC";
       ojb[a].TrangThaiXuong = "04 Đã Tiếp Nhận";
-      
-        let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb[a].BienSoXe;
-        if (
-          confirm(text) == true &&(
-          localStorage.getItem("PhanQuyen") == "DieuPhoi"||localStorage.getItem("PhanQuyen") == "admin")
-        ) {
-          
-          $.ajax({
-            url: urlTX + "/" + ojb[a].id,
-            type: "PUT",
-            data: ojb[a],
-            success: function (data) {
-              getData();
-            },
-          });
-        } else {
-          alert("Bạn không Thể xóa chíp");
-        }
-      
+
+      let text = "Bạn muốn Xóa Chíp Tiếp Độ: " + ojb[a].BienSoXe;
+      if (
+        confirm(text) == true &&
+        (localStorage.getItem("PhanQuyen") == "DieuPhoi" ||
+          localStorage.getItem("PhanQuyen") == "admin")
+      ) {
+        $.ajax({
+          url: urlTX + "/" + ojb[a].id,
+          type: "PUT",
+          data: ojb[a],
+          success: function (data) {
+            getData();
+          },
+        });
+      } else {
+        alert("Bạn không Thể xóa chíp");
+      }
     }
   }
 }
@@ -499,18 +516,22 @@ function capnhatthoigian(item) {
     KTV1 = "Thiên";
     KTV2 = "";
   }
-  if(item.end){timekeo=item.end}
-  var a = (new Date(item.start)).valueOf()
-  var b = (new Date(timekeo)).valueOf()
-if(item.id&&a<b){
-  var json2 = {
-    TimeStartGJ: TimesClick(item.start),
-    TimeEndGJ: TimesClick(timekeo),
-    KhoangSuaChua: item.group,
-    // KyThuatVien1: KTV1,
-    // KyThuatVien2: KTV2,
-    // NhomKTV: NhomSC,
-  };
-  postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
-}else{ alert(item.id+' loi')}
+  if (item.end) {
+    timekeo = item.end;
+  }
+  var a = new Date(item.start).valueOf();
+  var b = new Date(timekeo).valueOf();
+  if (item.id && a < b) {
+    var json2 = {
+      TimeStartGJ: TimesClick(item.start),
+      TimeEndGJ: TimesClick(timekeo),
+      KhoangSuaChua: item.group,
+      // KyThuatVien1: KTV1,
+      // KyThuatVien2: KTV2,
+      // NhomKTV: NhomSC,
+    };
+    postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
+  } else {
+    alert(item.id + " loi");
+  }
 }

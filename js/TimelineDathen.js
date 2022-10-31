@@ -14,24 +14,24 @@ var newitems = new vis.DataSet();
 
 groups.add({
   id: NhomDH[0],
-  content: NhomDH[0] ,
+  content: NhomDH[0],
   className: NhomDH[0],
 });
 groups.add({
   id: NhomDH[1],
-  content:NhomDH[1] ,
+  content: NhomDH[1],
   className: NhomDH[1],
 });
 
 groups.add({
   id: NhomDH[2],
-  content:  NhomDH[2] ,
+  content: NhomDH[2],
   className: NhomDH[2],
 });
 
 groups.add({
   id: NhomDH[3],
-  content:  NhomDH[3] ,
+  content: NhomDH[3],
   className: NhomDH[3],
 });
 
@@ -115,7 +115,8 @@ var options = {
     changvalue();
     if (
       localStorage.getItem("userName") === $("#NguoiDatHen").val() ||
-      localStorage.getItem("PhanQuyen") == "AdminHen"||localStorage.getItem("PhanQuyen") == "admin"
+      localStorage.getItem("PhanQuyen") == "AdminHen" ||
+      localStorage.getItem("PhanQuyen") == "admin"
     ) {
       if ($("#TrangThaiXuong").val() == "00 Có Hẹn") {
         $("#buttonSCC").html(

@@ -1,103 +1,21 @@
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
-var NhomCV = [
-  "Toàn",
-  "Tài",
-  "Rôn",
-  "Mẫn",
-  "Sang",
-  "Vinh",
-  "Triêng",
-  "Lộc",
-  "Hiệp",
-  "None",
-];
+var NhomCV = ["Toàn", "Tài", "Rôn", "Mẫn", "Sang", "Vinh", "Triêng", "Lộc", "Hiệp", "None"];
 var NhomDH = ["EM", "SCC", "Đồng Sơn", "Báo Giá BH"];
 var KTVDong = ["Châu", "Trường", "Phúc", "Trương", "Quang", "Định"];
 var KTVSonDinh = ["Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài"];
-var KTVSonThien = [
-  "Thiên",
-  "Dũng",
-  "Lực",
-  "Tú",
-  "Chương",
-  "Đồng",
-  "Quốc",
-  "Lưu",
-];
+var KTVSonThien = ["Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
 var PhongSon = ["Phòng Sơn 1", "Phòng Sơn 2", "Phòng Sơn 3"];
 var NhomSon = ["Đình", "Thiên"];
-var KTVDongSon = [
-  "Châu",
-  "Trường",
-  "Phúc",
-  "Trương",
-  "Quang",
-  "Định",
-  "Đình",
-  "Thành",
-  "Lưu",
-  "Hùng",
-  "Lâm",
-  "Duy",
-  "Tài",
-  "Thiên",
-  "Dũng",
-  "Lực",
-  "Tú",
-  "Chương",
-  "Đồng",
-  "Quốc",
-  "Lưu",
-];
-var KhoangSC = [
-  "EM 01",
-  "EM 02",
-  "EM 03",
-  "EM 04",
-  "SCC 05",
-  "SCC 06",
-  "SCC 07",
-  "SCC 08",
-  "SCC 09",
-  "SCC 10",
-  "4 Trụ",
-  "K Ngoài",
-];
+var KTVDongSon = ["Châu", "Trường", "Phúc", "Trương", "Quang", "Định", "Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài", "Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
+var KhoangSC = ["EM 01", "EM 02", "EM 03", "EM 04", "SCC 05", "SCC 06", "SCC 07", "SCC 08", "SCC 09", "SCC 10", "4 Trụ", "K Ngoài"];
 var NhomKTV = ["EM", "Bạo", "Hoan"];
 var KTVBao = ["Bạo", "Hiếu", "Duy", "Phước", "Huy", "Tân"];
 var KTVHoan = ["Hoan", "Lâm", "Tâm", "Sơn", "Thiên"];
 var KTVEM = ["Sáng", "Hưng", "Vinh", "Khoa", "Đ Anh", "Hiển", "Cường", "Trí"];
-var ListXe = [
-  "Camry",
-  "Inova",
-  "Fortuner",
-  "Altis",
-  "Altis Cross",
-  "Veloz",
-  "Wigo",
-  "Land Cruiser",
-  "Land Prado",
-  "Hilander",
-  "Rav4",
-  "Vios",
-  "Rush",
-  "Avanza",
-  "Raize",
-  "Lexus",
-];
+var ListXe = ["Camry", "Inova", "Fortuner", "Altis", "Altis Cross", "Veloz", "Wigo", "Land Cruiser", "Land Prado", "Hilander", "Rav4", "Vios", "Rush", "Avanza", "Raize", "Lexus"];
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
-var KhuVucVT = [
-  "Bà Rịa",
-  "Vũng Tàu",
-  "Long Điền",
-  "Phú Mỹ",
-  "Đất Đỏ",
-  "Châu Đức",
-  "Xuyên Mộc",
-  "Côn Đảo",
-  "KV Khác",
-];
+var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất Đỏ", "Châu Đức", "Xuyên Mộc", "Côn Đảo", "KV Khác"];
 var emailnhanvienhen = "quipham@toyotavungtau.com";
 var useCaher;
 var TenCoVan = localStorage.getItem("Ten");

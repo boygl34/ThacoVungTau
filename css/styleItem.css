@@ -261,7 +261,7 @@ select:valid {
         font-size: 50px;
     } 
 
-    @media (min-width: 1700px) {
+    @media (min-width: 2160px) {
       #TabChoSC{
         display: none;
      }

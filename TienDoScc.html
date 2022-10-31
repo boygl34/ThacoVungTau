@@ -54,7 +54,7 @@
                             <iframe style="height: 500px; " src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                         </div>
                     </div> 
-                    <div class="form-check col-2 ">
+                    <!-- <div class="form-check col-2 ">
                         <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
                         <label class="form-check-label" for="checkbox-3">Đã HT</label>
                     </div>
@@ -62,7 +62,7 @@
                         <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()">
                         <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
                     </div>
-                    
+                     -->
                          
 
                 </div>
@@ -71,14 +71,27 @@
             <div class="card-body" id="MangHinhLamViec">
                <!--  Màng hình  đây-->
                <div class="row">
-
-                <div class="btn-group col-xl-3" role="group" style="border: 1px; ;">
-                    
-                    <p  class="btn btn-warning">Chờ</p>
-                    <p  class="btn btn-success">Đang</p>
-                    <p  class="btn btn-success" style="background-color: magenta;">Đã</p>
-                    <p  class="btn btn-danger">Dừng</p>
-                    <p  class="btn btn-primary">Hẹn</p>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group col-xl-3" role="group" style="border: 1px; ;">
+                        <p  class="btn btn-warning">Chờ</p>
+                        <p  class="btn btn-success">Đang</p>
+                        <p  class="btn btn-success" style="background-color: magenta;">Đã</p>
+                        <p  class="btn btn-danger">Dừng</p>
+                        <p  class="btn btn-primary">Hẹn</p>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Second group">
+                        
+                            <div class="form-check col-12">
+                            <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
+                            <label class="form-check-label" for="checkbox-3">Đã HT</label>
+                            </div>
+                            <div class="form-check col-12">
+                            <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()">
+                            <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
+                            </div>
+                           
+                        
+                      </div>
                   </div>
                </div>
                <div class="row">

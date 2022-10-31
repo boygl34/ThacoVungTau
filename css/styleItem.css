@@ -273,3 +273,15 @@ select:valid {
    }
     
     }
+    @media (min-width: 576px) {
+      #TabChoSC{
+        display: none;
+     }
+     #TabDungCV{
+      display: none;
+   }
+   #mytimeline{
+    width: 100%;
+   }
+
+    }

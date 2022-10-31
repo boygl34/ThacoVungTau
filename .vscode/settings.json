@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "e:\\PagesTVT\\index.html"
+    "livePreview.defaultPreviewPath": "e:\\PagesTVT\\index.html",
+    "editor.foldingMaximumRegions": 50000
 }

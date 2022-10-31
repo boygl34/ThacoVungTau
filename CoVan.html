@@ -1,52 +1,30 @@
 <main>
-  <div class="row>"><div id="LichCoVan"></div></div>
+  <div class="row>">
+    <div id="LichCoVan"></div>
+  </div>
   <div class="row">
     <div class="col-lg-3">
-      <form
-        id="myForm"
-        class="p-2 border border-light rounded"
-        style="background: #9bb7d4">
+      <form id="myForm" class="p-2 border border-light rounded" style="background: #9bb7d4">
         <p class="h4 mb-4 text-center" id="tieude"></p>
-        <div id="message"><div class="alert alert-success">Hello!!!</div></div>
-        <input
-          type="text"
-          id="MaSo"
-          name="MaSo"
-          value=""
-          style="display: none" />
+        <div id="message">
+          <div class="alert alert-success">Hello!!!</div>
+        </div>
+        <input type="text" id="MaSo" name="MaSo" value="" style="display: none" />
 
         <div class="form-group">
           <label for="BienSo">Biển Số</label>
-          <input
-            type="text"
-            class="form-control"
-            id="BienSoXe"
-            name="BienSo"
-            placeholder="Biển Số"
-            required
-            style="font-size: 1.575em; font-weight: bold"
-            onchange="changvalue()"
-            onkeyup="this.value = suabienso(this.value)"
-            required />
+          <input type="text" class="form-control" id="BienSoXe" name="BienSo" placeholder="Biển Số" required
+            style="font-size: 1.575em; font-weight: bold" onchange="changvalue()"
+            onkeyup="this.value = suabienso(this.value)" required />
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <button
-              type="button"
-              class="btn btn-primary"
-              id="KhachRX"
-              value="Rửa Xe"
-              onclick="KhachRua()">
+            <button type="button" class="btn btn-primary" id="KhachRX" value="Rửa Xe" onclick="KhachRua()">
               Rửa Xe
             </button>
           </div>
           <div class="form-group col-md-6">
-            <button
-              type="button"
-              class="btn btn-danger"
-              id="KhachDoi"
-              value="Khách Đợi"
-              onclick="Khachdoi()">
+            <button type="button" class="btn btn-danger" id="KhachDoi" value="Khách Đợi" onclick="Khachdoi()">
               Khách Đợi
             </button>
           </div>
@@ -104,11 +82,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="exampleFormControlSelect1">Loại Hình BP </label>
-            <select
-              class="form-control"
-              id="LoaiHinhBP"
-              name="LoaiHinhBP"
-              required>
+            <select class="form-control" id="LoaiHinhBP" name="LoaiHinhBP" required>
               '
               <option value=""></option>
               ' '
@@ -125,24 +99,14 @@
         <div class="form-row">
           <div class="form-group col-md-8">
             <label for="NgayGiaoXe">Ngày Giao Xe</label>
-            <input
-              type="text"
-              data-date-format="dd/mm/yyyy"
-              class="form-control Ngay"
-              id="NgayGiaoXe"
-              name="NgayGiaoXe"
+            <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay" id="NgayGiaoXe" name="NgayGiaoXe"
               required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-8" id="divruaxe">
             <label for="NgayGiaoXe">Thời Điểm Rửa Xe</label>
-            <input
-              type="text"
-              data-date-format="dd/mm/yyyy"
-              class="form-control Ngay2"
-              id="NgayRuaXe"
-              name="NgayRuaXe"
+            <input type="text" data-date-format="dd/mm/yyyy" class="form-control Ngay2" id="NgayRuaXe" name="NgayRuaXe"
               required />
           </div>
         </div>
@@ -156,13 +120,9 @@
     </div>
     <div class="col-lg-9">
       <div id="tablehen" class="table-responsive">
-        <table
-          id="data-table"
-          onclick="clickTableTiepNhan()"
-          class="table table-dark table-sm table-hover row-border"
+        <table id="data-table" onclick="clickTableTiepNhan()" class="table table-dark table-sm table-hover row-border"
           style="font-weight: bold; width: 100%; background-color: black">
-          <thead
-            style="
+          <thead style="
               color: black;
               font-weight: bold;
               font-size: 8px;
@@ -190,15 +150,8 @@
 </main>
 
 <!-- Modal -->
-<div
-  class="modal"
-  id="exampleModal"
-  tabindex="-1"
-  data-keyboard="false"
-  data-backdrop="static"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal" id="exampleModal" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -208,11 +161,7 @@
       </div>
       <div class="modal-body" id="thongtindung">...</div>
       <div class="modal-footer">
-        <button
-          type="button"
-          data-dismiss="modal"
-          class="btn btn-primary"
-          onclick="BATDAUTIEPNHAN()">
+        <button type="button" data-dismiss="modal" class="btn btn-primary" onclick="BATDAUTIEPNHAN()">
           Tiếp Nhận!!
         </button>
       </div>

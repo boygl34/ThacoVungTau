@@ -68,7 +68,7 @@ li.item.DungGio:before {
   font-size: 10px;
  
 }
-.btn.Datiepnhan{ border: #ff0707;font-weight: bold;}
+.btn.Datiepnhan{ border: #ff0707;font-weight: bold;color: black;}
 
 li.item.DenSom:before {
   content: "[S]";

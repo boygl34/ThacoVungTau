@@ -263,7 +263,9 @@ catch(error) {
      var ojb =  useCaher
      for(var a in ojb){
          if(ojb[a].MaSo == MaSo){
-       if(localStorage.getItem("userName")===ojb[a].NguoiDatHen||localStorage.getItem("userName")==emailnhanvienhen){
+       if(localStorage.getItem("userName")===ojb[a].NguoiDatHen||localStorage.getItem("userName") === $("#NguoiDatHen").val() ||
+       localStorage.getItem("PhanQuyen") == "AdminHen"||localStorage.getItem("PhanQuyen") == "admin" 
+       ){
           var json2 = {
                        ThoiGianHen: ThoiGianHenMoi,
                        TDNgayHen: ngayGiohen(ThoiGianHenMoi).ngaythang,

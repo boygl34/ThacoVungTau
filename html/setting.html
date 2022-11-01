@@ -5,40 +5,12 @@
             <div class="card h-100">
                 <div class="card-body" id="inputsetting">
 
-                    <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h6 class="mb-3 text-primary">Nhóm KTV EM</h6>
-                        </div>
-
-                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-                            <div class="form-group">
-                                <label for="fullName">KTV</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="website">Website URL</label>
-                                <input type="url" class="form-control" id="website" placeholder="Website url">
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -51,7 +23,6 @@
         url: "https://big-road-newsstand.glitch.me/ThongSo/",
         type: 'GET',
         success: function (data) {
-            console.log(data)
             setting = data
             taomenu(setting)
         }
@@ -62,23 +33,25 @@
         var form = "Setting"
         for (var a in setting) {
             var r = setting[a]
-            form += "<form id=" + r.id + "> <h6 class='mb-3 text-primary'>" + r.id + "</h6>"
+            form += "<form id=" + r.id + " class='border border-primary'> <h6 class='mb-3 text-primary'>" + r.id + "</h6>"
+            form += "<button type='button' class='btn btn-primary ' onclick=thempt('" + r.id + "') '>Thêm</button>" +
+                "<button type='button' class='btn btn-success ' onclick=savept('" + r.id + "') '>Lưu</button>"
             var c = 0
+            form += '<div class="container"><div class="form-row">'
             for (var b in r.value) {
                 if (r.value[b] !== "") {
-                    form += '<input class="col-1"type="text" onchange=savept("' + r.id + '") class="form-control"  name="' + r.id + c + '" value = "' + r.value[b] + '">'
+                    form += '<input type="text" onchange=savept("' + r.id + '") class="form-control col-3"  name="' + r.id + c + '" value = "' + r.value[b] + '">'
                     c = c + 1
                 }
             }
-            form += "</form>" +
-                "<button class='col-1' onclick=thempt('" + r.id + "') '>Thêm</button>" +
-                "<button class='col-1' onclick=savept('" + r.id + "') '>Lưu</button>"
+            form += "</div></div></form><br>"
+
         }
         $("#inputsetting").html(form)
     }
 
     function thempt(id) {
-        $("#" + id + "").html($("#" + id + "").html() + '<input onchange=savept("' + id + '") class="col-1"type="text" name = "CVmoi" class="form-control" >')
+        $("#" + id + "").html($("#" + id + "").html() + '<input onchange=savept("' + id + '") type="text" name = "CVmoi" class="form-control col-2" >')
     }
     function savept(id) {
 

@@ -28,6 +28,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 if (localStorage.getItem("TabDaDong") !== "") {
   gethtml(localStorage.getItem("TabDaDong"));
+} else {
+  localStorage.setItem("TabDaDong", "html/Home.html");
+  gethtml(localStorage.getItem("TabDaDong"));
 }
 
 function hidemodal() {

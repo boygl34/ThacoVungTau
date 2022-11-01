@@ -28,7 +28,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 if (localStorage.getItem("TabDaDong") !== "") {
   gethtml(localStorage.getItem("TabDaDong"));
-} else { return }
+} else {
+  localStorage.setItem("TabDaDong", "html/Home.html");
+  gethtml(localStorage.getItem("TabDaDong"));
+}
+
 function hidemodal() {
   $(".modal").modal("hide");
 }

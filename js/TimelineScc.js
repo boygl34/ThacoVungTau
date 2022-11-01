@@ -21,7 +21,7 @@ var options = {
     }
     //if (confirm(text) == true) { capnhatthoigian(item)} else {LoadTimeLine()};
   },
-  onAdd: function (item) {},
+  onAdd: function (item) { },
   onUpdate: function (item) {
     var BienSo = item.content.slice(0, item.content.indexOf(" "));
     $("#buttonSCC").html("");
@@ -294,31 +294,31 @@ function LoadTimeLine() {
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
-      '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-      trangthai +
-      " " +
-      tthen +
-      " " +
-      LoaiHinh +
-      '" value="' +
-      MaSo +
-      '">' +
-      value +
-      "</button >"
+    '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
+    trangthai +
+    " " +
+    tthen +
+    " " +
+    LoaiHinh +
+    '" value="' +
+    MaSo +
+    '">' +
+    value +
+    "</button >"
   );
 }
 function additembiensodung(value, MaSo, trangthai, LoaiHinh) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-      '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-      trangthai +
-      " " +
-      LoaiHinh +
-      '" value="' +
-      MaSo +
-      '">' +
-      value +
-      "</button>"
+    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' +
+    trangthai +
+    " " +
+    LoaiHinh +
+    '" value="' +
+    MaSo +
+    '">' +
+    value +
+    "</button>"
   );
 }
 function teststart(e) {
@@ -415,7 +415,7 @@ function handleDragStart(event) {
     //TrangThaiXuong: "04 Đã Tiếp Nhận",
     KhoangSuaChua: timelineProperties.group,
     TimeEndGJ: TimesClick(
-      new Date(1000 * 60 * 60 + new Date(timelineProperties.time).valueOf())
+      new Date(1000 * 60 * 30 + new Date(timelineProperties.time).valueOf())
     ),
     KyThuatVien1: KTV1,
     KyThuatVien2: KTV2,

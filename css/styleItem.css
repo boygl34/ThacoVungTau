@@ -28,14 +28,15 @@
 .context-menu ul li:hover {
   background: darkgray;
 }
+
 .timeshow {
-position: absolute;
+  position: absolute;
   z-index: 20;
   display: flex;
   text-align: center;
   font-weight: bold;
   color: black;
-  
+
 }
 
 li.item {
@@ -44,31 +45,41 @@ li.item {
   color: #1A1A1A;
   border: 1px solid #97B0F8;
   border-radius: 2px;
- text-align: center;
+  text-align: center;
   font-weight: bolder;
   font-size: 12px;
 }
+
 li.item.ChuaSuaChua {
- background:#ffc107 ;
+  background: #ffc107;
 }
+
 li.item.DungCongViec {
-  background:#ff0707 ;
+  background: #ff0707;
   color: white;
- }
+}
+
 li.item.DangSuaChua {
- background:greenyellow ;
+  background: greenyellow;
 }
+
 li.item.ChoSuaChua {
- background:magenta ;
+  background: magenta;
 }
+
 li.item.DungGio:before {
   content: "[Đ]";
   font-family: Arial, sans-serif;
   display: inline-block;
   font-size: 10px;
- 
+
 }
-.btn.Datiepnhan{ border: #ff0707;font-weight: bold;color: black;}
+
+.btn.Datiepnhan {
+  border: #ff0707;
+  font-weight: bold;
+  color: black;
+}
 
 li.item.DenSom:before {
   content: "[S]";
@@ -77,20 +88,23 @@ li.item.DenSom:before {
   font-size: 10px;
 
 }
+
 li.item.SCC:after {
   content: "_SCC";
   font-family: Arial, sans-serif;
   display: inline-block;
   font-size: 8px;
-  
+
 }
+
 li.item.EM:after {
   content: "_EM";
   font-family: Arial, sans-serif;
   display: inline-block;
   font-size: 8px;
-  
+
 }
+
 li.item.EM60:after {
   content: "_EM60";
   font-family: Arial, sans-serif;
@@ -98,11 +112,12 @@ li.item.EM60:after {
   font-size: 8px;
   cursor: move;
 }
+
 .btn.EM60:after {
-  content: " EM60";
+  content: " E";
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 8px;
+
   cursor: move;
 }
 
@@ -112,186 +127,232 @@ li.item.EM60:after {
 .checked {
   color: white;
 }
-  .unchecked {
+
+.unchecked {
   color: gray;
 }
-.CongDoan{
+
+.CongDoan {
   color: blue;
 }
-.BigStar{color: white}
 
-     
-table.dataTable td{
-    vertical-align: middle;
-    }
-
-
-.DangSuaChua{
-   color: #00ff00;
-}
-.ChoSuaChua{
-   color: yellow;
-}
-.ChuaSuaChua{
-   color: pink;
-}
-.DungSuaChua{
-   color: red;
+.BigStar {
+  color: white
 }
 
 
+table.dataTable td {
+  vertical-align: middle;
+}
 
 
-  
-  
+.DangSuaChua {
+  color: #00ff00;
+}
 
-   input:invalid {
+.ChoSuaChua {
+  color: yellow;
+}
+
+.ChuaSuaChua {
+  color: pink;
+}
+
+.DungSuaChua {
+  color: red;
+}
+
+
+
+
+
+
+
+input:invalid {
   border-color: red;
 }
+
 input:valid {
   background: lightgreen;
 }
+
 select:valid {
   background: lightgreen;
 }
-  select:invalid {
+
+select:invalid {
   border-color: red;
 }
 
 input:invalid {
   border-color: red;
 }
+
 input:valid {
   background: lightgreen;
 }
+
 select:valid {
   background: lightgreen;
 }
-  select:invalid {
+
+select:invalid {
   border-color: red;
 }
-.btn-group-xs > .btn, .btn-xs {
+
+.btn-group-xs>.btn,
+.btn-xs {
   padding: .25rem .4rem;
   font-size: .875rem;
   line-height: .5;
   border-radius: .2rem;
 }
 
-.DangTiepNhan{
-   color: #00ff00;
-}  
-   .SapTiepNhan{
-    color: #ff6d01;
-   }
-    .ChoTiepNhan{
-    color: #3deedf;
-   }
-  .DangSuaChua{
-    color: #00ff00;
-   }
-   .DaTiepNhan{
-    color: #00bfff;
-   }
-   .DungCongViec{
-    color: #ff4d4d;
-   }
-   .ChoSuaChua{
-    color: #287aee;
-   }
-   .ChoGiaoXe{
-    color: #FFE4C4;
-   }
-   .note1{  color: red;}
-    .note2{  color: #bf00ff;}
+.DangTiepNhan {
+  color: #00ff00;
+}
+
+.SapTiepNhan {
+  color: #ff6d01;
+}
+
+.ChoTiepNhan {
+  color: #3deedf;
+}
+
+.DangSuaChua {
+  color: #00ff00;
+}
+
+.DaTiepNhan {
+  color: #00bfff;
+}
+
+.DungCongViec {
+  color: #ff4d4d;
+}
+
+.ChoSuaChua {
+  color: #287aee;
+}
+
+.ChoGiaoXe {
+  color: #FFE4C4;
+}
+
+.note1 {
+  color: red;
+}
+
+.note2 {
+  color: #bf00ff;
+}
 
 
-  
-  table.dataTable td{
-    vertical-align: bottom;
-     font-size: 14px;
-    }
-  #tablehen td:nth-child(0) {
-        width: 10%;
-       
+
+table.dataTable td {
+  vertical-align: bottom;
+  font-size: 14px;
+}
+
+#tablehen td:nth-child(0) {
+  width: 10%;
+
+}
+
+#table-TimXe td {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1200 - 300)));
+  vertical-align: middle;
+
+  text-align: left;
+  border: 1px solid black;
+  border-bottom: 1px solid blue;
+  margin: auto;
+}
+
+#table-TimXe .DangSuaChua {
+  color: #00ff00;
+}
+
+#table-TimXe .ChoSuaChua {
+  color: yellow;
+}
+
+#table-TimXe .ChuaSuaChua {
+  color: gray;
+}
+
+#table-TimXe .DungSuaChua {
+  color: red;
+}
+
+.DangRuaXe {
+  color: #00ff00;
+}
+
+.ChoRuaXe {
+  color: #ff6d01;
+}
+
+#tableRuaXe td {
+  font-size: 30px;
+  vertical-align: middle;
+  text-align: left;
+  border: 1px solid black;
+  border-bottom: 1px solid blue;
+  margin: auto;
+}
+
+#tableRuaXe td:nth-child(8) {
+  width: 1%;
+  font-size: 1px;
+}
+
+#tableRuaXe td:nth-child(5) {
+  width: 7%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(4) {
+  width: 7%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(3) {
+  width: 4%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(2) {
+  font-size: 50px;
+}
+
+@media (min-width: 2160px) {
+  #TabChoSC {
+    display: none;
   }
-   #table-TimXe   td {
-   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1200 - 300)));
-  vertical-align: middle;
-  
-  text-align: left  ;
-   border: 1px solid black;
-  border-bottom: 1px solid blue;
-  margin: auto;
-}
 
-#table-TimXe .DangSuaChua{
-   color: #00ff00;
-}
-#table-TimXe .ChoSuaChua{
-   color: yellow;
-}
-#table-TimXe .ChuaSuaChua{
-   color: gray;
-}
-#table-TimXe .DungSuaChua{
-   color: red;
-}
-.DangRuaXe{
-   color: #00ff00;
-}  
-   .ChoRuaXe{
-    color: #ff6d01;
-   }
- #tableRuaXe   td {
-   font-size: 30px;
-  vertical-align: middle;
-  text-align: left  ;
-   border: 1px solid black;
-  border-bottom: 1px solid blue;
-  margin: auto;
-}
-   #tableRuaXe td:nth-child(8) {
-        width: 1%;
-        font-size: 1px;
-    } 
-     #tableRuaXe td:nth-child(5) {
-        width: 7%;
-        font-size: 14px;
-    } 
-    #tableRuaXe td:nth-child(4) {
-        width: 7%;
-        font-size: 14px;
-    } 
-    #tableRuaXe td:nth-child(3) {
-        width: 4%;
-        font-size: 14px;
-    } 
-  #tableRuaXe td:nth-child(2) { 
-        font-size: 50px;
-    } 
+  #TabDungCV {
+    display: none;
+  }
 
-    @media (min-width: 2160px) {
-      #TabChoSC{
-        display: none;
-     }
-     #TabDungCV{
-      display: none;
-   }
-   #mytimeline{
+  #mytimeline {
     width: 100%;
-   }
-    
-    }
-    @media (max-width: 840px) {
-      #TabChoSC{
-        display: none;
-     }
-     #TabDungCV{
-      display: none;
-   }
-   #mytimeline{
-    width: 100%;
-   }
+  }
 
-    }
-    
+}
+
+@media (max-width: 840px) {
+  #TabChoSC {
+    display: none;
+  }
+
+  #TabDungCV {
+    display: none;
+  }
+
+  #mytimeline {
+    width: 100%;
+  }
+
+}

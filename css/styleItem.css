@@ -39,35 +39,10 @@
 
 }
 
-li.item {
-  list-style: none;
-  width: 100%;
-  color: #1A1A1A;
-  border: 1px solid #97B0F8;
-  border-radius: 2px;
-  text-align: center;
-  font-weight: bolder;
-  font-size: 12px;
-}
 
-li.item.ChuaSuaChua {
-  background: #ffc107;
-}
 
-li.item.DungCongViec {
-  background: #ff0707;
-  color: white;
-}
 
-li.item.DangSuaChua {
-  background: greenyellow;
-}
-
-li.item.ChoSuaChua {
-  background: magenta;
-}
-
-li.item.DungGio:before {
+.btn.DungGio:before {
   content: "[Đ]";
   font-family: Arial, sans-serif;
   display: inline-block;
@@ -81,7 +56,7 @@ li.item.DungGio:before {
   color: black;
 }
 
-li.item.DenSom:before {
+.btn.DenSom:before {
   content: "[S]";
   font-family: Arial, sans-serif;
   display: inline-block;
@@ -89,36 +64,29 @@ li.item.DenSom:before {
 
 }
 
-li.item.SCC:after {
-  content: "_SCC";
+
+
+
+
+.btn.SCC:after {
+  content: "_S";
+  list-style-type: circle;
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 8px;
 
 }
 
-li.item.EM:after {
-  content: "_EM";
+.btn.EM:after {
+  content: "_E";
+  list-style-type: circle;
   font-family: Arial, sans-serif;
   display: inline-block;
-  font-size: 8px;
-
-}
-
-li.item.EM60:after {
-  content: "_EM60";
-  font-family: Arial, sans-serif;
-  display: inline-block;
-  font-size: 8px;
-  cursor: move;
 }
 
 .btn.EM60:after {
-  content: " E";
+  content: "_E";
   font-family: Arial, sans-serif;
   display: inline-block;
-
-  cursor: move;
 }
 
 

@@ -1,5 +1,5 @@
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
-//var NhomCV = ["Toàn", "Tài", "Rôn", "Mẫn", "Sang", "Vinh", "Triêng", "Lộc", "Hiệp", "None"];
+var NhomCV = ["Toàn", "Tài", "Rôn", "Mẫn", "Sang", "Vinh", "Triêng", "Lộc", "Hiệp", "None"];
 var NhomDH = ["EM", "SCC", "Đồng Sơn", "Báo Giá BH"];
 var KTVDong = ["Châu", "Trường", "Phúc", "Trương", "Định"];
 var KTVSonDinh = ["Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài"];
@@ -24,19 +24,17 @@ var ThongSo
 
 
 
-$.ajax({
-  url: "https://big-road-newsstand.glitch.me/ThongSo/",
-  type: 'GET',
-  success: function (data) {
-    ThongSo = data
-    var NhomCV
-    for (var a in data) {
-      if (data[a].id == "NhomCV") { NhomCV = Object.values(data[a].value); CoVanlist(NhomCV) }
-    }
-    console.log(NhomCV)
-  }
-})
+// $.ajax({
+//   url: "https://big-road-newsstand.glitch.me/ThongSo/",
+//   type: 'GET',
+//   success: function (data) {
+//     ThongSo = data
+//     var NhomCV = Object.values(data.filter(function (r) { return r.id == "NhomCV" })[0].value)
+//     console.log(NhomCV)
+//   }
 
+
+// })
 
 
 

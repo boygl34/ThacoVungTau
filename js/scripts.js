@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 if (localStorage.getItem("TabDaDong") !== "") {
   gethtml(localStorage.getItem("TabDaDong"));
-}
+} else { return }
 function hidemodal() {
   $(".modal").modal("hide");
 }

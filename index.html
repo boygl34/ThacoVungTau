@@ -241,7 +241,7 @@
             var password = localStorage.getItem("Password");
             var use = localStorage.getItem("id");
             if (use == null) {
-                window.location = "login.html";
+                window.location = "html/login.html";
             }
             if (password !== "" && use !== "") {
                 fetch(urluser + use)
@@ -257,7 +257,7 @@
                         }
                     });
             } else {
-                window.location = "login.html";
+                window.location = "html/login.html";
                 $("#layoutSidenav").html(
                     '<a class="btn btn-primary" href="login.html">Login</a>'
                 );

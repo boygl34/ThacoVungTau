@@ -53,21 +53,22 @@
         success: function (data) {
             console.log(data)
             setting = data
-
             taomenu(setting)
         }
     })
     function taomenu(setting) {
 
         $("#inputsetting").html()
-        var form
+        var form = "Setting"
         for (var a in setting) {
             var r = setting[a]
             form += "<form id=" + r.id + "> <h6 class='mb-3 text-primary'>" + r.id + "</h6>"
             var c = 0
             for (var b in r.value) {
-                form += '<input class="col-1"type="text" onchange=savept("' + r.id + '") class="form-control"  name="' + r.id + c + '" value = "' + r.value[b] + '">'
-                c = c + 1
+                if (r.value[b] !== "") {
+                    form += '<input class="col-1"type="text" onchange=savept("' + r.id + '") class="form-control"  name="' + r.id + c + '" value = "' + r.value[b] + '">'
+                    c = c + 1
+                }
             }
             form += "</form>" +
                 "<button class='col-1' onclick=thempt('" + r.id + "') '>Thêm</button>" +

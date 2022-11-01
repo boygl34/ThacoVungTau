@@ -1,0 +1,111 @@
+<main>
+
+    <div class="container-fluid px-4">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body" id="inputsetting">
+
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-3 text-primary">Nhóm KTV EM</h6>
+                        </div>
+
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                            <div class="form-group">
+                                <label for="fullName">KTV</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="eMail">Email</label>
+                                <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="website">Website URL</label>
+                                <input type="url" class="form-control" id="website" placeholder="Website url">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+<script src="js/blackbone.js"></script>
+<script>
+    var setting
+    var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong"
+    $.ajax({
+        url: "https://big-road-newsstand.glitch.me/ThongSo/",
+        type: 'GET',
+        success: function (data) {
+            console.log(data)
+            setting = data
+
+            taomenu(setting)
+        }
+    })
+    function taomenu(setting) {
+
+        $("#inputsetting").html()
+        var form
+        for (var a in setting) {
+            var r = setting[a]
+            form += "<form id=" + r.id + "> <h6 class='mb-3 text-primary'>" + r.id + "</h6>"
+            var c = 0
+            for (var b in r.value) {
+                form += '<input class="col-1"type="text" onchange=savept("' + r.id + '") class="form-control"  name="' + r.id + c + '" value = "' + r.value[b] + '">'
+                c = c + 1
+            }
+            form += "</form>" +
+                "<button class='col-1' onclick=thempt('" + r.id + "') '>Thêm</button>" +
+                "<button class='col-1' onclick=savept('" + r.id + "') '>Lưu</button>"
+        }
+        $("#inputsetting").html(form)
+    }
+
+    function thempt(id) {
+        $("#" + id + "").html($("#" + id + "").html() + '<input onchange=savept("' + id + '") class="col-1"type="text" name = "CVmoi" class="form-control" >')
+    }
+    function savept(id) {
+
+        var data = $('#' + id).serializeArray().reduce(function (a, x) { a[x.name] = x.value; return a; }, {});
+        var json = {
+            value: data,
+        };
+        fetch("https://big-road-newsstand.glitch.me/ThongSo/" + id, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(json),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                $.ajax({
+                    url: "https://big-road-newsstand.glitch.me/ThongSo/",
+                    type: 'GET',
+                    success: function (data) {
+                        console.log(data)
+                        setting = data
+
+                        taomenu(setting)
+                    }
+                })
+            });
+
+
+
+
+    }
+</script>

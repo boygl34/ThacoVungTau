@@ -1,4 +1,6 @@
 {
     "livePreview.defaultPreviewPath": "e:\\PagesTVT\\index.html",
-    "editor.foldingMaximumRegions": 50000
+    "editor.foldingMaximumRegions": 50000,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
 }

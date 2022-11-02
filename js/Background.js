@@ -1,5 +1,13 @@
 
 
+$.ajax({
+  url: "https://big-road-newsstand.glitch.me/ThongSo/",
+  type: 'GET',
+  success: function (data) {
+    localStorage.setItem("ThongSo", JSON.stringify(data))
+
+  }
+})
 
 var ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
 
@@ -34,14 +42,6 @@ var PhanQuyen = localStorage.getItem("PhanQuyen");
 var emailnhanvienhen = "quipham@toyotavungtau.com";
 
 
-$.ajax({
-  url: "https://big-road-newsstand.glitch.me/ThongSo/",
-  type: 'GET',
-  success: function (data) {
-    localStorage.setItem("ThongSo", JSON.stringify(data))
-
-  }
-})
 
 
 

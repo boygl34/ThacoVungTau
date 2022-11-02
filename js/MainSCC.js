@@ -10,6 +10,7 @@ function postData(data, url, methor) {
     .then((response) => response.json())
     .then((data) => {
       getData();
+      document.getElementById("contextMenu").style.display = "none"
       $("#mesenge").html(
         "<div class='alert alert-success'>Đăng Ký Thành Công</div>"
       );

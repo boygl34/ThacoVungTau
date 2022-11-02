@@ -326,20 +326,7 @@ function additembiensodung(value, MaSo, trangthai, LoaiHinh) {
     "</button>"
   );
 }
-function teststart(e) {
-  var dt = e.dataTransfer;
-  dt.effectAllowed = "move";
-  console.log(dt);
-  if (dt) {
-    dt.effectAllowed = "move";
-    dt.setData("text", "dummy");
-    dragging = $(this);
-    var dragIcon = document.createElement("img");
-    dragIcon.src = "https://www.w3schools.com/w3images/fjords.jpg";
-    dragIcon.width = 10;
-    dt.setDragImage(dragIcon, 0, 0);
-  }
-}
+
 function showtime(event) {
   event.dataTransfer.effectAllowed = "move";
   var timelineProperties = timeline.getEventProperties(event);

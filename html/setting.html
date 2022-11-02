@@ -15,10 +15,9 @@
 
 
 </main>
-<script src="js/blackbone.js"></script>
 <script>
     var setting
-    var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong"
+
     $.ajax({
         url: "https://big-road-newsstand.glitch.me/ThongSo/",
         type: 'GET',
@@ -71,9 +70,7 @@
                     type: 'GET',
                     success: function (data) {
                         localStorage.setItem("ThongSo", JSON.stringify(data))
-                        ThongSo = data
                         setting = data
-
                         taomenu(setting)
                     }
                 })

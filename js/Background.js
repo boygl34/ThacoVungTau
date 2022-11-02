@@ -1,13 +1,6 @@
 
 
-$.ajax({
-  url: "https://big-road-newsstand.glitch.me/ThongSo/",
-  type: 'GET',
-  success: function (data) {
-    localStorage.setItem("ThongSo", JSON.stringify(data))
 
-  }
-})
 var ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
 
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
@@ -17,14 +10,14 @@ var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
 //var NhomDH = ["EM", "SCC", "Đồng Sơn", "Báo Giá BH"];
 var NhomCV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomCV" })[0].value)
 var NhomDH = Object.values(ThongSo.filter(function (r) { return r.id == "GruopTDDatHen" })[0].value)
-
+var KhoangSC = Object.values(ThongSo.filter(function (r) { return r.id == "KhoangScc" })[0].value)
 var KTVDong = ["Châu", "Trường", "Phúc", "Trương", "Định"];
 var KTVSonDinh = ["Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài"];
 var KTVSonThien = ["Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
 var PhongSon = ["Phòng Sơn 1", "Phòng Sơn 2", "Phòng Sơn 3"];
 var NhomSon = ["Đình", "Thiên"];
 var KTVDongSon = ["Châu", "Trường", "Phúc", "Trương", "Định", "Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài", "Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
-var KhoangSC = ["EM 01", "EM 02", "EM 03", "EM 04", "SCC 05", "SCC 06", "SCC 07", "SCC 08", "SCC 09", "SCC 10", "4 Trụ", "K Ngoài"];
+//var KhoangSC = ["EM 01", "EM 02", "EM 03", "EM 04", "SCC 05", "SCC 06", "SCC 07", "SCC 08", "SCC 09", "SCC 10", "4 Trụ", "K Ngoài"];
 var NhomKTV = ["EM", "Bạo", "Hoan"];
 var KTVBao = ["Bạo", "Hiếu", "Duy", "Phước", "Huy", "Tân"];
 var KTVHoan = ["Hoan", "Lâm", "Tâm", "Sơn", "Thiên"];
@@ -39,7 +32,14 @@ var PhanQuyen = localStorage.getItem("PhanQuyen");
 var emailnhanvienhen = "quipham@toyotavungtau.com";
 
 
+$.ajax({
+  url: "https://big-road-newsstand.glitch.me/ThongSo/",
+  type: 'GET',
+  success: function (data) {
+    localStorage.setItem("ThongSo", JSON.stringify(data))
 
+  }
+})
 
 
 

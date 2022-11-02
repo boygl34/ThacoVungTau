@@ -39,11 +39,13 @@ function hidemodal() {
 
 function gethtml(value) {
   localStorage.setItem("TabDaDong", value);
+  $("#layoutSidenav_content").html("")
   $.ajax({
     url: value,
     cache: false,
   })
     .done(function (html) {
+      $("#layoutSidenav_content").html("")
       $("#layoutSidenav_content").html(html);
     })
     .then(function () {

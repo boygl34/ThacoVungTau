@@ -1,37 +1,7 @@
 var items = new vis.DataSet();
 var groups = new vis.DataSet();
 var container = document.getElementById("mytimeline");
-var KTVDong = ["Châu", "Trường", "Phúc", "Trương", "Quang", "Định"];
-var KTVSonDinh = ["Đình", "Thành", "Lưu"];
-var KTVSonThien = ["Thiên", "Dũng", "Lực", "Tú"];
-var PhongSon = ["Phòng Sơn 1", "Phòng Sơn 2", "Phòng Sơn 3"];
-var NhomSon = ["Đình", "Thiên"];
-var NhomCV = [
-  "Toàn",
-  "Tài",
-  "Rôn",
-  "Mẫn",
-  "Sang",
-  "Vinh",
-  "Triêng",
-  "Lộc",
-  "Sang",
-];
-var KTVDongSon = [
-  "Châu",
-  "Trường",
-  "Phúc",
-  "Trương",
-  "Quang",
-  "Định",
-  "Đình",
-  "Thành",
-  "Lưu",
-  "Thiên",
-  "Dũng",
-  "Lực",
-  "Tú",
-];
+
 var chieudaichip;
 var kytu1 = "😆";
 var kytu2 = "😡";
@@ -244,7 +214,7 @@ function LoadTimeLine() {
         let values =
           (NgayHoanThanh.valueOf() -
             new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)).valueOf()) /
-            new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
+          new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
           new Date(DoiNgayDangKy(r.TDKetThucTiepKhach));
         items.add({
           id: r.BienSoXe + "_ChoSC",

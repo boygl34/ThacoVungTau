@@ -16,6 +16,8 @@ var KTVSonDinh = ["Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài"];
 var KTVSonThien = ["Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
 var PhongSon = ["Phòng Sơn 1", "Phòng Sơn 2", "Phòng Sơn 3"];
 var NhomSon = ["Đình", "Thiên"];
+var KhoangKoSuDung = Object.values(ThongSo.filter(function (r) { return r.id == "KhoangKoSuDung" })[0].value)
+var ChipGJ = Object.values(ThongSo.filter(function (r) { return r.id == "ChieuDaiChipGJ" })[0].value)[0]
 var KTVDongSon = ["Châu", "Trường", "Phúc", "Trương", "Định", "Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài", "Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
 //var KhoangSC = ["EM 01", "EM 02", "EM 03", "EM 04", "SCC 05", "SCC 06", "SCC 07", "SCC 08", "SCC 09", "SCC 10", "4 Trụ", "K Ngoài"];
 var NhomKTV = ["EM", "Bạo", "Hoan"];

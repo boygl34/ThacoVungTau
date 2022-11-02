@@ -49,10 +49,15 @@ var options = {
 };
 
 for (i in KhoangSC) {
+  hiddenGruop = true
+  if (KhoangKoSuDung.indexOf(KhoangSC[i]) > -1) { hiddenGruop = false }
   groups.add({
     id: KhoangSC[i],
     content: KhoangSC[i],
+    visible: hiddenGruop,
   });
+
+
 }
 groups.add({
   id: "Rửa Xe",
@@ -415,7 +420,7 @@ function handleDragStart(event) {
     //TrangThaiXuong: "04 Đã Tiếp Nhận",
     KhoangSuaChua: timelineProperties.group,
     TimeEndGJ: TimesClick(
-      new Date(1000 * 60 * 30 + new Date(timelineProperties.time).valueOf())
+      new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf())
     ),
     KyThuatVien1: KTV1,
     KyThuatVien2: KTV2,

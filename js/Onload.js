@@ -1,4 +1,14 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+
+  $.ajax({
+    url: "https://big-road-newsstand.glitch.me/ThongSo/",
+    type: 'GET',
+    success: function (data) {
+      localStorage.setItem("ThongSo", JSON.stringify(data))
+
+    }
+  })
+
   getData();
 });
 

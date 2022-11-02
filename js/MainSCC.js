@@ -330,7 +330,6 @@ function KhoangSuaChua(values) {
 }
 CoVanlist(NhomCV);
 function CoVanlist(values) {
-  console.log(values)
   var list = document.getElementById("CoVanDichVu");
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");

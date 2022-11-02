@@ -14,6 +14,15 @@ function DangNhap() {
         localStorage.setItem("BoPhan", data.BoPhan)
         localStorage.setItem("TabDaDong", "html/Home.html");
         window.location = "index.html";
+        $.ajax({
+          url: "https://big-road-newsstand.glitch.me/ThongSo/",
+          type: 'GET',
+          success: function (data) {
+            localStorage.setItem("ThongSo", JSON.stringify(data))
+
+          }
+        })
+
       }
       else {
         alert("Sai pass")

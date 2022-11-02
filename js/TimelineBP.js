@@ -542,7 +542,7 @@ function additembiensodung(value, MaSo, trangthai, CongDoan) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
     '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + trangthai
-    + " " + CongDoan + '" value="' + MaSo + '"  name="' + CongDoan + '">' + value + "</button>"
+    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '">' + value + "</button>"
   );
 }
 function showtime(event) {
@@ -565,18 +565,67 @@ function handleDragStart(event) {
   document.getElementById("contextMenu2").style.display = "none";
   var end = TimesClick(new Date(1000 * 60 * ChipDS + new Date(timelineProperties.time).valueOf()))
   var json2 = {};
-  if (timelineProperties.group == "EM 01")
-    if (congdoan == "Đồng") {
+  var group = timelineProperties.group
+
+  if (congdoan == "Chờ SC") {
+    if (KTVDong.indexOf(group) >= 0) {
+      json2["KyThuatVienDong"] = group;
+      json2["HTDong"] = "KH";
       json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
       json2["TimeEndBody"] = end;
-      json2["KyThuatVienDong"] = timelineProperties.group;
+    } else if (NhomSon.indexOf(group) >= 0) {
+      json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndNen"] = end;
+      json2["NhomSon"] = group;
+      json2["HTNen"] = "KH";
+    } else if (group == "Pass") {
+      json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndPass"] = end;
+      json2["HTPass"] = "KH";
+    } else { alert("Lỗi"); return false }
+
+  }
+
+  if (congdoan == "Đồng") {
+    if (KTVDong.indexOf(group) >= 0) {
+      json2["KyThuatVienDong"] = group;
       json2["HTDong"] = "KH";
+      json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndBody"] = end;
+    } else { alert("Lỗi"); return false }
+  }
+  if (congdoan == "Nền") {
+    if (NhomSon.indexOf(group) >= 0) {
+      json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndNen"] = end;
+      json2["NhomSon"] = group;
+      json2["HTNen"] = "KH";
+    } else {
+      alert("Lỗi"); return false
     }
-  if (congdoan == "Chờ SC") {
-    json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
-    json2["TimeEndBody"] = end;
-    json2["KyThuatVienDong"] = timelineProperties.group;
-    json2["HTDong"] = "KH";
+  }
+  if (congdoan == "Sơn") {
+    if (PhongSon.indexOf(group) >= 0) {
+      json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndPaint"] = end;
+      json2["PhongSon"] = group;
+      json2["HTSon"] = "KH";
+    } else { alert("Lỗi"); return false }
+  }
+  if (congdoan == "Lắp Ráp") {
+    if (KTVDong.indexOf(group) >= 0) {
+      json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndLap"] = end;
+      json2["KyThuatVienLap"] = group;
+      json2["HTLap"] = "KH";
+    } else { alert("Lỗi"); return false }
+  }
+  if (congdoan == "Pass") {
+    if (group == "Pass") {
+      json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndPass"] = end;
+      json2["HTPass"] = "KH";
+    } else { alert("Lỗi"); return false }
   }
 
   console.log(json2)

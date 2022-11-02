@@ -70,7 +70,8 @@
                     url: "https://big-road-newsstand.glitch.me/ThongSo/",
                     type: 'GET',
                     success: function (data) {
-                        console.log(data)
+                        localStorage.setItem("ThongSo", JSON.stringify(data))
+                        ThongSo = data
                         setting = data
 
                         taomenu(setting)

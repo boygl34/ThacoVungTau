@@ -191,7 +191,7 @@ function BatDauSC() {
         json2["TDHenGiaoXe"] = TimesClick(
           new Date(
             1000 * 60 * 29 +
-              new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
+            new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
           )
         );
       }
@@ -249,7 +249,7 @@ function BatDauSC2() {
             json2["TDHenGiaoXe"] = TimesClick(
               new Date(
                 1000 * 60 * 29 +
-                  new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
+                new Date(DoiNgayDangKy($("#GioKetThucSC").val())).valueOf()
               )
             );
           }
@@ -330,6 +330,7 @@ function KhoangSuaChua(values) {
 }
 CoVanlist(NhomCV);
 function CoVanlist(values) {
+  console.log(values)
   var list = document.getElementById("CoVanDichVu");
   for (var i = 0; i < values.length; i++) {
     var option = document.createElement("option");
@@ -401,8 +402,8 @@ function changvalue() {
       if (ojb[a].TDHenGiaoXe) {
         $("#mesenge").html(
           "<div class='alert alert-success'>Giờ Giao Xe : " +
-            datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) +
-            "</div>"
+          datevalue(DoiNgayDangKy(ojb[a].TDHenGiaoXe)) +
+          "</div>"
         );
       }
       if (ojb[a].MaSo) {

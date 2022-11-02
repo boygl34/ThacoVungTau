@@ -10,7 +10,7 @@ function postData(data, url, methor) {
     .then((response) => response.json())
     .then((data) => {
       getData();
-      document.getElementById("contextMenu").style.display = "none"
+
       $("#mesenge").html(
         "<div class='alert alert-success'>Đăng Ký Thành Công</div>"
       );
@@ -102,6 +102,7 @@ function KetThuc() {
       }
     }
   }
+  document.getElementById("contextMenu").style.display = "none"
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
@@ -131,6 +132,7 @@ function DungCongViecGJ() {
   $("#mesenge").html(
     '<div class="alert alert-warning" role="alert">Đang Dừng CV!</div>'
   );
+  document.getElementById("contextMenu").style.display = "none"
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 function BatDauSC() {
@@ -202,6 +204,7 @@ function BatDauSC() {
   $("#mesenge").html(
     '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
   );
+  document.getElementById("contextMenu").style.display = "none"
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
 
@@ -260,9 +263,9 @@ function BatDauSC2() {
       $("#mesenge").html(
         '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
       );
+      document.getElementById("contextMenu").style.display = "none"
       postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
-      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
-      postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+
     }
   }
 }

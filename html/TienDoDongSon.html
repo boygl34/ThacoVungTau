@@ -1,124 +1,136 @@
-<div class="card pmd-card" style="background-color: black">
-  <div class="pmd-tabs">
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link" href="#BaoCaoXeGiao" aria-controls="about" role="tab" data-toggle="tab">Báo Cáo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#TienDo" aria-controls="about" role="tab" data-toggle="tab">Danh Sách</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#Timeline" aria-controls="home" role="tab" data-toggle="tab"
-          ondblclick="LoadTimeLine ()">Tiến Độ</a>
-      </li>
-      <li class="nav-item" disabled>
-        <a class="nav-link" style="color: black; background-color: pink" id="HideChoSC" disabled>Chờ SC</a>
-      </li>
-      <li class="nav-item" disabled>
-        <a class="nav-link" style="color: black; background-color: greenyellow" disabled>Đang SC</a>
-      </li>
-      <li class="nav-item" disabled>
-        <a class="nav-link" style="color: black; background-color: red" disabled>Dừng SC</a>
-      </li>
-      <li class="nav-item" disabled>
-        <a class="nav-link" style="color: black; background-color: gold" disabled>Đã SC</a>
-      </li>
-      <li class="nav-item">
-        <div class="custom-control custom-checkbox checkbox-xl">
-          <input type="checkbox" class="custom-control-input" id="checkbox-3" onchange="loadData ()" />
-          <label class="custom-control-label" for="checkbox-3" style="color: white">Đã HT</label>
-        </div>
-      </li>
-      <h2 id="tieude" class="head col-3" style="color: #0072b5"></h2>
-
-      <input type="text" id="selection" list="BienSoXeList" placeholder="Seach!!" onselect="this.value = ''"
-        onchange="LoadTimeLine ()" style="background-color: gray" />
-    </ul>
-  </div>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane" id="BaoCaoXeGiao">
-      <table id="table-BaoCao" class="display" style="width: 100%">
-        <div class="form-row">
-          <div class="col-6">
-            <label for="regular1" class="control-label" style="color: white">Ngày Giao Xe</label>
-            <input type="date" required class="form-control" id="NgayGiaoXeBC" onchange="BaoCao()" />
-          </div>
-
-          <div class="custom-control custom-checkbox checkbox-xl">
-            <input type="checkbox" class="custom-control-input" id="TreHen" onchange="BaoCao()" />
-            <label class="custom-control-label" for="TreHen" style="color: white">Xe Trễ</label>
+<div class="container-fluid px-4">
+  <!--bat dau Thông tin card -->
+  <div class="row" style="display: none">
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-primary text-white mb-4">
+        <div class="card-body">Primary Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white">
+            <i class="fas fa-angle-right"></i>
           </div>
         </div>
-        <thead>
-          <tr>
-            <th>Biển Số</th>
-            <th>Cố Vấn</th>
-            <th style="width: 5%">Model</th>
-            <th>Nhóm Sơn</th>
-            <th>Công Đoạn</th>
-            <th>Trạng Thái</th>
-            <th>Ngày Giao</th>
-            <th>Giờ KT</th>
-            <th style="width: 25%">Ghi Chú</th>
-          </tr>
-        </thead>
-      </table>
-      <div>
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=1036835817&amp;single=true&amp;widget=true&amp;headers=false"
-          style="width: 100%; height: 700px"></iframe>
       </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="TienDo">
-      <table id="table-Dung" class="display" style="width: 100%" ondblclick="clickTableDung()" style="overflow-x: auto">
-        <thead>
-          <tr>
-            <th>Biển Số</th>
-            <th>Cố Vấn</th>
-            <th>Model</th>
-            <th>Nhóm Sơn</th>
-            <th>Công Đoạn</th>
-            <th>Trạng Thái</th>
-            <th>Ngày Giao</th>
-            <th>TD Dừng CV</th>
-            <th style="width: 25%">LD Dừng CV</th>
-          </tr>
-        </thead>
-      </table>
-      <table id="table-TimXe" class="display" style="width: 100%" ondblclick="clickTableTiepNhan()">
-        <thead>
-          <tr>
-            <th>Biển Số</th>
-            <th>Cố Vấn</th>
-            <th style="width: 5%">Model</th>
-            <th>Nhóm Sơn</th>
-            <th>Công Đoạn</th>
-            <th>Trạng Thái</th>
-            <th>Ngày Giao</th>
-            <th>Giờ KT</th>
-          </tr>
-        </thead>
-      </table>
-      <table id="table-ChoSC" class="display" style="width: 100%" ondblclick="clickTableCho()">
-        <thead>
-          <tr>
-            <th>Biển Số</th>
-            <th>Cố Vấn</th>
-            <th style="width: 5%">Model</th>
-            <th>Nhóm Sơn</th>
-            <th>Công Đoạn</th>
-            <th>Trạng Thái</th>
-            <th>Ngày Giao</th>
-            <th>Giờ KT</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-warning text-white mb-4">
+        <div class="card-body">Warning Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white">
+            <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="Timeline">
-      <div id="mytimeline"></div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-success text-white mb-4">
+        <div class="card-body">Success Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white">
+            <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-danger text-white mb-4">
+        <div class="card-body">Danger Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white">
+            <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--ket thuc Thông tin card -->
+  <!--  Màng hình làm việc chính o đây-->
+  <div class="card mb-4">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-7" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+          aria-controls="collapseExample">
+          <i class="fas fa-table me-1"></i>
+          Tiến Độ Đồng Sơn
+        </div>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <iframe style="height: 500px"
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+          </div>
+        </div>
+        <!-- <div class="form-check col-2 ">
+                  <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
+                  <label class="form-check-label" for="checkbox-3">Đã HT</label>
+              </div>
+              <div class="form-check col-2">
+                  <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()">
+                  <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
+              </div>
+               -->
+      </div>
+    </div>
+
+    <div class="card-body" id="MangHinhLamViec">
+      <!--  Màng hình  đây-->
+      <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group col-xl-3" role="group" style="border: 1px">
+            <p class="btn btn-warning">Chờ</p>
+            <p class="btn btn-success">Đang</p>
+            <p class="btn btn-success" style="background-color: magenta">
+              Đã
+            </p>
+            <p class="btn btn-danger">Dừng</p>
+            <p class="btn btn-primary">Hẹn</p>
+          </div>
+          <div class="btn-group" role="group" aria-label="Second group">
+            <div class="form-check col-12">
+              <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()" />
+              <label class="form-check-label" for="checkbox-3">Đã HT</label>
+            </div>
+            <div class="form-check col-12">
+              <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()" />
+              <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-1" id="TabChoSC">
+          <p class="btn btn-warning" style="width: 100%">Chờ SC</p>
+          <div class="btn-group-vertical" id="XeChoSuaChua" aria-label="Toolbar with button groups"></div>
+          <!-- <div class="items" id="XeChoSuaChua"></div> -->
+        </div>
+        <div class="col-xl-10" id="mytimeline" ondragover="event.preventDefault()" ondrop="onDrop(event)">
+        </div>
+        <div class="col-xl-1" id="TabDungCV">
+          <p class="btn btn-danger" style="width: 100%">Dừng CV</p>
+
+          <div class="items" id="XeDungCV"></div>
+        </div>
+      </div>
+      <!--  Màng hình  đây-->
     </div>
   </div>
 </div>
+</main>
+<footer class="py-4 bg-light mt-auto">
+  <div class="container-fluid px-4">
+    <div class="d-flex align-items-center justify-content-between small">
+      <div class="text-muted">Toyota Vũng Tàu &copy; Website 2022</div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        &middot;
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <!--modalDS-->
 <div class="modal fade" id="ModalDongSon" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog"
   aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -347,25 +359,7 @@
             </div>
           </form>
 
-          <div id="contextMenu" class="context-menu" style="display: none">
-            <ul>
-              <li>
-                <button id="TTHuyChip" class="btn btn-danger" onclick="huyChipcongdoan()">
-                  Xóa Chíp
-                </button>
-              </li>
-              <li>
-                <button id="TimXe" onclick="TimXe()" class="btn btn-success">
-                  Tìm Xe
-                </button>
-              </li>
-              <li>
-                <button onclick="loadData()" class="btn btn-success">
-                  Làm Mới!!
-                </button>
-              </li>
-            </ul>
-          </div>
+
           <datalist id="BienSoXeList"> </datalist>
 
           <script src="js/Onload.js"></script>

@@ -5,11 +5,7 @@ var container = document.getElementById("mytimeline");
 var chieudaichip;
 var kytu1 = "😆";
 var kytu2 = "😡";
-groups.add({
-  id: "Chờ SC",
-  content: "Chờ SC",
-  visible: false,
-});
+
 for (i in KTVDong) {
   groups.add({
     id: KTVDong[i],
@@ -163,235 +159,84 @@ $("#HideChoSC").dblclick(function () {
 var timeline = new vis.Timeline(container, items, groups, options);
 
 function LoadTimeLine() {
-  dataTableTimXe();
-  BaoCao();
+  //dataTableTimXe();
+  //BaoCao();
   items.clear();
+  $("#XeChoSuaChua").html("")
+  $("#XeDungCV").html("")
   var dataArray0 = useCaher;
-  var dataArray1 = dataArray0.filter(function (r) {
-    return (
-      r.LoaiHinhDongSon === "Đồng Sơn" &&
-      r.CongDoanDongSon !== "QC" &&
-      r.TrangThaiDongSon !== "Chờ Giao"
-    );
-  });
-  var dataArray2 = dataArray0.filter(function (r) {
-    return (
-      r.LoaiHinhDongSon === "Đồng Sơn" &&
-      r.TrangThaiXuong !== "00 Có Hẹn" &&
-      r.TrangThaiDongSon === "Chờ SC"
-    );
-  });
-  dataArray2 = dataArray2.sort(function (r) {
-    return r.TDKetThucTiepKhach;
-  });
-  if ($("#selection").val() !== "") {
-    dataArray1 = dataArray0.filter(function (r) {
-      return r.BienSoXe === $("#selection").val();
-    });
-    console.log(dataArray1);
-  }
-  var BienSolisst = document.getElementById("BienSoXeList");
-  BienSolisst.innerHTML = "";
-  var option = document.createElement("option");
-  option.value = "";
-  option.text = "";
-  BienSolisst.appendChild(option);
-  var NgayHoanThanh = new Date().setHours(8);
+  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhDongSon === "Đồng Sơn" && r.CongDoanDongSon !== "QC" && r.TrangThaiDongSon !== "Chờ Giao"); });
+  var dataArray2 = dataArray0.filter(function (r) { return (r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiXuong !== "00 Có Hẹn" && r.TrangThaiDongSon === "Chờ SC"); });
+  dataArray2 = dataArray2.sort(function (r) { return r.TDKetThucTiepKhach; });
+
   var hoanthanh = document.getElementById("checkbox-3").checked;
-  try {
-    dataArray2.forEach(function (r) {
-      var option = document.createElement("option");
-      option.value = r.BienSoXe;
-      option.text = r.BienSoXe;
-      BienSolisst.appendChild(option);
-      if (
-        r.HTDong == null &&
-        r.HTLap == null &&
-        r.HTSon == null &&
-        r.HTNen == null &&
-        r.HTPass == null
-      ) {
-        let values =
-          (NgayHoanThanh.valueOf() -
-            new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)).valueOf()) /
-          new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
-          new Date(DoiNgayDangKy(r.TDKetThucTiepKhach));
-        items.add({
-          id: r.BienSoXe + "_ChoSC",
-          value: values,
-          group: "Chờ SC",
-          start: NgayHoanThanh,
-          end: new Date(NgayHoanThanh * 1 + 29 * 60 * 1000),
-          title: r.BienSoXe + " " + r.CoVanDichVu,
-          content: r.BienSoXe + "_Chờ SC",
-          editable: false,
-        });
-        NgayHoanThanh = new Date(NgayHoanThanh * 1 + 30 * 60 * 1000);
-        if (NgayHoanThanh.getHours() >= 17) {
-          NgayHoanThanh = new Date().setHours(8);
-        }
-      }
-    });
-  } catch (erros) {
-    alert("Loi " + erros);
-  }
 
   try {
     for (var a = 0; a < dataArray1.length; a++) {
+
+
       r = dataArray1[a];
-      var mau,
-        mau1,
-        mau2,
-        mau3,
-        mau4,
-        mau5,
-        edit,
-        edit1,
-        edit2,
-        edit3,
-        edit4,
-        edit5,
-        group,
-        edit0 = {
-          add: false, // add new items by double tapping
-          updateTime: true, // drag items horizontally
-          updateGroup: true, // drag items from one group to another
-          remove: false, // delete an item by tapping the delete button top right
-          overrideItems: true, // allow these options to override item.editable
-        };
+      if (r.TrangThaiDongSon == "Chờ SC") { additembienso(r.BienSoXe, r.MaSo, "success", r.CongDoanDongSon); }
+      if (r.TrangThaiDongSon == "Dừng SC") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.CongDoanDongSon); }
+      var mau, mau1, mau2, mau3, mau4, mau5, edit, edit1, edit2, edit3, edit4, edit5, group, edit0 = {
+        add: false, // add new items by double tapping
+        updateTime: true, // drag items horizontally
+        updateGroup: true, // drag items from one group to another
+        remove: false, // delete an item by tapping the delete button top right
+        overrideItems: true, // allow these options to override item.editable
+      };
       mau1 = mau;
       mau2 = mau;
       mau3 = mau;
       mau4 = mau;
       mau5 = mau;
+
       timeNow = new Date();
       var time =
         ((timeNow - new Date(DoiNgayDangKy(r.TDKetThucTiepKhach))) /
           (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
             new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)))) *
         100;
-      if (r.HTDong === "Okie") {
-        mau1 = "orange";
-        edit1 = false;
-        group = "groupHT";
-      } else {
-        edit1 = edit0;
-        group = "groupDS";
-      }
-      if (r.HTNen === "Okie") {
-        mau3 = "orange";
-        edit2 = false;
-        group = "groupHT";
-      } else {
-        edit3 = edit0;
-        group = "groupDS";
-      }
-      if (r.HTSon === "Okie") {
-        mau4 = "orange";
-        edit3 = false;
-        group = "groupHT";
-      } else {
-        edit4 = edit0;
-        group = "groupDS";
-      }
-      if (r.HTLap === "Okie") {
-        mau2 = "orange";
-        edit4 = false;
-        group = "groupHT";
-      } else {
-        edit2 = edit0;
-        group = "groupDS";
-      }
-      if (r.HTPass === "Okie") {
-        mau5 = "orange";
-        edit5 = false;
-        group = "groupHT";
-      } else {
-        edit5 = edit0;
-        group = "groupDS";
-      }
+      if (r.HTDong === "Okie") { mau1 = "orange"; edit1 = false; group = "groupHT"; } else { edit1 = edit0; group = "groupDS"; }
+      if (r.HTNen === "Okie") { mau3 = "orange"; edit2 = false; group = "groupHT"; } else { edit3 = edit0; group = "groupDS"; }
+      if (r.HTSon === "Okie") { mau4 = "orange"; edit3 = false; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
+      if (r.HTLap === "Okie") { mau2 = "orange"; edit4 = false; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
+      if (r.HTPass === "Okie") { mau5 = "orange"; edit5 = false; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
       if (r.TimeStartBody && r.TimeEndBody) {
         //if((new Date(DoiNgayDangKy(r.TimeStartBody))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()>timeNow.valueOf()){mau1="green"}
         //if((new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()<timeNow.valueOf()){mau1="orange"}
         if (r.CongDoanDongSon == "Đồng") {
-          if (r.TrangThaiDongSon == "Đang SC") {
-            mau1 = "green";
-          }
-          if (r.TrangThaiDongSon == "Dừng SC") {
-            mau1 = "red";
-          }
-        } else {
-          mau1 = mau;
-        }
+          if (r.TrangThaiDongSon == "Đang SC") { mau1 = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mau1 = "red"; }
+        } else { mau1 = mau; }
         if (r.CongDoanDongSon == "Nền") {
-          if (r.TrangThaiDongSon == "Đang SC") {
-            mau3 = "green";
-          }
-          if (r.TrangThaiDongSon == "Dừng SC") {
-            mau3 = "red";
-          }
-        } else {
-          mau3 = mau;
-        }
+          if (r.TrangThaiDongSon == "Đang SC") { mau3 = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mau3 = "red"; }
+        } else { mau3 = mau; }
         if (r.CongDoanDongSon == "Sơn") {
-          if (r.TrangThaiDongSon == "Đang SC") {
-            mau4 = "green";
-          }
-          if (r.TrangThaiDongSon == "Dừng SC") {
-            mau4 = "red";
-          }
-        } else {
-          mau4 = mau;
-        }
+          if (r.TrangThaiDongSon == "Đang SC") { mau4 = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mau4 = "red"; }
+        } else { mau4 = mau; }
         if (r.CongDoanDongSon == "Lắp Ráp") {
-          if (r.TrangThaiDongSon == "Đang SC") {
-            mau2 = "green";
-          }
-          if (r.TrangThaiDongSon == "Dừng SC") {
-            mau2 = "red";
-          }
-        } else {
-          mau2 = mau;
-        }
+          if (r.TrangThaiDongSon == "Đang SC") { mau2 = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mau2 = "red"; }
+        } else { mau2 = mau; }
         if (r.CongDoanDongSon == "Pass") {
-          if (r.TrangThaiDongSon == "Đang SC") {
-            mau5 = "green";
-          }
-          if (r.TrangThaiDongSon == "Dừng SC") {
-            mau5 = "red";
-          }
-        } else {
-          mau5 = mau;
-        }
+          if (r.TrangThaiDongSon == "Đang SC") { mau5 = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mau5 = "red"; }
+        } else { mau5 = mau; }
         var GiaoTN = "";
-        if (
-          new Date(DoiNgayDangKy(r.TDHenGiaoXe)).getDate() ==
-          new Date().getDate()
-        ) {
-          GiaoTN = kytu1;
-        }
-        if (
-          new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() <
-          new Date().valueOf()
-        ) {
-          GiaoTN = kytu2;
-        }
+        if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).getDate() == new Date().getDate()) { GiaoTN = kytu1; }
+        if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() < new Date().valueOf()) { GiaoTN = kytu2; }
+
         if (hoanthanh && r.HTDong == "Okie") {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
           if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000
-            );
+            starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
+            endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
-          if (endtime.getHours() > 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
+          if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
           items.add({
             className: "orange",
             id: r.BienSoXe + "_Dong",
@@ -409,18 +254,10 @@ function LoadTimeLine() {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
           if (starttime.getDay() == 0) {
-            starttime = new Date(
-              DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000
-            );
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000
-            );
+            starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
+            endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
-          if (endtime.getHours() > 17) {
-            endtime = new Date(
-              DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000
-            );
-          }
+          if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
           items.add({
             className: mau1,
             id: r.BienSoXe + "_Dong",
@@ -694,6 +531,113 @@ function LoadTimeLine() {
   }
 }
 
+function additembienso(value, MaSo, trangthai, CongDoan) {
+  $("#XeChoSuaChua").html(
+    $("#XeChoSuaChua").html() +
+    '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
+    trangthai + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '">' + value + "</button >"
+  );
+}
+function additembiensodung(value, MaSo, trangthai, CongDoan) {
+  $("#XeDungCV").html(
+    $("#XeDungCV").html() +
+    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + trangthai
+    + " " + CongDoan + '" value="' + MaSo + '"  name="' + CongDoan + '">' + value + "</button>"
+  );
+}
+function showtime(event) {
+  event.dataTransfer.effectAllowed = "move";
+  var timelineProperties = timeline.getEventProperties(event);
+  var menu = document.getElementById("contextMenu2");
+  menu.style.display = "block";
+  menu.style.left = timelineProperties.pageX + "px";
+  menu.style.top = timelineProperties.pageY + 15 + "px";
+  $("#ThoiGian").html(
+    TimesClick(timelineProperties.time) + "<br>" + timelineProperties.group
+  );
+}
+function handleDragStart(event) {
+  var dragSrcEl = event.target;
+  event.dataTransfer.effectAllowed = "move";
+  var timelineProperties = timeline.getEventProperties(event);
+  var maso = event.target.attributes.value.textContent;
+  var congdoan = event.target.attributes.congdoan.textContent;
+  document.getElementById("contextMenu2").style.display = "none";
+  var end = TimesClick(new Date(1000 * 60 * ChipDS + new Date(timelineProperties.time).valueOf()))
+  var json2 = {};
+  if (timelineProperties.group == "EM 01")
+    if (congdoan == "Đồng") {
+      json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+      json2["TimeEndBody"] = end;
+      json2["KyThuatVienDong"] = timelineProperties.group;
+      json2["HTDong"] = "KH";
+    }
+  if (congdoan == "Chờ SC") {
+    json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+    json2["TimeEndBody"] = end;
+    json2["KyThuatVienDong"] = timelineProperties.group;
+    json2["HTDong"] = "KH";
+  }
+
+  console.log(json2)
+  //postData(json2, urlTX + "/" + checkID(maso), "PATCH");
+}
+$("#mytimeline").mouseleave(function () {
+  document.getElementById("contextMenu2").style.display = "none";
+});
+timeline.on("mouseOver", function (properties) {
+  document.getElementById("contextMenu2").style.display = "none";
+});
+var timekeo;
+timeline.on("mouseMove", function (properties) {
+  // if(properties.item!==null){
+  var menu = document.getElementById("contextMenu2");
+  menu.style.display = "block";
+  menu.style.left = properties.pageX + "px";
+  menu.style.top = properties.pageY + 8 + "px";
+  var aa = TimesClick(properties.time);
+  timekeo = properties.time;
+  $("#ThoiGian").html(TimesClick(properties.time).slice(11, 16));
+  //}else{document.getElementById("contextMenu2").style.display = 'none'}
+});
+
+timeline.on("click", function (props) {
+  document.getElementById("contextMenu").style.display = "none";
+});
+timeline.on("contextmenu", function (props) {
+  $("#biensomenu").html("");
+  document.getElementById("FormDS").reset();
+  if (props.item) {
+    var BienSo = props.item.slice(0, props.item.indexOf("_"))
+    console.log(props);
+    if (document.getElementById("contextMenu").style.display == "block") {
+      document.getElementById("contextMenu").style.display = "none";
+    } else {
+      var menu = document.getElementById("contextMenu");
+      menu.style.display = "block";
+      menu.style.left = props.pageX + "px";
+      menu.style.top = props.pageY + "px";
+    }
+    var ojb = useCaher;
+    for (var a in ojb) {
+      if (ojb[a].BienSoXe == BienSo) {
+        document.getElementById("BienSoXe").value = ojb[a].BienSoXe;
+        var start = new Date(DoiNgayDangKy(ojb[a].TimeStartGJ));
+        var end = new Date(DoiNgayDangKy(ojb[a].TimeEndGJ));
+
+        var chiudaichip = end - start;
+
+        $("#ChieuDaiChip").val(chiudaichip);
+
+        $("#biensomenu").html(ojb[a].BienSoXe);
+        changvalue();
+        timeSuaChua();
+      }
+    }
+    $("#TTHuyChip").val(props.item);
+  }
+  props.event.preventDefault();
+});
 function capnhatthoigian(item) {
   var ojb = useCaher;
   var MaSonew;
@@ -886,36 +830,6 @@ function capnhatthoigian(item) {
   postData(json2, urlTX + "/" + checkID(MaSonew), "PATCH");
 }
 
-var selection = document.getElementById("selection");
-selection.onchange = function () {
-  loadData();
-  var BienSo = selection.value;
-  var ids = [
-    BienSo + "_Dong",
-    BienSo + "_Nen",
-    BienSo + "_Paint",
-    BienSo + "_Pass",
-    BienSo + "_Lap",
-  ];
-  timeline.setSelection(ids, { focus: true });
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("selection");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table-TimXe");
-  tr = table.getElementsByTagName("tr");
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-};
 
 function BANGTIENDO(BangTD) {
   localStorage.setItem("BangTD", BangTD);
@@ -995,21 +909,7 @@ function BANGTIENDO(BangTD) {
   timeline.redraw();
 }
 
-timeline.on("contextmenu", function (props) {
-  if (document.getElementById("contextMenu").style.display == "block")
-    hideMenu();
-  else {
-    var menu = document.getElementById("contextMenu");
-    menu.style.display = "block";
-    menu.style.left = props.pageX + "px";
-    menu.style.top = props.pageY + "px";
-  }
-  $("#TTHuyChip").val(props.item);
-  // $("#TTHuyChip").html(props.item)
-  // huyChipcongdoan(props.item)
 
-  props.event.preventDefault();
-});
 
 function huyChipcongdoan(item) {
   item = $("#TTHuyChip").val();

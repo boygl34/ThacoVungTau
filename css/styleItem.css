@@ -83,6 +83,45 @@
   display: inline-block;
 }
 
+.btn.Đồng:after {
+  content: "_Đ";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+
+.btn.Nền:after {
+  content: "_N";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+
+.btn.Sơn:after {
+  content: "_S";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+
+.btn.Lắp:after {
+  content: "_L";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+
+
+
+
+
+.btn.Pass:after {
+  content: "_P";
+  list-style-type: circle;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+}
+
 .btn.EM60:after {
   content: "_E";
   font-family: Arial, sans-serif;

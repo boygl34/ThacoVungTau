@@ -135,9 +135,7 @@ function LoadTimeLine() {
       r.LoaiHinhSuaChua === "EM60"
     );
   });
-  dataArray1.sort(function (a, b) {
-    return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1;
-  });
+  dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
   for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;

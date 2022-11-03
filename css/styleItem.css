@@ -51,8 +51,6 @@
 }
 
 .btn.Datiepnhan {
-  border: #ff0707;
-  font-weight: bold;
   color: black;
 }
 
@@ -66,14 +64,17 @@
 
 
 
-
+.btn {
+  border: 1px black solid;
+  padding: 2px 5pt;
+}
 
 .btn.SCC:after {
   content: "_S";
   list-style-type: circle;
   font-family: Arial, sans-serif;
   display: inline-block;
-
+  padding: 1px;
 }
 
 .btn.EM:after {

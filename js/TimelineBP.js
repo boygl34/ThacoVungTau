@@ -168,7 +168,8 @@ function LoadTimeLine() {
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhDongSon === "Đồng Sơn" && r.CongDoanDongSon !== "QC" && r.TrangThaiDongSon !== "Chờ Giao"); });
   var dataArray2 = dataArray0.filter(function (r) { return (r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiXuong !== "00 Có Hẹn" && r.TrangThaiDongSon === "Chờ SC"); });
   dataArray2 = dataArray2.sort(function (r) { return r.TDKetThucTiepKhach; });
-
+  dataArray1.sort(function (a, b) { return a.CongDoanDongSon < b.CongDoanDongSon ? 1 : -1; });
+  dataArray1.sort(function (a, b) { return a.TrangThaiDongSon > b.TrangThaiDongSon ? 1 : -1; });
   var hoanthanh = document.getElementById("checkbox-3").checked;
 
   try {
@@ -176,8 +177,9 @@ function LoadTimeLine() {
 
 
       r = dataArray1[a];
-      if (r.TrangThaiDongSon == "Chờ SC") { additembienso(r.BienSoXe, r.MaSo, "success", r.CongDoanDongSon); }
-      if (r.TrangThaiDongSon == "Dừng SC") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.CongDoanDongSon); }
+      if (r.TrangThaiDongSon == "Chờ SC") { additembienso(r.BienSoXe, r.MaSo, "warning", r.CongDoanDongSon, r.TrangThaiDongSon); }
+      if (r.TrangThaiDongSon == "Đang SC") { additembienso(r.BienSoXe, r.MaSo, "success", r.CongDoanDongSon, r.TrangThaiDongSon); }
+      if (r.TrangThaiDongSon == "Dừng SC") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.CongDoanDongSon, r.TrangThaiDongSon); }
       var mau, mau1, mau2, mau3, mau4, mau5, edit, edit1, edit2, edit3, edit4, edit5, group, edit0 = {
         add: false, // add new items by double tapping
         updateTime: true, // drag items horizontally
@@ -531,18 +533,18 @@ function LoadTimeLine() {
   }
 }
 
-function additembienso(value, MaSo, trangthai, CongDoan) {
+function additembienso(value, MaSo, chip, CongDoan, trangthai) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
     '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-    trangthai + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '">' + value + "</button >"
+    chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '">' + value + "</button >"
   );
 }
-function additembiensodung(value, MaSo, trangthai, CongDoan) {
+function additembiensodung(value, MaSo, chip, CongDoan, trangthai) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
-    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + trangthai
-    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '">' + value + "</button>"
+    '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + chip
+    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '">' + value + "</button>"
   );
 }
 function showtime(event) {
@@ -562,37 +564,19 @@ function handleDragStart(event) {
   var timelineProperties = timeline.getEventProperties(event);
   var maso = event.target.attributes.value.textContent;
   var congdoan = event.target.attributes.congdoan.textContent;
+  var trangthai = event.target.attributes.trangthai.textContent;
   document.getElementById("contextMenu2").style.display = "none";
   var end = TimesClick(new Date(1000 * 60 * ChipDS + new Date(timelineProperties.time).valueOf()))
   var json2 = {};
   var group = timelineProperties.group
-
-  if (congdoan == "Chờ SC") {
-    if (KTVDong.indexOf(group) >= 0) {
-      json2["KyThuatVienDong"] = group;
-      json2["HTDong"] = "KH";
-      json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndBody"] = end;
-    } else if (NhomSon.indexOf(group) >= 0) {
-      json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndNen"] = end;
-      json2["NhomSon"] = group;
-      json2["HTNen"] = "KH";
-    } else if (group == "Pass") {
-      json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndPass"] = end;
-      json2["HTPass"] = "KH";
-    } else { alert("Lỗi"); return false }
-
-  }
-
+  if (trangthai == "Dừng SC") { }
   if (congdoan == "Đồng") {
     if (KTVDong.indexOf(group) >= 0) {
       json2["KyThuatVienDong"] = group;
       json2["HTDong"] = "KH";
       json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
       json2["TimeEndBody"] = end;
-    } else { alert("Lỗi"); return false }
+    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
   }
   if (congdoan == "Nền") {
     if (NhomSon.indexOf(group) >= 0) {
@@ -601,7 +585,7 @@ function handleDragStart(event) {
       json2["NhomSon"] = group;
       json2["HTNen"] = "KH";
     } else {
-      alert("Lỗi"); return false
+      alert("Lỗi sai công đoạn chạy chip"); return false
     }
   }
   if (congdoan == "Sơn") {
@@ -610,7 +594,7 @@ function handleDragStart(event) {
       json2["TimeEndPaint"] = end;
       json2["PhongSon"] = group;
       json2["HTSon"] = "KH";
-    } else { alert("Lỗi"); return false }
+    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
   }
   if (congdoan == "Lắp Ráp") {
     if (KTVDong.indexOf(group) >= 0) {
@@ -618,18 +602,176 @@ function handleDragStart(event) {
       json2["TimeEndLap"] = end;
       json2["KyThuatVienLap"] = group;
       json2["HTLap"] = "KH";
-    } else { alert("Lỗi"); return false }
+    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
   }
   if (congdoan == "Pass") {
     if (group == "Pass") {
       json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
       json2["TimeEndPass"] = end;
       json2["HTPass"] = "KH";
-    } else { alert("Lỗi"); return false }
+    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
   }
 
+
+
+
+  if (trangthai == "Đang SC") {
+    if (congdoan == "Đồng") {
+      if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else if (PhongSon.indexOf(group) >= 0) {
+        json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPaint"] = end;
+        json2["PhongSon"] = group;
+        json2["HTSon"] = "KH";
+      } else if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Nền") {
+      if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else if (PhongSon.indexOf(group) >= 0) {
+        json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPaint"] = end;
+        json2["PhongSon"] = group;
+        json2["HTSon"] = "KH";
+      } else if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Sơn") {
+      if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Lắp Ráp") {
+      if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Pass") {
+      if (PhongSon.indexOf(group) >= 0) {
+        json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPaint"] = end;
+        json2["PhongSon"] = group;
+        json2["HTSon"] = "KH";
+      } else if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+
+  }
+
+
+
+
+  if (trangthai == "Chờ SC") {
+    if (congdoan == "Chờ SC") {
+      if (KTVDong.indexOf(group) >= 0) {
+        json2["KyThuatVienDong"] = group;
+        json2["HTDong"] = "KH";
+        json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndBody"] = end;
+      } else if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+
+    }
+
+    if (congdoan == "Đồng") {
+      if (KTVDong.indexOf(group) >= 0) {
+        json2["KyThuatVienDong"] = group;
+        json2["HTDong"] = "KH";
+        json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndBody"] = end;
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Nền") {
+      if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else {
+        alert("Lỗi sai công đoạn chạy chip"); return false
+      }
+    }
+    if (congdoan == "Sơn") {
+      if (PhongSon.indexOf(group) >= 0) {
+        json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPaint"] = end;
+        json2["PhongSon"] = group;
+        json2["HTSon"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Lắp Ráp") {
+      if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Pass") {
+      if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+  }
   console.log(json2)
-  //postData(json2, urlTX + "/" + checkID(maso), "PATCH");
+  postData(json2, urlTX + "/" + checkID(maso), "PATCH");
 }
 $("#mytimeline").mouseleave(function () {
   document.getElementById("contextMenu2").style.display = "none";

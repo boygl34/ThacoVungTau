@@ -76,6 +76,7 @@ function loadDataCV() {
         className: classname2,
         id: r.BienSoXe + "_RuaXe",
         group: "Rửa Xe",
+        //type: "point",
         start: new Date(DoiNgayDangKy(r.TimeEndGJ)),
         end: new Date(
           1000 * 60 * 14 + new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf()

@@ -213,20 +213,21 @@ function setgiaoxe() {
     url: "https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM",
     type: 'GET',
     success: function (data) {
-
       var value = data.value
       $("#ThuTuGiaoXeEM").html('<p class="btn btn-success panel cho">' + data.value[0] + '</p>')
       for (var a = 1; a < value.length; a++) {
         $("#ThuTuGiaoXeEM").html($("#ThuTuGiaoXeEM").html() +
           '<p class="btn  panel cho">' + data.value[a] + '</p>')
       }
+      localStorage.setItem("ThuTuEm", JSON.stringify(value))
+
     }
   })
 
 }
 
 function ThuTuGiaoXe(value) {
-  ThuTuEM
+  ThuTuEM = JSON.parse(localStorage.getItem("ThuTuEm"))
   var index = ThuTuEM.indexOf(value)
   if (index >= 0) {
     var a1 = ThuTuEM.slice(0, index);

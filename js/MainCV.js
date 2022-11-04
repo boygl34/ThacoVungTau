@@ -40,6 +40,7 @@ function checkID(MaSo) {
 }
 
 function LoadTimeLine() {
+  loadDataCV();
   var CoHen = 0,
     ChoTN = 0,
     DangTN = 0,
@@ -131,7 +132,7 @@ function LoadTimeLine() {
       var time =
         Math.round(
           ((new Date() - new Date(DoiNgayDangKy(r.TDGapLeTan))) / (60 * 1000)) *
-            1
+          1
         ) / 1;
       ColTime.innerHTML = time + " P";
       if (time > 15) {
@@ -147,7 +148,7 @@ function LoadTimeLine() {
         Math.round(
           ((new Date() - new Date(DoiNgayDangKy(r.TDBDTiepKhach))) /
             (60 * 1000)) *
-            1
+          1
         ) / 1;
       ColTime.innerHTML = time + " P";
       if (time > 30) {

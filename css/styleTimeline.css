@@ -31,7 +31,7 @@
 }
 
 .vis-item .vis-item-overflow {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .vis-item.vis-selected {

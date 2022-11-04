@@ -210,16 +210,19 @@ function BatDauSC() {
 setgiaoxe()
 function setgiaoxe() {
   $.ajax({
-    url: "https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM",
+    url: "https://big-road-newsstand.glitch.me/ThongSo/",
     type: 'GET',
     success: function (data) {
-      var value = data.value
-      $("#ThuTuGiaoXeEM").html('<p class="btn btn-success panel cho">' + data.value[0] + '</p>')
-      for (var a = 1; a < value.length; a++) {
+      localStorage.setItem("ThongSo", JSON.stringify(data))
+      ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
+      ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
+      $("#ThuTuGiaoXeEM").html('<p class="btn btn-success ">' + ThuTuEM[0] + '</p>')
+      for (var a = 1; a < ThuTuEM.length; a++) {
         $("#ThuTuGiaoXeEM").html($("#ThuTuGiaoXeEM").html() +
-          '<p class="btn  panel cho">' + data.value[a] + '</p>')
+          '<p class="btn">' + ThuTuEM[a] + '</p>')
       }
-      localStorage.setItem("ThuTuEm", JSON.stringify(value))
+
+
 
     }
   })
@@ -227,20 +230,30 @@ function setgiaoxe() {
 }
 
 function ThuTuGiaoXe(value) {
-  ThuTuEM = JSON.parse(localStorage.getItem("ThuTuEm"))
+  ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
+  ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
+
+
   var index = ThuTuEM.indexOf(value)
   if (index >= 0) {
     var a1 = ThuTuEM.slice(0, index);
     var a2 = ThuTuEM.slice(index + 1, ThuTuEM.length);
     var new_arr = a1.concat(a2);
     new_arr = new_arr.concat(ThuTuEM[index])
-    var json = { value: new_arr }
+    var thutumoi = {}
+
+
+    for (a in new_arr) {
+      thutumoi["ThuTuEM" + a] = new_arr[a]
+    }
+    var json = { value: thutumoi }
+
     fetch("https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(json),
     })
-    console.log(new_arr); // => (3) ["a", "d", "e"]
+
   }
 }
 function BatDauSC2() {

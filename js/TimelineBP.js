@@ -38,7 +38,7 @@ var options = {
     },
   ],
   editable: true,
-
+  zoomable: false,
   autoResize: false,
   onMove: function (item) {
     let text =
@@ -91,7 +91,7 @@ var options = {
       "Bạn Muốn Xóa Chíp " + item.content.slice(item.content.indexOf("_") + 1);
     if (confirm(text) == true) {
     } else {
-      loadData();
+      LoadTimeLines();
     }
   },
 
@@ -101,9 +101,9 @@ var options = {
   end: new Date(new Date().valueOf()).setHours(17),
   margin: {
     item: 1, // distance between items
-    axis: 1, // distance between items and the time axis
+    axis: 1, // distance between items and the time axiss
   },
-  timeAxis: { scale: "minute", step: 30 },
+  timeAxis: { scale: "minute", step: 15 },
   format: {
     majorLabels: {
       millisecond: "HH:mm:ss",

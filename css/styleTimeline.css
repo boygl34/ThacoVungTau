@@ -18,14 +18,20 @@
 }
 
 .vis-today {
-  border-color: rgb(0, 4, 245);
-  border-collapse: collapse;
+
+
+
+  /* background-color: dimgrey; */
 }
 
 .vis-panel.vis-time-axis {
   font-size: 8px;
   color: rgb(0, 255, 0);
   position: relative;
+}
+
+.vis-item .vis-item-overflow {
+  overflow: visible;
 }
 
 .vis-item.vis-selected {
@@ -114,7 +120,7 @@
 }
 
 .vis-h12 {
-  background-color: rgb(240, 221, 240);
+  background-color: rgb(235, 115, 205);
 }
 
 .vis-item.magenta {
@@ -124,7 +130,7 @@
 }
 
 .vis-time-axis .vis-grid.vis-minor {
-  border-color: rgb(255, 252, 252);
+  border-color: rgb(241, 241, 241);
 }
 
 .vis-item.orange {
@@ -133,6 +139,8 @@
   color: black;
   font-weight: bold;
 }
+
+
 
 .vis-time-axis .vis-text {
   position: absolute;

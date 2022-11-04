@@ -4,25 +4,20 @@
 }
 
 .vis-item.green.vis-selected {
-  background-color: rgb(127, 59, 136);
+  background-color: chocolate;
   color: rgb(0, 255, 0);
   border-color: rgb(157, 155, 149);
   z-index: 2;
 }
 
 .vis-item.orange.vis-selected {
-  background-color: rgb(127, 59, 136);
+  background-color: chocolate;
   color: rgb(0, 255, 0);
   border-color: rgb(157, 155, 149);
   z-index: 2;
 }
 
-.vis-today {
 
-
-
-  /* background-color: dimgrey; */
-}
 
 .vis-panel.vis-time-axis {
   font-size: 8px;
@@ -35,10 +30,12 @@
 }
 
 .vis-item.vis-selected {
-  background-color: rgb(127, 59, 136);
+  padding-left: 15px;
+  background-color: darkgreen;
   color: rgb(0, 255, 0);
   border-color: rgb(157, 155, 149);
   z-index: 2;
+  overflow: hidden;
 }
 
 .vis-item.green {
@@ -76,16 +73,18 @@
 }
 
 .vis-drag-right::before {
+  padding-top: 3px;
   font-family: "Font Awesome 5 Free";
-  content: "";
-  display: inline-flex;
-  position: absolute;
-  vertical-align: middle;
+  content: " ";
+  /* display: inline-flex;
+  position: absolute; */
+  text-align: center;
 }
 
 .vis-drag-left::after {
+  padding-top: 3px;
   font-family: "Font Awesome 5 Free";
-  content: "";
+  content: " ";
   display: inline-flex;
   position: absolute;
   vertical-align: middle;
@@ -94,13 +93,15 @@
 .vis-item.vis-range .vis-drag-left {
   position: absolute;
   cursor: e-resize;
-  background-color: rgb(40, 128, 13);
+  border: 1px solid black;
+  /* background-color: rgb(40, 128, 13); */
 }
 
 .vis-item.vis-range .vis-drag-right {
   position: absolute;
   cursor: e-resize;
-  background-color: rgb(40, 128, 13);
+  border: 1px solid black;
+  /* background-color: rgb(40, 128, 13); */
 }
 
 .vis-item.red {

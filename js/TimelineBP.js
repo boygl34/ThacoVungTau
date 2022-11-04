@@ -560,6 +560,7 @@ function showtime(event) {
 }
 function handleDragStart(event) {
   var dragSrcEl = event.target;
+  console.log(event)
   event.dataTransfer.effectAllowed = "move";
   var timelineProperties = timeline.getEventProperties(event);
   var maso = event.target.attributes.value.textContent;

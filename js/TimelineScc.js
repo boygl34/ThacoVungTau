@@ -231,6 +231,7 @@ function LoadTimeLine() {
           start: start,
           end: end,
           editable: edit1,
+
           //title:r.CoVanDichVu,
           content: r.BienSoXe + " " + r.KyThuatVien1,
         });
@@ -250,6 +251,7 @@ function LoadTimeLine() {
           group: "Rửa Xe",
           start: end,
           end: endRX,
+          type: "point",
           editable: edit1,
           content: r.BienSoXe + " " + r.CoVanDichVu,
         });

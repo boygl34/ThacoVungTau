@@ -200,14 +200,48 @@ function BatDauSC() {
       }
     }
   }
-
+  ThuTuGiaoXe($("#KhoangSuaChua").val())
   $("#mesenge").html(
     '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
   );
   document.getElementById("contextMenu").style.display = "none"
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
 }
+setgiaoxe()
+function setgiaoxe() {
+  $.ajax({
+    url: "https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM",
+    type: 'GET',
+    success: function (data) {
 
+      var value = data.value
+      $("#ThuTuGiaoXeEM").html('<p class="btn btn-success panel cho">' + data.value[0] + '</p>')
+      for (var a = 1; a < value.length; a++) {
+        $("#ThuTuGiaoXeEM").html($("#ThuTuGiaoXeEM").html() +
+          '<p class="btn  panel cho">' + data.value[a] + '</p>')
+      }
+    }
+  })
+
+}
+
+function ThuTuGiaoXe(value) {
+  ThuTuEM
+  var index = ThuTuEM.indexOf(value)
+  if (index >= 0) {
+    var a1 = ThuTuEM.slice(0, index);
+    var a2 = ThuTuEM.slice(index + 1, ThuTuEM.length);
+    var new_arr = a1.concat(a2);
+    new_arr = new_arr.concat(ThuTuEM[index])
+    var json = { value: new_arr }
+    fetch("https://big-road-newsstand.glitch.me/ThongSo/ThuTuEM", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(json),
+    })
+    console.log(new_arr); // => (3) ["a", "d", "e"]
+  }
+}
 function BatDauSC2() {
   if (document.getElementById("KyThuatVien1").value == "") {
     alert("Chưa Có KTV");
@@ -259,7 +293,7 @@ function BatDauSC2() {
           }
         }
       }
-
+      ThuTuGiaoXe($("#KhoangSuaChua").val())
       $("#mesenge").html(
         '<div class="alert alert-warning" role="alert">Đang Cập Nhật!</div>'
       );

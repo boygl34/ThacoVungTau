@@ -126,6 +126,7 @@ function LoadTimeLine() {
   items.clear();
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
+  setgiaoxe()
   var dataArray0 = useCaher;
 
   var dataArray1 = dataArray0.filter(function (r) {

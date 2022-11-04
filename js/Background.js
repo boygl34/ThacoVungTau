@@ -33,6 +33,7 @@ var NhomKTV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomSC
 var KTVBao = Object.values(ThongSo.filter(function (r) { return r.id == "KTVScc1" })[0].value)
 var KTVHoan = Object.values(ThongSo.filter(function (r) { return r.id == "KTVScc2" })[0].value)
 var KTVEM = Object.values(ThongSo.filter(function (r) { return r.id == "KTVEM" })[0].value)
+var ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
 var ListXe = ["Camry", "Inova", "Fortuner", "Altis", "Altis Cross", "Veloz", "Wigo", "Land Cruiser", "Land Prado", "Hilander", "Rav4", "Vios", "Rush", "Avanza", "Raize", "Lexus"];
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";

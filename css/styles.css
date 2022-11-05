@@ -71,11 +71,7 @@
   box-sizing: border-box;
 }
 
-.sb-topnav {
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   :root {
@@ -7638,7 +7634,7 @@ fieldset:disabled .btn {
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav,
 .sb-nav-fixed .sb-topnav {
   position: fixed;
-  top: 0;
+  top: 10;
   right: 0;
   left: 0;
   z-index: 1030;

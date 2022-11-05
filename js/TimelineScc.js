@@ -519,6 +519,7 @@ function capnhatthoigian(item) {
       TimeStartGJ: TimesClick(item.start),
       TimeEndGJ: TimesClick(timekeo),
       KhoangSuaChua: item.group,
+      TrangThaiSCC: "Chờ SC",
       // KyThuatVien1: KTV1,
       // KyThuatVien2: KTV2,
       // NhomKTV: NhomSC,

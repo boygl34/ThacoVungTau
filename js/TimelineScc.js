@@ -456,74 +456,29 @@ function redraw() {
 }
 function capnhatthoigian(item) {
   var ojb = useCaher;
-  var KTV1 = "None",
-    KTV2 = "None",
-    NhomSC = "None";
-  if (item.group == "EM 01") {
-    NhomSC = "EM";
-    KTV1 = "Vinh";
-    KTV2 = "Hưng";
-  }
-  if (item.group == "EM 02") {
-    NhomSC = "EM";
-    KTV1 = "Đ Anh";
-    KTV2 = "Khoa";
-  }
-  if (item.group == "EM 03") {
-    NhomSC = "EM";
-    KTV1 = "Hiển";
-    KTV2 = "Cường";
-  }
-  if (item.group == "EM 04") {
-    NhomSC = "EM";
-    KTV1 = "Trí";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 05") {
-    NhomSC = "Bạo";
-    KTV1 = "Phước";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 06") {
-    NhomSC = "Bạo";
-    KTV1 = "Hiếu";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 07") {
-    NhomSC = "Bạo";
-    KTV1 = "Duy";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 08") {
-    NhomSC = "Hoan";
-    KTV1 = "Lâm";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 09") {
-    NhomSC = "Hoan";
-    KTV1 = "Sơn";
-    KTV2 = "";
-  }
-  if (item.group == "SCC 10") {
-    NhomSC = "Hoan";
-    KTV1 = "Thiên";
-    KTV2 = "";
-  }
-  if (item.end) {
-    timekeo = item.end;
-  }
+
   var a = new Date(item.start).valueOf();
-  var b = new Date(timekeo).valueOf();
+  var b = new Date(item.end).valueOf();
+
   if (item.id && a < b) {
     var json2 = {
       TimeStartGJ: TimesClick(item.start),
-      TimeEndGJ: TimesClick(timekeo),
+      TimeEndGJ: TimesClick(item.end),
       KhoangSuaChua: item.group,
-      TrangThaiSCC: "Chờ SC",
+      //TrangThaiSCC: "Chờ SC",
       // KyThuatVien1: KTV1,
       // KyThuatVien2: KTV2,
       // NhomKTV: NhomSC,
     };
+
+    for (var a in ojb) {
+      if (ojb[a].MaSo == item.id) {
+        if (ojb[a].KhoangSuaChua !== item.group) {
+          json2['TrangThaiSCC'] = "Chờ SC"
+        }
+
+      }
+    }
     postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
   } else {
     alert(item.id + " loi");

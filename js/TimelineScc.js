@@ -177,16 +177,10 @@ function LoadTimeLine() {
       tthen = "DenSom";
     }
     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận") {
-      additembienso(
-        r.BienSoXe,
-        r.MaSo,
-        "success Datiepnhan",
-        tthen,
-        r.LoaiHinhSuaChua
-      );
+      additembienso(r.BienSoXe, r.MaSo, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
-      additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua);
+      additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
     if (
       r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
@@ -197,7 +191,7 @@ function LoadTimeLine() {
         r.MaSo,
         "outline-secondary btn-sm",
         tthen,
-        r.LoaiHinhSuaChua
+        r.LoaiHinhSuaChua, r.CoVanDichVu
       );
     }
     if (r.TrangThaiXuong == "05 Dừng Công Việc") {
@@ -297,7 +291,7 @@ function LoadTimeLine() {
     }
   }
 }
-function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
+function additembienso(value, MaSo, trangthai, tthen, LoaiHinh, covan) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
     '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
@@ -308,7 +302,7 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh) {
     LoaiHinh +
     '" value="' +
     MaSo +
-    '">' +
+    '"  data-toggle="tooltip" data-placement="top" title="' + covan + '"   >' +
     value +
     "</button >"
   );

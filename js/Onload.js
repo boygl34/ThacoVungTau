@@ -11,10 +11,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   getData();
 });
-
+var timerRunner = 0
 setInterval(function () {
-  getData();
-}, 60000);
+  timerRunner++
+  if (timerRunner >= 30) {
+    timerRunner = 0
+    getData();
+  }
+}, 3000);
+
 
 function getData() {
   $.ajax({

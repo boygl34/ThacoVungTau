@@ -15,6 +15,7 @@ var options = {
     // },
   ],
   onMove: function (item) {
+    timerRunner = 0
     let text = "Thay Đổi kế hoạch xe " + item.content;
     if (item) {
       capnhatthoigian(item);
@@ -23,6 +24,7 @@ var options = {
   },
   onAdd: function (item) { },
   onUpdate: function (item) {
+    timerRunner = 0
     var BienSo = item.content.slice(0, item.content.indexOf(" "));
     $("#buttonSCC").html("");
     document.getElementById("FormSCC").reset();
@@ -121,9 +123,12 @@ timeline.on("contextmenu", function (props) {
   }
   props.event.preventDefault();
 });
-
-function LoadTimeLine() {
+function clearitem() {
   items.clear();
+  LoadTimeLine()
+}
+function LoadTimeLine() {
+  // items.clear();
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
   setgiaoxe()
@@ -137,6 +142,7 @@ function LoadTimeLine() {
     );
   });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
+  console.log("update");
   for (var a in dataArray1) {
     r = dataArray1[a];
     var hoanthanh = document.getElementById("checkbox-3").checked;
@@ -207,7 +213,7 @@ function LoadTimeLine() {
     }
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
-        items.add({
+        items.update({
           className: mau,
           id: r.MaSo,
           group: r.KhoangSuaChua,
@@ -219,7 +225,7 @@ function LoadTimeLine() {
         });
       }
       if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
-        items.add({
+        items.update({
           className: mau,
           id: r.MaSo,
           group: r.KhoangSuaChua,
@@ -240,7 +246,7 @@ function LoadTimeLine() {
         if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
           classname2 = "green";
         }
-        items.add({
+        items.update({
           className: classname2,
           id: r.BienSoXe + "_RuaXe",
           group: "Rửa Xe",
@@ -275,7 +281,7 @@ function LoadTimeLine() {
           if (r.TDGapLeTan) {
             classnamehen = "orange";
           }
-          items.add({
+          items.update({
             className: classnamehen,
             id: r.BienSoXe + "_Hen",
             group: r.KhoangSuaChua,

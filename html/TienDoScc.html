@@ -143,16 +143,14 @@
     </div>
 </footer>
 
-<div class="modal fade" id="ModalSCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="ModalSCC" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Sữa Chữa Chung</h5>
                 <h5 style="float: right" id="biensoscc"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hidemodal()" )>
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="FormSCC" autocomplete="off">
@@ -252,19 +250,19 @@
                             <option></option>
                         </datalist>
                     </div>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">
-                                Cập Nhật Giờ KT!
-                            </button>
+                    <div class="modal-footer">
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-primary me-2" onclick="CapNhatGioSC()">
+                                    Cập Nhật Giờ KT!
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Third group" id="buttonSCC"></div>
                         </div>
-                        <div class="btn-group" role="group" aria-label="Third group" id="buttonSCC"></div>
                     </div>
                 </form>
             </div>
-            <div class="row">
-                <div class="modal-footer"></div>
-            </div>
+
         </div>
     </div>
 </div>

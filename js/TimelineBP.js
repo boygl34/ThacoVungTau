@@ -41,6 +41,7 @@ var options = {
   zoomable: false,
   autoResize: false,
   onMove: function (item) {
+    timerRunner = 0
     let text =
       "Thay Đổi kế hoạch xe " +
       item.content.slice(0, item.content.indexOf("_"));
@@ -52,6 +53,7 @@ var options = {
   },
 
   onUpdate: function (item) {
+    timerRunner = 0
     var BienSo = item.content.slice(0, item.content.indexOf("_"));
     var CongDoan = item.content.slice(
       item.content.indexOf("_") + 1,
@@ -157,11 +159,14 @@ $("#HideChoSC").dblclick(function () {
 });
 
 var timeline = new vis.Timeline(container, items, groups, options);
-
+function clearitem() {
+  items.clear();
+  LoadTimeLine()
+}
 function LoadTimeLine() {
   //dataTableTimXe();
   //BaoCao();
-  items.clear();
+  // items.clear();
   $("#XeChoSuaChua").html("")
   $("#XeDungCV").html("")
   var dataArray0 = useCaher;
@@ -239,7 +244,7 @@ function LoadTimeLine() {
             endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
           if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
-          items.add({
+          items.update({
             className: "orange",
             id: r.BienSoXe + "_Dong",
             group: r.KyThuatVienDong,
@@ -260,7 +265,7 @@ function LoadTimeLine() {
             endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
           if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
-          items.add({
+          items.update({
             className: mau1,
             id: r.BienSoXe + "_Dong",
             group: r.KyThuatVienDong,
@@ -294,7 +299,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: "orange",
             id: r.BienSoXe + "_Lap",
             group: r.KyThuatVienLap,
@@ -324,7 +329,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndLap) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: mau2,
             id: r.BienSoXe + "_Lap",
             group: r.KyThuatVienLap,
@@ -357,7 +362,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: "orange",
             id: r.BienSoXe + "_Nen",
             group: r.NhomSon,
@@ -386,7 +391,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndNen) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: mau3,
             id: r.BienSoXe + "_Nen",
             group: r.NhomSon,
@@ -419,7 +424,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: "orange",
             id: r.BienSoXe + "_Paint",
             group: r.PhongSon,
@@ -448,7 +453,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndPaint) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: mau4,
             id: r.BienSoXe + "_Paint",
             group: r.PhongSon,
@@ -481,7 +486,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: "orange",
             id: r.BienSoXe + "_Pass",
             group: "Pass",
@@ -510,7 +515,7 @@ function LoadTimeLine() {
               DoiNgayDangKy(r.TimeEndPass) * 1 + 15 * 60 * 60 * 1000
             );
           }
-          items.add({
+          items.update({
             className: mau5,
             id: r.BienSoXe + "_Pass",
             group: "Pass",
@@ -570,49 +575,49 @@ function handleDragStart(event) {
   var end = TimesClick(new Date(1000 * 60 * ChipDS + new Date(timelineProperties.time).valueOf()))
   var json2 = {};
   var group = timelineProperties.group
-  if (trangthai == "Dừng SC") { }
-  if (congdoan == "Đồng") {
-    if (KTVDong.indexOf(group) >= 0) {
-      json2["KyThuatVienDong"] = group;
-      json2["HTDong"] = "KH";
-      json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndBody"] = end;
-    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
-  }
-  if (congdoan == "Nền") {
-    if (NhomSon.indexOf(group) >= 0) {
-      json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndNen"] = end;
-      json2["NhomSon"] = group;
-      json2["HTNen"] = "KH";
-    } else {
-      alert("Lỗi sai công đoạn chạy chip"); return false
+  if (trangthai == "Dừng SC") {
+    if (congdoan == "Đồng") {
+      if (KTVDong.indexOf(group) >= 0) {
+        json2["KyThuatVienDong"] = group;
+        json2["HTDong"] = "KH";
+        json2["TimeStartBody"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndBody"] = end;
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Nền") {
+      if (NhomSon.indexOf(group) >= 0) {
+        json2["TimeStartNen"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndNen"] = end;
+        json2["NhomSon"] = group;
+        json2["HTNen"] = "KH";
+      } else {
+        alert("Lỗi sai công đoạn chạy chip"); return false
+      }
+    }
+    if (congdoan == "Sơn") {
+      if (PhongSon.indexOf(group) >= 0) {
+        json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPaint"] = end;
+        json2["PhongSon"] = group;
+        json2["HTSon"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Lắp Ráp") {
+      if (KTVDong.indexOf(group) >= 0) {
+        json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndLap"] = end;
+        json2["KyThuatVienLap"] = group;
+        json2["HTLap"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
+    }
+    if (congdoan == "Pass") {
+      if (group == "Pass") {
+        json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
+        json2["TimeEndPass"] = end;
+        json2["HTPass"] = "KH";
+      } else { alert("Lỗi sai công đoạn chạy chip"); return false }
     }
   }
-  if (congdoan == "Sơn") {
-    if (PhongSon.indexOf(group) >= 0) {
-      json2["TimeStartPaint"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndPaint"] = end;
-      json2["PhongSon"] = group;
-      json2["HTSon"] = "KH";
-    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
-  }
-  if (congdoan == "Lắp Ráp") {
-    if (KTVDong.indexOf(group) >= 0) {
-      json2["TimeStartLap"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndLap"] = end;
-      json2["KyThuatVienLap"] = group;
-      json2["HTLap"] = "KH";
-    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
-  }
-  if (congdoan == "Pass") {
-    if (group == "Pass") {
-      json2["TimeStartPass"] = TimesClick(new Date(timelineProperties.time));
-      json2["TimeEndPass"] = end;
-      json2["HTPass"] = "KH";
-    } else { alert("Lỗi sai công đoạn chạy chip"); return false }
-  }
-
 
 
 

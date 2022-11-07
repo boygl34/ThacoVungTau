@@ -552,13 +552,14 @@ function additembiensodung(value, MaSo, chip, CongDoan, trangthai) {
     + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '")>' + value + "</button>"
   );
 }
+
 function showtime(event) {
   event.dataTransfer.effectAllowed = "move";
   var timelineProperties = timeline.getEventProperties(event);
   var menu = document.getElementById("contextMenu2");
   menu.style.display = "block";
   menu.style.left = timelineProperties.pageX + "px";
-  menu.style.top = timelineProperties.pageY + 15 + "px";
+  menu.style.top = timelineProperties.pageY + 30 + "px";
   $("#ThoiGian").html(
     TimesClick(timelineProperties.time) + "<br>" + timelineProperties.group
   );
@@ -786,6 +787,8 @@ timeline.on("mouseOver", function (properties) {
   document.getElementById("contextMenu2").style.display = "none";
 });
 var timekeo;
+
+
 timeline.on("mouseMove", function (properties) {
   // if(properties.item!==null){
   var menu = document.getElementById("contextMenu2");
@@ -801,6 +804,9 @@ timeline.on("mouseMove", function (properties) {
 timeline.on("click", function (props) {
   document.getElementById("contextMenu").style.display = "none";
 });
+
+
+
 timeline.on("contextmenu", function (props) {
   $("#biensomenu").html("");
   document.getElementById("FormDS").reset();
@@ -825,7 +831,6 @@ timeline.on("contextmenu", function (props) {
         var chiudaichip = end - start;
 
         $("#ChieuDaiChip").val(chiudaichip);
-
         $("#biensomenu").html(ojb[a].BienSoXe);
         changvalue();
         timeSuaChua();
@@ -1110,7 +1115,7 @@ function BANGTIENDO(BangTD) {
 
 
 
-function huyChipcongdoan(item) {
+function huyChip(item) {
   item = $("#TTHuyChip").val();
   var BienSo = item.slice(0, item.indexOf("_"));
   var CongDoan = item.slice(item.indexOf("_") + 1, item.length);
@@ -1153,15 +1158,14 @@ function huyChipcongdoan(item) {
           "Bạn muốn Xóa Chíp Tiếp Độ: " + BienSo + "\n Công Đoạn : " + CongDoan;
         if (
           confirm(text) == true &&
-          localStorage.getItem("PhanQuyen") == "DieuPhoiBP"
+          (localStorage.getItem("PhanQuyen") == "DieuPhoiBP" || localStorage.getItem("PhanQuyen") == "admin")
         ) {
-          alert(urlTX + "/" + ojb[a].id);
+
           $.ajax({
             url: urlTX + "/" + ojb[a].id,
             type: "PUT",
             data: ojb[a],
             success: function (data) {
-              console.log(data);
               loadData();
             },
           });

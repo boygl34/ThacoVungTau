@@ -2,8 +2,8 @@
 var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
 var urlThongSo = "https://big-road-newsstand.glitch.me/ThongSo/";
-var dataTX = new vis.DataSet()
-var dataDG = new vis.DataSet()
+var dataTX
+var dataDG
 var items = new vis.DataSet()
 var groups = new vis.DataSet()
 var container = document.getElementById("mytimeline")
@@ -16,7 +16,7 @@ var options = {
     end: new Date(new Date().valueOf()).setHours(17),
     editable: true,
     autoResize: false,
-    zoomable: false,
+    //zoomable: false,
     margin: { item: 0.5, axis: 0.5 },
     stack: true,
 };
@@ -49,10 +49,35 @@ for (a in KhoangSC) { groups.add({ id: KhoangSC[a], content: KhoangSC[a], }) }
 for (b in KTVDong) { groups.add({ id: KTVDong[b], content: KTVDong[b], }) }
 for (c in NhomSon) { groups.add({ id: NhomSon[c], content: "Nhóm " + NhomSon[c], }) }
 for (c in PhongSon) { groups.add({ id: PhongSon[c], content: PhongSon[c], }) }
-$.get(urlDG, function (data) { dataDG.add(data); });
+$.get(urlDG, function (data) { dataDG = data; console.log(dataDG); });
 $.get(urlThongSo, function (data) { localStorage.setItem("ThongSo", JSON.stringify(data)) });
-$.get(urlTX, function (data) {
-    dataTX.add(data)
-});
+$.get(urlTX, function (data) { dataTX = data; console.log(dataTX) });
 var timeline = new vis.Timeline(container, items, groups, options);
-function redraw() { timeline.redraw() }
+function redraw() { timeline.redraw(); LoadTimeLine() }
+
+function LoadTimeLine() {
+    var DangSuaChua, DaSuaChua, DungCongViec, XeHen, XeTre
+    var edit1 = {
+        add: false, // add new items by double tapping
+        updateTime: true, // drag items horizontally
+        updateGroup: true, // drag items from one group to another
+        remove: false, // delete an item by tapping the delete button top right
+        overrideItems: true, // allow these options to override item.editable
+    };
+    for (a in dataTX) {
+        var r = dataTX[a]
+        if (r.LoaiHinhSuaChua && r.TrangThaiSCC == "Đang SC") {
+            items.update({
+                id: r.MaSo,
+                group: r.KhoangSuaChua,
+                start: new Date(),
+                end: new Date(new Date().valueOf() + 15 * 60 * 1000),
+                editable: edit1,
+                //title:r.CoVanDichVu,
+                content: r.BienSoXe + " " + r.KyThuatVien1,
+            });
+        }
+
+    }
+}
+

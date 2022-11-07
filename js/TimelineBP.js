@@ -166,7 +166,7 @@ function clearitem() {
 function LoadTimeLine() {
   //dataTableTimXe();
   //BaoCao();
-  // items.clear();
+  items.clear();
   $("#XeChoSuaChua").html("")
   $("#XeDungCV").html("")
   var dataArray0 = useCaher;
@@ -835,6 +835,8 @@ timeline.on("contextmenu", function (props) {
   }
   props.event.preventDefault();
 });
+
+
 function capnhatthoigian(item) {
   var ojb = useCaher;
   var MaSonew;

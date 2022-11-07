@@ -128,7 +128,7 @@ function clearitem() {
   LoadTimeLine()
 }
 function LoadTimeLine() {
-  // items.clear();
+  items.clear();
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
   setgiaoxe()

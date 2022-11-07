@@ -210,6 +210,12 @@ function BaoCao() {
     ],
   });
 }
+function clickbienso(value) {
+  $("#BienSoXe").val(value)
+  changvalue()
+  $("#ModalDongSon").modal("show");
+}
+
 
 function changvalue() {
   $("#alert").html("<div class='alert alert-success'>Hello!!</div>");

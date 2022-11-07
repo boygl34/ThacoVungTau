@@ -308,7 +308,7 @@ function additembienso(value, MaSo, trangthai, tthen, LoaiHinh, covan) {
     LoaiHinh +
     '" value="' +
     MaSo +
-    '"  data-toggle="tooltip" data-placement="top" title="' + covan + '"   >' +
+    '"  data-toggle="tooltip" data-placement="top" title="' + covan + '" ondblclick=clickbienso("' + value + '") >' +
     value +
     "</button >"
   );
@@ -322,7 +322,7 @@ function additembiensodung(value, MaSo, trangthai, LoaiHinh) {
     LoaiHinh +
     '" value="' +
     MaSo +
-    '">' +
+    '" ondblclick=clickbienso("' + value + '")  >' +
     value +
     "</button>"
   );

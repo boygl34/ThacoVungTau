@@ -542,14 +542,14 @@ function additembienso(value, MaSo, chip, CongDoan, trangthai) {
   $("#XeChoSuaChua").html(
     $("#XeChoSuaChua").html() +
     '<button  draggable="true" style="width: 100%" ondrag="showtime(event)" dragstart="teststart(event)" ondragend="handleDragStart(event)" class="btn btn-' +
-    chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '">' + value + "</button >"
+    chip + " " + CongDoan + '" value="' + MaSo + '" congdoan="' + CongDoan + '" trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '")>' + value + "</button >"
   );
 }
 function additembiensodung(value, MaSo, chip, CongDoan, trangthai) {
   $("#XeDungCV").html(
     $("#XeDungCV").html() +
     '<button draggable="true" tyle="width: 100%" ondrag="showtime(event)" ondragend="handleDragStart(event)" class="btn btn-' + chip
-    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '">' + value + "</button>"
+    + " " + CongDoan + '" value="' + MaSo + '"  congdoan="' + CongDoan + '"trangthai="' + trangthai + '" ondblclick=clickbienso("' + value + '")>' + value + "</button>"
   );
 }
 function showtime(event) {

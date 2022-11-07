@@ -444,6 +444,11 @@ function timeSuaChua() {
   document.getElementById("inputThoiGianSCC").value = time / (60 * 60 * 1000);
   document.getElementById("rangerThoiGianSCC").value = time / (60 * 60 * 1000);
 }
+function clickbienso(value) {
+  $("#BienSoXe").val(value)
+  changvalue()
+  $("#ModalSCC").modal("show");
+}
 
 function changvalue() {
   var ojb = useCaher;

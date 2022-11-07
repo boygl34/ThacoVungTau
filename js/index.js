@@ -9,7 +9,8 @@ var groups = new vis.DataSet()
 var container = document.getElementById("mytimeline")
 var options = {
     hiddenDates: [{ start: "2017-03-05 00:00:00", end: "2017-03-06 00:00:00", repeat: "weekly", },
-    { start: "2017-03-04 17:00:00", end: "2017-03-05 08:00:00", repeat: "daily", },],
+        //{ start: "2017-03-04 17:00:00", end: "2017-03-05 08:00:00", repeat: "daily", },
+    ],
     timeAxis: { scale: "minute", step: 15 },
     orientation: "top",
     start: new Date(new Date().valueOf()).setHours(6),
@@ -51,7 +52,7 @@ for (c in NhomSon) { groups.add({ id: NhomSon[c], content: "Nhóm " + NhomSon[c]
 for (c in PhongSon) { groups.add({ id: PhongSon[c], content: PhongSon[c], }) }
 $.get(urlDG, function (data) { dataDG = data; console.log(dataDG); });
 $.get(urlThongSo, function (data) { localStorage.setItem("ThongSo", JSON.stringify(data)) });
-$.get(urlTX, function (data) { dataTX = data; console.log(dataTX) });
+var dataTX = $.get(urlTX, function (data) { dataTX = data; console.log(dataTX) });
 var timeline = new vis.Timeline(container, items, groups, options);
 function redraw() { timeline.redraw(); LoadTimeLine() }
 
@@ -66,14 +67,14 @@ function LoadTimeLine() {
     };
     for (a in dataTX) {
         var r = dataTX[a]
-        if (r.LoaiHinhSuaChua && r.TrangThaiSCC) {
+        if (r.LoaiHinhSuaChua && r.TrangThaiSCC && r.TimeStartGJ && r.TimeEndGJ) {
 
             items.update({
                 className: trangthaichip(r.TrangThaiSCC),
                 id: r.MaSo,
                 group: r.KhoangSuaChua,
-                start: new Date(),
-                end: new Date(new Date().valueOf() + 15 * 60 * 1000),
+                start: DoiNgayDangKy(r.TimeStartGJ),
+                end: DoiNgayDangKy(r.TimeEndGJ),
                 editable: edit1,
                 //title:r.CoVanDichVu,
                 content: r.BienSoXe + " " + r.KyThuatVien1,
@@ -83,9 +84,24 @@ function LoadTimeLine() {
     }
 }
 
-function trangthaichip(value) {
-    if (value == "Đang SC") { return "green" }
+trangthaichip = value => {
+    if (value == `Đang SC`) { return `green` }
     if (value == "Chờ SC") { return "orange" }
     if (value == "Đã SC") { return "magenta" }
     if (value == "Dừng CV") { return "red" }
+}
+DoiNgayDangKy = ngayhen => {
+    var aa;
+    if (ngayhen) {
+        var Thang = ngayhen.slice(3, 5);
+        var Ngay = ngayhen.slice(0, 2);
+        var Nam = ngayhen.slice(6, 10);
+        var Gio = ngayhen.slice(11, 13);
+        var Phut = ngayhen.slice(14, 16);
+        var ThoiGianMoi = `${Nam}-${Thang}-${Ngay}T${Gio}:${Phut}:00Z`;
+        var aa = new Date(ThoiGianMoi);
+        aa = new Date(aa - 7 * 60 * 60 * 1000);
+    }
+    console.log(aa)
+    return aa;
 }

@@ -1166,7 +1166,7 @@ function huyChip(item) {
             type: "PUT",
             data: ojb[a],
             success: function (data) {
-              loadData();
+              LoadTimeLine();
             },
           });
         } else {
@@ -1182,5 +1182,5 @@ function TimXe(item) {
   item = $("#TTHuyChip").val();
   var BienSo = item.slice(0, item.indexOf("_"));
   document.getElementById("selection").value = BienSo;
-  loadData();
+  LoadTimeLine();
 }

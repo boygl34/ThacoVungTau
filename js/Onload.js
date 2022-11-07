@@ -27,9 +27,8 @@ function getData() {
     type: "GET",
     success: function (data) {
       useCaher = data;
-      if (LoadTimeLine()) {
-        LoadTimeLine();
-      }
+      LoadTimeLine()
+
     },
   });
 }

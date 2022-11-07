@@ -10,6 +10,15 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   // Toggle the side navigation
   const sidebarToggle = document.body.querySelector("#sidebarToggle");
+  if (localStorage.getItem("TabDaDong") !== "") {
+    gethtml(localStorage.getItem("TabDaDong"));
+  } else {
+    localStorage.setItem("TabDaDong", "html/Home.html");
+    gethtml(localStorage.getItem("TabDaDong"));
+  }
+
+
+
   if (sidebarToggle) {
     //Uncomment Below to persist sidebar toggle between refreshes
     if (localStorage.getItem("sb|sidebar-toggle") === "true") {
@@ -26,12 +35,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-if (localStorage.getItem("TabDaDong") !== "") {
-  gethtml(localStorage.getItem("TabDaDong"));
-} else {
-  localStorage.setItem("TabDaDong", "html/Home.html");
-  gethtml(localStorage.getItem("TabDaDong"));
-}
+
 
 function hidemodal() {
   $(".modal").modal("hide");

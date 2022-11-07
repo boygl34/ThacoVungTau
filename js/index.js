@@ -56,7 +56,7 @@ var timeline = new vis.Timeline(container, items, groups, options);
 function redraw() { timeline.redraw(); LoadTimeLine() }
 
 function LoadTimeLine() {
-    var DangSuaChua, DaSuaChua, DungCongViec, XeHen, XeTre
+    var DangSuaChua = "green", DaSuaChua = "red", DungCongViec, XeHen, XeTre
     var edit1 = {
         add: false, // add new items by double tapping
         updateTime: true, // drag items horizontally
@@ -66,8 +66,10 @@ function LoadTimeLine() {
     };
     for (a in dataTX) {
         var r = dataTX[a]
-        if (r.LoaiHinhSuaChua && r.TrangThaiSCC == "Đang SC") {
+        if (r.LoaiHinhSuaChua && r.TrangThaiSCC) {
+
             items.update({
+                className: trangthaichip(r.TrangThaiSCC),
                 id: r.MaSo,
                 group: r.KhoangSuaChua,
                 start: new Date(),
@@ -81,3 +83,9 @@ function LoadTimeLine() {
     }
 }
 
+function trangthaichip(value) {
+    if (value == "Đang SC") { return "green" }
+    if (value == "Chờ SC") { return "orange" }
+    if (value == "Đã SC") { return "magenta" }
+    if (value == "Dừng CV") { return "red" }
+}

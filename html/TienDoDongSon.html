@@ -122,7 +122,7 @@
             <div class="btn-group-vertical" id="XeChoSuaChua" aria-label="Toolbar with button groups"></div>
             <!-- <div class="items" id="XeChoSuaChua"></div> -->
           </div>
-          <div class="col-xl-10" id="mytimeline" ondragover="event.preventDefault()" ondrop="onDrop(event)"></div>
+          <div class="col-xl-10" id="mytimeline" ondragover="event.preventDefault()" ondragleave="onDrop(event)"></div>
           <div class="col-xl-1" id="TabDungCV">
             <p class="btn btn-danger" style="width: 100%">Dừng CV</p>
 
@@ -150,13 +150,13 @@
 
 <!--modalDS-->
 <div class="modal fade" id="ModalDongSon" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog"
-  onclick="hidemodal()" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 style="float: right" id="biensods"></h3>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hidemodal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

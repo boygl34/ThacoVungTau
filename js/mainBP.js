@@ -7,8 +7,7 @@ function postData(data, url, methor) {
     .then((response) => response.json())
     .then((data) => {
       getData();
-      $("#alert").html("<div class='alert alert-success'>Thành Công</div>");
-      //document.getElementById("FormDS").reset()
+
     })
     .catch((error) => {
       console.error("Error:", error);

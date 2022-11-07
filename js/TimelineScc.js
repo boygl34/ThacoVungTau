@@ -75,12 +75,13 @@ timeline.on("mouseOver", function (properties) {
   document.getElementById("contextMenu2").style.display = "none";
 });
 var timekeo;
+
 timeline.on("mouseMove", function (properties) {
   // if(properties.item!==null){
   var menu = document.getElementById("contextMenu2");
   menu.style.display = "block";
   menu.style.left = properties.pageX + "px";
-  menu.style.top = properties.pageY + 8 + "px";
+  menu.style.top = properties.pageY + 15 + "px";
   var aa = TimesClick(properties.time);
   timekeo = properties.time;
   $("#ThoiGian").html(TimesClick(properties.time).slice(11, 16));

@@ -183,15 +183,15 @@ function LoadTimeLine() {
     if (r.TrangThaiHen == "Đến Sớm") {
       tthen = "DenSom";
     }
-    if (r.TrangThaiXuong == "04 Đã Tiếp Nhận") {
+    if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
-    if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
+    if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
     if (
-      r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
-      r.TrangThaiXuong == "02 Chuẩn Bị Tiếp"
+      (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
+        r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null
     ) {
       additembienso(
         r.BienSoXe,

@@ -260,8 +260,7 @@ function LoadTimeLine() {
         if (r.HTDong !== "Okie") {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-          var now = new Date()
-          if (now.valueOf() > endtime.valueOf()) { mau1 = "magenta" }
+
           if (starttime.getDay() == 0) {
             starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
             endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
@@ -319,8 +318,7 @@ function LoadTimeLine() {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
-          var now = new Date()
-          if (now.valueOf() > endtime.valueOf()) { mau2 = "magenta" }
+
           if (starttime.getDay() == 0) {
             starttime = new Date(
               DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
@@ -383,8 +381,7 @@ function LoadTimeLine() {
         if (r.HTNen !== "Okie") {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
-          var now = new Date()
-          if (now.valueOf() > endtime.valueOf()) { mau3 = "magenta" }
+
           if (starttime.getDay() == 0) {
             starttime = new Date(
               DoiNgayDangKy(r.TimeStartNen) * 1 + 24 * 60 * 60 * 1000
@@ -447,8 +444,7 @@ function LoadTimeLine() {
         if (r.HTSon !== "Okie") {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
-          var now = new Date()
-          if (now.valueOf() > endtime.valueOf()) { mau4 = "magenta" }
+
           if (starttime.getDay() == 0) {
             starttime = new Date(
               DoiNgayDangKy(r.TimeStartPaint) * 1 + 24 * 60 * 60 * 1000
@@ -511,8 +507,8 @@ function LoadTimeLine() {
         if (r.HTPass !== "Okie") {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
-          var now = new Date()
-          if (now.valueOf() > endtime.valueOf()) { mau5 = "magenta" }
+
+
           if (starttime.getDay() == 0) {
             starttime = new Date(
               DoiNgayDangKy(r.TimeStartPass) * 1 + 24 * 60 * 60 * 1000

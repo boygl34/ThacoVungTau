@@ -50,14 +50,15 @@ for (a in KhoangSC) { groups.add({ id: KhoangSC[a], content: KhoangSC[a], }) }
 for (b in KTVDong) { groups.add({ id: KTVDong[b], content: KTVDong[b], }) }
 for (c in NhomSon) { groups.add({ id: NhomSon[c], content: "Nhóm " + NhomSon[c], }) }
 for (c in PhongSon) { groups.add({ id: PhongSon[c], content: PhongSon[c], }) }
-$.get(urlDG, function (data) { dataDG = data; console.log(dataDG); });
+groups.add({ id: "Pass", content: "Pass" })
+//$.get(urlDG, function (data) { dataDG = data; ; });
 $.get(urlThongSo, function (data) { localStorage.setItem("ThongSo", JSON.stringify(data)) });
-var dataTX = $.get(urlTX, function (data) { dataTX = data; console.log(dataTX) });
+$.get(urlTX, function (data) { dataTX = data; LoadTimeLine() });
 var timeline = new vis.Timeline(container, items, groups, options);
 function redraw() { timeline.redraw(); LoadTimeLine() }
 
 function LoadTimeLine() {
-    var DangSuaChua = "green", DaSuaChua = "red", DungCongViec, XeHen, XeTre
+    items.clear()
     var edit1 = {
         add: false, // add new items by double tapping
         updateTime: true, // drag items horizontally
@@ -68,16 +69,69 @@ function LoadTimeLine() {
     for (a in dataTX) {
         var r = dataTX[a]
         if (r.LoaiHinhSuaChua && r.TrangThaiSCC && r.TimeStartGJ && r.TimeEndGJ) {
-
             items.update({
                 className: trangthaichip(r.TrangThaiSCC),
-                id: r.MaSo,
                 group: r.KhoangSuaChua,
                 start: DoiNgayDangKy(r.TimeStartGJ),
                 end: DoiNgayDangKy(r.TimeEndGJ),
                 editable: edit1,
-                //title:r.CoVanDichVu,
-                content: r.BienSoXe + " " + r.KyThuatVien1,
+                title: r.CoVanDichVu + " " + r.KyThuatVien1,
+                content: r.BienSoXe,
+            });
+        }
+        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartBody && r.TimeEndBody && r.KyThuatVienDong && r.HTDong) {
+            items.update({
+                className: trangthaichipds(r.HTDong),
+                group: r.KyThuatVienDong,
+                start: DoiNgayDangKy(r.TimeStartBody),
+                end: DoiNgayDangKy(r.TimeEndBody),
+                editable: edit1,
+                title: r.CoVanDichVu + " " + r.KyThuatVienDong,
+                content: r.BienSoXe + "_Đ",
+            });
+        }
+        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartNen && r.TimeEndNen && r.NhomSon && r.HTNen) {
+            items.update({
+                className: trangthaichipds(r.HTNen),
+                group: r.NhomSon,
+                start: DoiNgayDangKy(r.TimeStartNen),
+                end: DoiNgayDangKy(r.TimeEndNen),
+                editable: edit1,
+                title: r.CoVanDichVu + " " + r.NhomSon,
+                content: r.BienSoXe + "_N",
+            });
+        }
+        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartLap && r.TimeEndLap && r.KyThuatVienLap && r.HTLap) {
+            items.update({
+                className: trangthaichipds(r.HTLap),
+                group: r.KyThuatVienLap,
+                start: DoiNgayDangKy(r.TimeStartNen),
+                end: DoiNgayDangKy(r.TimeEndNen),
+                editable: edit1,
+                title: r.CoVanDichVu + " " + r.KyThuatVienLap,
+                content: r.BienSoXe + "_L",
+            });
+        }
+        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartPaint && r.TimeEndPaint && r.NhomSon && r.HTSon && r.PhongSon) {
+            items.update({
+                className: trangthaichipds(r.HTSon),
+                group: r.PhongSon,
+                start: DoiNgayDangKy(r.TimeStartPaint),
+                end: DoiNgayDangKy(r.TimeEndPaint),
+                editable: edit1,
+                title: r.CoVanDichVu + " " + r.NhomSon,
+                content: r.BienSoXe + "_S",
+            });
+        }
+        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartPass && r.TimeEndPass && r.NhomSon && r.HTPass) {
+            items.update({
+                className: trangthaichipds(r.HTPass),
+                group: "Pass",
+                start: DoiNgayDangKy(r.TimeStartPass),
+                end: DoiNgayDangKy(r.TimeEndPass),
+                editable: edit1,
+                title: r.CoVanDichVu + " " + r.NhomSon,
+                content: r.BienSoXe + "_P",
             });
         }
 
@@ -90,8 +144,12 @@ trangthaichip = value => {
     if (value == "Đã SC") { return "magenta" }
     if (value == "Dừng CV") { return "red" }
 }
+trangthaichipds = value => {
+    if (value == `SC`) { return `green` }
+    if (value == "KH") { return "orange" }
+    if (value == "Okie") { return "magenta" }
+}
 DoiNgayDangKy = ngayhen => {
-    var aa;
     if (ngayhen) {
         var Thang = ngayhen.slice(3, 5);
         var Ngay = ngayhen.slice(0, 2);
@@ -102,6 +160,5 @@ DoiNgayDangKy = ngayhen => {
         var aa = new Date(ThoiGianMoi);
         aa = new Date(aa - 7 * 60 * 60 * 1000);
     }
-    console.log(aa)
     return aa;
 }

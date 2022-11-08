@@ -42,7 +42,6 @@ function startWorker() {
     }
     w.onmessage = function (event) {
       useCaher = event.data;
-      console.log(useCaher);
       LoadTimeLine()
     };
   }

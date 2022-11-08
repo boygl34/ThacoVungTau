@@ -22,12 +22,13 @@ startWorker()
 
 
 function getData() {
+  document.getElementById("loading").style.display = "block"
   $.ajax({
     url: urlTX,
     type: "GET",
     success: function (data) {
       useCaher = data;
-      document.getElementById("loading").style.display = "block"
+
       LoadTimeLine()
 
     },

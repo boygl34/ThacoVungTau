@@ -9,8 +9,8 @@ var options = {
       repeat: "weekly",
     },
     {
-      start: "2017-03-04 17:00:00",
-      end: "2017-03-05 08:00:00",
+      start: "2017-03-04 17:30:00",
+      end: "2017-03-05 07:45:00",
       repeat: "daily",
     },
   ],
@@ -38,11 +38,13 @@ var options = {
   },
   timeAxis: { scale: "minute", step: 15 },
   orientation: "top",
-  start: new Date(new Date().valueOf()).setHours(6),
-  end: new Date(new Date().valueOf()).setHours(17),
+  start: new Date(new Date().valueOf()).setHours(7),
+  end: new Date(new Date().valueOf()).setHours(18),
   editable: true,
   autoResize: false,
   zoomable: false,
+  moveable: false,
+
   margin: {
     item: 0.5, // distance between items
     axis: 0.5, // distance between items and the time axis
@@ -219,16 +221,25 @@ function LoadTimeLine() {
 
 
       if (r.ThoiGianHen && document.getElementById("checkbox-hen").checked) {
-        if (r.TimeStartGJ) { } else {
+        if (r.TimeStartGJ) {
+        } else {
           var start = DoiNgayDangKy(r.ThoiGianHen);
           var end;
           if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
           if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
-          if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
-          if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
-          if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
+          if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) {
+            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
+          }
           var classnamehen = "blue";
-          if (r.TDGapLeTan) { classnamehen = "orange"; }
+          if (r.TDGapLeTan) {
+            classnamehen = "orange";
+          }
           items.update({
             className: classnamehen,
             id: r.BienSoXe + "_Hen",
@@ -241,6 +252,8 @@ function LoadTimeLine() {
           });
         }
       }
+
+
     }
   }
   timeline.redraw();
@@ -406,20 +419,31 @@ function redraw() {
 }
 function capnhatthoigian(item) {
   var ojb = useCaher;
-  var json2 = {
-    TimeStartGJ: TimesClick(item.start),
-    TimeEndGJ: TimesClick(item.end),
-    KhoangSuaChua: item.group
-  };
 
-  for (var a in ojb) {
-    if (ojb[a].MaSo == item.id) {
-      if (ojb[a].KhoangSuaChua !== item.group) {
-        json2['TrangThaiSCC'] = "Chờ SC"
+  var a = new Date(item.start).valueOf();
+  var b = new Date(item.end).valueOf();
+
+  if (item.id && a < b) {
+    var json2 = {
+      TimeStartGJ: TimesClick(item.start),
+      TimeEndGJ: TimesClick(item.end),
+      KhoangSuaChua: item.group,
+      //TrangThaiSCC: "Chờ SC",
+      // KyThuatVien1: KTV1,
+      // KyThuatVien2: KTV2,
+      // NhomKTV: NhomSC,
+    };
+
+    for (var a in ojb) {
+      if (ojb[a].MaSo == item.id) {
+        if (ojb[a].KhoangSuaChua !== item.group) {
+          json2['TrangThaiSCC'] = "Chờ SC"
+        }
+
       }
-
     }
+    postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
+  } else {
+    alert(item.id + " loi");
   }
-  postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
-
 }

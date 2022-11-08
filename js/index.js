@@ -8,13 +8,14 @@ var items = new vis.DataSet()
 var groups = new vis.DataSet()
 var container = document.getElementById("mytimeline")
 var options = {
-    hiddenDates: [{ start: "2017-03-05 00:00:00", end: "2017-03-06 00:00:00", repeat: "weekly", },
-        //{ start: "2017-03-04 17:00:00", end: "2017-03-05 08:00:00", repeat: "daily", },
+    hiddenDates: [
+        { start: "2017-03-05 00:00:00", end: "2017-03-06 00:00:00", repeat: "weekly" },
+        // { start: "2017-03-04 07:00:00", end: "2017-03-04 17:00:00", repeat: "daily" },
     ],
     timeAxis: { scale: "minute", step: 15 },
     orientation: "top",
-    start: new Date(new Date().valueOf()).setHours(6),
-    end: new Date(new Date().valueOf()).setHours(17),
+    // start: new Date(new Date().valueOf()).setHours(6),
+    // end: new Date(new Date().valueOf()).setHours(17),
     editable: true,
     autoResize: false,
     //zoomable: false,

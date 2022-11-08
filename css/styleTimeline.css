@@ -30,7 +30,7 @@
 }
 
 .vis-item.vis-selected {
-  padding-left: 15px;
+
   background-color: darkgreen;
   color: rgb(0, 255, 0);
   border-color: rgb(157, 155, 149);
@@ -72,12 +72,12 @@
   box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
 }
 
-.vis-drag-right::before {
+/* .vis-drag-right::before {
   padding-top: 3px;
   font-family: "Font Awesome 5 Free";
   content: " ";
-  /* display: inline-flex;
-  position: absolute; */
+  display: inline-flex;
+  position: absolute;
   text-align: center;
 }
 
@@ -88,20 +88,20 @@
   display: inline-flex;
   position: absolute;
   vertical-align: middle;
-}
+} */
 
 .vis-item.vis-range .vis-drag-left {
   position: absolute;
   cursor: e-resize;
-  border: 1px solid black;
-  /* background-color: rgb(40, 128, 13); */
+  /* border: 1px solid black; */
+
 }
 
 .vis-item.vis-range .vis-drag-right {
   position: absolute;
   cursor: e-resize;
-  border: 1px solid black;
-  /* background-color: rgb(40, 128, 13); */
+  /* border: 1px solid black; */
+
 }
 
 .vis-item.red {

@@ -8,17 +8,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     }
   })
-
-  getData();
+  startWorker()
+  // getData();
 });
-var timerRunner = 0
-setInterval(function () {
-  timerRunner++
-  if (timerRunner >= 30) {
-    timerRunner = 0
-    getData();
-  }
-}, 3000);
+// var timerRunner = 0
+// setInterval(function () {
+//   timerRunner++
+//   if (timerRunner >= 30) {
+//     timerRunner = 0
+//     getData();
+//   }
+// }, 3000);
 
 
 function getData() {
@@ -32,3 +32,19 @@ function getData() {
     },
   });
 }
+
+var w;
+
+function startWorker() {
+  if (typeof (Worker) !== "undefined") {
+    if (typeof (w) == "undefined") {
+      w = new Worker("worker/SCC.js");
+    }
+    w.onmessage = function (event) {
+      useCaher = event.data;
+      console.log(useCaher);
+      LoadTimeLine()
+    };
+  }
+}
+

@@ -447,3 +447,12 @@ function capnhatthoigian(item) {
     alert(item.id + " loi");
   }
 }
+function changdate(value) {
+
+  var option1 = {
+    start: new Date(new Date(value).valueOf()).setHours(7),
+    end: new Date(new Date(value).valueOf()).setHours(18),
+  };
+
+  timeline.setOptions(option1);
+}

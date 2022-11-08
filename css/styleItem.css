@@ -194,8 +194,10 @@ input:invalid {
   border-color: red;
 }
 
-input:valid {
-  background: lightgreen;
+
+.inputdate {
+  background: none;
+  border-color: white;
 }
 
 select:valid {
@@ -210,9 +212,7 @@ input:invalid {
   border-color: red;
 }
 
-input:valid {
-  background: lightgreen;
-}
+
 
 select:valid {
   background: lightgreen;

@@ -85,4 +85,5 @@ function loadDataCV() {
       });
     }
   }
+  document.getElementById("loading").style.display = "none"
 }

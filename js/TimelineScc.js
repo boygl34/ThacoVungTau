@@ -135,13 +135,7 @@ function LoadTimeLine() {
   setgiaoxe()
   var dataArray0 = useCaher;
 
-  var dataArray1 = dataArray0.filter(function (r) {
-    return (
-      r.LoaiHinhSuaChua === "EM" ||
-      r.LoaiHinhSuaChua === "SCC" ||
-      r.LoaiHinhSuaChua === "EM60"
-    );
-  });
+  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
   console.log("update");
   for (var a in dataArray1) {
@@ -160,58 +154,25 @@ function LoadTimeLine() {
         remove: false, // delete an item by tapping the delete button top right
         overrideItems: true, // allow these options to override item.editable
       };
-    if (r.LoaiHinhSuaChua == "SCC") {
-      khoang = 2;
-    } else {
-      khoang = 1;
-    }
-    if (r.TrangThaiSCC == "Đang SC") {
-      mau = "green";
-    }
-    if (r.TrangThaiSCC == "Dừng SC") {
-      mau = "red";
-    }
-    if (r.TrangThaiSCC == "Chờ SC") {
-      mau = "orange";
-    }
-    if (r.TrangThaiSCC == "Đã SC") {
-      mau = "magenta";
-    }
-    if (r.TrangThaiHen == "Đúng Giờ") {
-      tthen = "DungGio";
-    }
-    if (r.TrangThaiHen == "Đến Sớm") {
-      tthen = "DenSom";
-    }
+
+    if (r.TrangThaiSCC == "Đang SC") { mau = "green"; }
+    if (r.TrangThaiSCC == "Dừng SC") { mau = "red"; }
+    if (r.TrangThaiSCC == "Chờ SC") { mau = "orange"; }
+    if (r.TrangThaiSCC == "Đã SC") { mau = "magenta"; }
+    if (r.TrangThaiHen == "Đúng Giờ") { tthen = "DungGio"; }
+    if (r.TrangThaiHen == "Đến Sớm") { tthen = "DenSom"; }
     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.MaSo, "success", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
-    if (
-      (r.TrangThaiXuong == "02 Chờ Tiếp Nhận" ||
-        r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null
-    ) {
-      additembienso(
-        r.BienSoXe,
-        r.MaSo,
-        "outline-secondary btn-sm",
-        tthen,
-        r.LoaiHinhSuaChua, r.CoVanDichVu
-      );
+    if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
+      additembienso(r.BienSoXe, r.MaSo, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
-    if (r.TrangThaiXuong == "05 Dừng Công Việc") {
-      additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua);
-    }
-    if (r.TimeEndGJ) {
-      var endRX = new Date(
-        DoiNgayDangKy(r.TimeEndGJ).valueOf() + 15 * 60 * 1000
-      );
-    }
-    if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) {
-      mau = "magenta";
-    }
+    if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
+    if (r.TimeEndGJ) { var endRX = new Date(DoiNgayDangKy(r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
+    if (new Date(DoiNgayDangKy(r.TimeEndGJ)).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
         items.update({
@@ -238,15 +199,11 @@ function LoadTimeLine() {
           content: r.BienSoXe + " " + r.KyThuatVien1,
         });
       }
-      if (
-        r.KhachRuaXe == "Rửa Xe" &&
-        r.TrangThaiXuong != "08 Chờ Giao Xe" &&
-        r.TimeEndGJ
-      ) {
+
+
+      if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
         var classname2 = "orange";
-        if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-          classname2 = "green";
-        }
+        if (r.TrangThaiXuong == "07 Đang Rửa Xe") { classname2 = "green"; }
         items.update({
           className: classname2,
           id: r.BienSoXe + "_RuaXe",
@@ -258,30 +215,20 @@ function LoadTimeLine() {
           content: r.BienSoXe + " " + r.CoVanDichVu,
         });
       }
+
+
+
       if (r.ThoiGianHen && document.getElementById("checkbox-hen").checked) {
-        if (r.TimeStartGJ) {
-        } else {
+        if (r.TimeStartGJ) { } else {
           var start = DoiNgayDangKy(r.ThoiGianHen);
           var end;
-          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") {
-            end = new Date(1000 * 60 * 29 + new Date(start).valueOf());
-          }
-          if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") {
-            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-          }
-          if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) {
-            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-          }
-          if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) {
-            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-          }
-          if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) {
-            end = new Date(1000 * 60 * 59 + new Date(start).valueOf());
-          }
+          if (r.LoaiHinhSuaChua == "EM" || r.LoaiHinhSuaChua == "EM60") { end = new Date(1000 * 60 * 29 + new Date(start).valueOf()); }
+          if (r.LoaiHinhSuaChua == "SCC" || r.LoaiHinhSuaChua == "FIR") { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD40K") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
+          if (r.NoiDungHen.toUpperCase().indexOf("BD80K") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
+          if (r.NoiDungHen.toUpperCase().indexOf("LEXUS") >= 0) { end = new Date(1000 * 60 * 59 + new Date(start).valueOf()); }
           var classnamehen = "blue";
-          if (r.TDGapLeTan) {
-            classnamehen = "orange";
-          }
+          if (r.TDGapLeTan) { classnamehen = "orange"; }
           items.update({
             className: classnamehen,
             id: r.BienSoXe + "_Hen",
@@ -294,9 +241,11 @@ function LoadTimeLine() {
           });
         }
       }
-      timeline.redraw();
     }
   }
+  timeline.redraw();
+
+  document.getElementById("loading").style.display = "none"
 }
 function additembienso(value, MaSo, trangthai, tthen, LoaiHinh, covan) {
   $("#XeChoSuaChua").html(
@@ -457,31 +406,20 @@ function redraw() {
 }
 function capnhatthoigian(item) {
   var ojb = useCaher;
+  var json2 = {
+    TimeStartGJ: TimesClick(item.start),
+    TimeEndGJ: TimesClick(item.end),
+    KhoangSuaChua: item.group
+  };
 
-  var a = new Date(item.start).valueOf();
-  var b = new Date(item.end).valueOf();
-
-  if (item.id && a < b) {
-    var json2 = {
-      TimeStartGJ: TimesClick(item.start),
-      TimeEndGJ: TimesClick(item.end),
-      KhoangSuaChua: item.group,
-      //TrangThaiSCC: "Chờ SC",
-      // KyThuatVien1: KTV1,
-      // KyThuatVien2: KTV2,
-      // NhomKTV: NhomSC,
-    };
-
-    for (var a in ojb) {
-      if (ojb[a].MaSo == item.id) {
-        if (ojb[a].KhoangSuaChua !== item.group) {
-          json2['TrangThaiSCC'] = "Chờ SC"
-        }
-
+  for (var a in ojb) {
+    if (ojb[a].MaSo == item.id) {
+      if (ojb[a].KhoangSuaChua !== item.group) {
+        json2['TrangThaiSCC'] = "Chờ SC"
       }
+
     }
-    postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
-  } else {
-    alert(item.id + " loi");
   }
+  postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
+
 }

@@ -27,6 +27,7 @@ function getData() {
     type: "GET",
     success: function (data) {
       useCaher = data;
+      document.getElementById("loading").style.display = "block"
       LoadTimeLine()
 
     },
@@ -42,6 +43,7 @@ function startWorker() {
     }
     w.onmessage = function (event) {
       useCaher = event.data;
+      document.getElementById("loading").style.display = "block"
       LoadTimeLine()
     };
   }

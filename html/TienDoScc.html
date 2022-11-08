@@ -300,24 +300,3 @@
 <script src="js/Onload.js"></script>
 <script src="js/TimelineScc.js"></script>
 <script src="js/MainSCC.js"></script>
-<script>
-    var w;
-
-    function startWorker() {
-        if (typeof (Worker) !== "undefined") {
-            if (typeof (w) == "undefined") {
-                w = new Worker("worker/SCC.js");
-            }
-            w.onmessage = function (event) {
-                useCaher = event.data;
-                console.log(useCaher);
-                LoadTimeLine()
-            };
-        }
-    }
-
-    startWorker()
-
-
-
-</script>

@@ -131,8 +131,8 @@ var options = {
       }
       $("#CuocGoi").html(
         "<a href='tel:+84" +
-          $("#SoDT").val() +
-          "' class='col-sm-7'>Click để Gọi</a>"
+        $("#SoDT").val() +
+        "' class='col-sm-7'>Click để Gọi</a>"
       );
     } else {
       $("#buttonDK").html("");
@@ -276,6 +276,7 @@ function datadathen(r) {
         content: Kytu + r.BienSoXe + "<br>" + r.CoVanDichVu + "<br>" + PhanLoai,
       });
     }
+    document.getElementById("loading").style.display = "none"
   } catch (error) {
     alert("Lỗi : " + error);
   }

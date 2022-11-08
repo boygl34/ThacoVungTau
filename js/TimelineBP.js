@@ -537,6 +537,7 @@ function LoadTimeLine() {
         }
       }
     }
+    document.getElementById("loading").style.display = "none"
     //timeline.fit()
   } catch (erros2) {
     alert("Loi " + erros2);

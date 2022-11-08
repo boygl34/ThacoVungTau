@@ -321,6 +321,7 @@ function LoadTimeLine() {
         );
       }
     });
+    document.getElementById("loading").style.display = "none"
   }
 
   var dataArray0 = dataArray.filter(function (r) {
@@ -420,7 +421,7 @@ function LoadTimeLine() {
           ((new Date().valueOf() -
             new Date(DoiNgayDangKy(r.TDGapLeTan)).valueOf()) /
             (60 * 1000)) *
-            1
+          1
         ) / 1;
     }
     if (r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
@@ -429,7 +430,7 @@ function LoadTimeLine() {
           ((new Date().valueOf() -
             new Date(DoiNgayDangKy(r.TDGapLeTan)).valueOf()) /
             (60 * 1000)) *
-            1
+          1
         ) / 1;
     }
     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
@@ -438,7 +439,7 @@ function LoadTimeLine() {
           ((new Date().valueOf() -
             new Date(DoiNgayDangKy(r.TDBDTiepKhach)).valueOf()) /
             (60 * 1000)) *
-            1
+          1
         ) / 1;
     }
     row.appendChild(TGCHO);
@@ -738,7 +739,7 @@ function canhBao() {
           }
         }
       );
-    } catch {}
+    } catch { }
   }
 }
 function canhBao2(tieude, noidung, canhbao) {

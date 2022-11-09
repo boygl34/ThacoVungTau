@@ -15,16 +15,12 @@ var options = {
     },
   ],
   onMove: function (item) {
-    timerRunner = 0
-    let text = "Thay Đổi kế hoạch xe " + item.content;
-    if (item) {
-      capnhatthoigian(item);
-    }
-    //if (confirm(text) == true) { capnhatthoigian(item)} else {LoadTimeLine()};
+    document.getElementById("loading").style.display = "block"
+    capnhatthoigian(item);
   },
   onAdd: function (item) { },
   onUpdate: function (item) {
-    timerRunner = 0
+
     var BienSo = item.content.slice(0, item.content.indexOf(" "));
     $("#buttonSCC").html("");
     document.getElementById("FormSCC").reset();
@@ -420,27 +416,20 @@ function redraw() {
 }
 function capnhatthoigian(item) {
   var ojb = useCaher;
-
   var a = new Date(item.start).valueOf();
   var b = new Date(item.end).valueOf();
-
   if (item.id && a < b) {
     var json2 = {
       TimeStartGJ: TimesClick(item.start),
       TimeEndGJ: TimesClick(item.end),
-      KhoangSuaChua: item.group,
-      //TrangThaiSCC: "Chờ SC",
-      // KyThuatVien1: KTV1,
-      // KyThuatVien2: KTV2,
-      // NhomKTV: NhomSC,
+      KhoangSuaChua: item.group
     };
-
-    for (var a in ojb) {
-      if (ojb[a].MaSo == item.id) {
-        if (ojb[a].KhoangSuaChua !== item.group) {
+    var aa = ojb.filter(function (r) { return r.MaSo == item.id })
+    for (var a in aa) {
+      if (aa[a].MaSo == item.id) {
+        if (aa[a].KhoangSuaChua !== item.group) {
           json2['TrangThaiSCC'] = "Chờ SC"
         }
-
       }
     }
     postData(json2, urlTX + "/" + checkID(item.id), "PATCH");
@@ -449,11 +438,9 @@ function capnhatthoigian(item) {
   }
 }
 function changdate(value) {
-
   var option1 = {
     start: new Date(new Date(value).valueOf()).setHours(7),
     end: new Date(new Date(value).valueOf()).setHours(18),
   };
-
   timeline.setOptions(option1);
 }

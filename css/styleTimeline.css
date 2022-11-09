@@ -74,8 +74,9 @@
 
 .vis-drag-right::before {
   padding-top: 5px;
+  padding-left: 10px;
   font-family: "Font Awesome 5 Free";
-  content: " ";
+  content: "";
   display: inline-flex;
   position: absolute;
   text-align: center;
@@ -85,7 +86,7 @@
   padding-left: 3px;
   padding-top: 5px;
   font-family: "Font Awesome 5 Free";
-  content: " ";
+  content: " ";
   display: inline-flex;
   position: absolute;
   vertical-align: middle;

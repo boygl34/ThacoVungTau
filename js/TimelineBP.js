@@ -30,16 +30,25 @@ groups.add({
 });
 var options = {
   hiddenDates: [
-    //{start: '2017-03-05 00:00:00',end: '2017-03-06 00:00:00',repeat: 'weekly'},
     {
-      start: "2017-03-04 18:00:00",
-      end: "2017-03-05 07:00:00",
+      start: "2017-03-05 00:00:00",
+      end: "2017-03-06 00:00:00",
+      repeat: "weekly",
+    },
+    {
+      start: "2017-03-04 17:30:00",
+      end: "2017-03-05 07:45:00",
       repeat: "daily",
     },
   ],
+  timeAxis: { scale: "minute", step: 15 },
+  orientation: "top",
+  start: new Date(new Date().valueOf()).setHours(7),
+  end: new Date(new Date().valueOf()).setHours(18),
   editable: true,
+  autoResize: true,
   zoomable: false,
-  autoResize: false,
+  moveable: false,
   onMove: function (item) {
     timerRunner = 0
     let text =
@@ -98,14 +107,11 @@ var options = {
   },
 
   // onAdd:function(){},
-  stack: true,
-  start: new Date(new Date().valueOf()).setHours(6),
-  end: new Date(new Date().valueOf()).setHours(17),
+
   margin: {
     item: 1, // distance between items
     axis: 1, // distance between items and the time axiss
   },
-  timeAxis: { scale: "minute", step: 15 },
   format: {
     majorLabels: {
       millisecond: "HH:mm:ss",
@@ -1190,4 +1196,54 @@ function TimXe(item) {
   item = $("#TTHuyChip").val();
   var BienSo = item.slice(0, item.indexOf("_"));
   document.getElementById("selection").value = BienSo;
+}
+function changdate(value) {
+  var option1 = {
+    start: new Date(new Date(value).valueOf()).setHours(7),
+    end: new Date(new Date(value).valueOf()).setHours(18),
+  };
+  timeline.setOptions(option1);
+}
+
+function backwardtime() {
+  Ngay = document.getElementById("datefield").value;
+  var today = new Date(new Date(Ngay).valueOf() - 24 * 60 * 60 * 1000);
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+
+  var option1 = {
+    start: new Date(new Date(today).valueOf()).setHours(7),
+    end: new Date(new Date(today).valueOf()).setHours(18),
+  };
+  timeline.setOptions(option1);
+  document.getElementById("datefield").value = today;
+}
+function forwardtime() {
+  Ngay = document.getElementById("datefield").value;
+  var today = new Date(new Date(Ngay).valueOf() + 24 * 60 * 60 * 1000);
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+
+  var option1 = {
+    start: new Date(new Date(today).valueOf()).setHours(7),
+    end: new Date(new Date(today).valueOf()).setHours(18),
+  };
+  timeline.setOptions(option1);
+  document.getElementById("datefield").value = today;
 }

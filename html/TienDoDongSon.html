@@ -68,10 +68,16 @@
     <div class="card mb-4">
       <div class="card-header">
         <div class="row">
-          <div class="col-7" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-            <i class="fas fa-table me-1"></i>
+          <div class="col-7">
+            <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+              aria-expanded="false" aria-controls="collapseExample"></i>
             Tiến Độ Đồng Sơn
+            <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
+              aria-hidden="true"></i>
+            <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
+              onchange="changdate(this.value)">
+            <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
+              aria-hidden="true"></i>
           </div>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
@@ -79,15 +85,7 @@
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTs4_i1zL1Cj-K2ygdVWTScRzqZs_9ZvsxUAeHwl-YcfLW7ErToqoZ3zr39zpjBT-R9kSf0YMUtWeeJ/pubhtml?gid=526093834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
             </div>
           </div>
-          <!-- <div class="form-check col-2 ">
-                  <input class="form-check-input" id="checkbox-3" type="checkbox" value="" onchange="LoadTimeLine ()">
-                  <label class="form-check-label" for="checkbox-3">Đã HT</label>
-              </div>
-              <div class="form-check col-2">
-                  <input class="form-check-input" id="checkbox-hen" type="checkbox" value="" onchange="LoadTimeLine ()">
-                  <label class="form-check-label" for="checkbox-hen">Xe Hẹn</label>
-              </div>
-               -->
+
         </div>
       </div>
 
@@ -376,3 +374,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+  document.getElementById("datefield").setAttribute("min", today);
+  document.getElementById("datefield").value = today;
+</script>

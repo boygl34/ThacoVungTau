@@ -37,7 +37,7 @@ var options = {
   start: new Date(new Date().valueOf()).setHours(7),
   end: new Date(new Date().valueOf()).setHours(18),
   editable: true,
-  autoResize: false,
+  autoResize: true,
   zoomable: false,
   moveable: false,
 
@@ -443,4 +443,47 @@ function changdate(value) {
     end: new Date(new Date(value).valueOf()).setHours(18),
   };
   timeline.setOptions(option1);
+}
+
+function backwardtime() {
+  Ngay = document.getElementById("datefield").value;
+  var today = new Date(new Date(Ngay).valueOf() - 24 * 60 * 60 * 1000);
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+
+  var option1 = {
+    start: new Date(new Date(today).valueOf()).setHours(7),
+    end: new Date(new Date(today).valueOf()).setHours(18),
+  };
+  timeline.setOptions(option1);
+  document.getElementById("datefield").value = today;
+}
+function forwardtime() {
+  Ngay = document.getElementById("datefield").value;
+  var today = new Date(new Date(Ngay).valueOf() + 24 * 60 * 60 * 1000);
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+
+  var option1 = {
+    start: new Date(new Date(today).valueOf()).setHours(7),
+    end: new Date(new Date(today).valueOf()).setHours(18),
+  };
+  timeline.setOptions(option1);
+  document.getElementById("datefield").value = today;
 }

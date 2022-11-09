@@ -55,8 +55,13 @@
                     <div class="col-7">
                         <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                             aria-expanded="false" aria-controls="collapseExample"></i>
-                        Tiến Độ SCC<input class="inputdate" style="position: relative;left: 12px; ;" type="date"
-                            id="datefield" onchange="changdate(this.value)">
+                        Tiến Độ SCC
+                        <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
+                            aria-hidden="true"></i>
+                        <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
+                            onchange="changdate(this.value)">
+                        <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
+                            aria-hidden="true"></i>
                     </div>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">

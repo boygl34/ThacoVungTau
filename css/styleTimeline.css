@@ -30,7 +30,7 @@
 }
 
 .vis-item.vis-selected {
-
+  padding-left: 15px;
   background-color: darkgreen;
   color: rgb(0, 255, 0);
   border-color: rgb(157, 155, 149);
@@ -72,8 +72,8 @@
   box-shadow: rgba(128, 128, 128, 0.5) 5px 5px 20px;
 }
 
-/* .vis-drag-right::before {
-  padding-top: 3px;
+.vis-drag-right::before {
+  padding-top: 5px;
   font-family: "Font Awesome 5 Free";
   content: " ";
   display: inline-flex;
@@ -82,13 +82,14 @@
 }
 
 .vis-drag-left::after {
-  padding-top: 3px;
+  padding-left: 3px;
+  padding-top: 5px;
   font-family: "Font Awesome 5 Free";
   content: " ";
   display: inline-flex;
   position: absolute;
   vertical-align: middle;
-} */
+}
 
 .vis-item.vis-range .vis-drag-left {
   position: absolute;

@@ -147,6 +147,7 @@ function LoadTimeLine() {
     var start = new Date(DoiNgayDangKy(r.TimeStartGJ));
     var timeNow = new Date();
     var end = new Date(DoiNgayDangKy(r.TimeEndGJ));
+    if (end.getHours() >= 17) { end = new Date(end.valueOf() + 18 * 60 * 60 * 1000); end.setHours(8) }
     var khoang,
       mau = "",
       edit1 = {

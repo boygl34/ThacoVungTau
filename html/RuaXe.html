@@ -56,7 +56,7 @@
             style="text-align:left;vertical-align: middle;font-weight:bold;width:98%;background-color:#212529">
             <thead>
                 <tr>
-                    <th style=" width: 15%;">But</th>
+                    <th style=" width: 7%;">But</th>
                     <th style=" width:15%;">Biển Số</th>
                     <th style=" width: 4%;">Cố Vấn</th>
                     <th style=" width: 4%;">Khách Đợi</th>
@@ -75,20 +75,6 @@
 </main>
 
 <script>
-    var useCaher
-    var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong"
-    var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao"
-    getData(urlTX)
-    setInterval(function () { getData(urlTX) }, 60000);
-    //DanhSachCoVan();
-    function getData(url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                useCaher = data
-                showData()
-            });
-    }
 
 
     function postData(data, url, methor) {
@@ -129,8 +115,9 @@
             if (ojb[a].MaSo == MaSo) { return ojb[a].id }
         }
     }
-
-    function showData(use) {
+    LoadTimeLine()
+    function LoadTimeLine(use) {
+        document.getElementById("loading").style.display = "none"
         var dataArray = useCaher
         var dataArray0 = dataArray.filter(function (r) { return r.KhachRuaXe === "Rửa Xe" && r.TDHenGiaoXe && r.LoaiHinhDongSon !== "Báo Giá BH" })
         var ngaygiaoxebc = new Date()
@@ -154,11 +141,11 @@
             var ColNutNhan = document.createElement("td");
             ColNutNhan.innerHTML = ""
             if (r.TrangThaiXuong == "06 Chờ Rửa Xe") {
-                ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger btn-xs deleteBtn' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-success btn-xs deleteBtn' onclick='BatDauRuaXe(this);'>Start!</button>";
+                ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-success ' onclick='BatDauRuaXe(this);'>Start!</button>";
                 row.setAttribute('class', 'ChoRuaXe')
             }
             if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-                ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger btn-xs deleteBtn' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-warning btn-xs deleteBtn' onclick='KetThucRuaXe(this);'>End!</button>";
+                ColNutNhan.innerHTML = "<button type='button' class='btn btn-danger ' onclick='HuyRuaXe(this);'>Delete!</button>&ensp;<button type='button' class='btn btn-warning ' onclick='KetThucRuaXe(this);'>End!</button>";
                 row.setAttribute('class', 'DangRuaXe')
             }
 

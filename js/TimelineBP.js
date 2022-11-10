@@ -50,19 +50,15 @@ var options = {
   zoomable: false,
   moveable: false,
   onMove: function (item) {
-    timerRunner = 0
-    let text =
-      "Thay Đổi kế hoạch xe " +
-      item.content.slice(0, item.content.indexOf("_"));
-    if (confirm(text) == true) {
-      capnhatthoigian(item);
-    } else {
-      loadData();
-    }
+
+
+
+    capnhatthoigian(item);
+
   },
 
   onUpdate: function (item) {
-    timerRunner = 0
+
     var BienSo = item.content.slice(0, item.content.indexOf("_"));
     var CongDoan = item.content.slice(
       item.content.indexOf("_") + 1,
@@ -191,18 +187,18 @@ function LoadTimeLine() {
       if (r.TrangThaiDongSon == "Chờ SC") { additembienso(r.BienSoXe, r.MaSo, "warning", r.CongDoanDongSon, r.TrangThaiDongSon); }
       if (r.TrangThaiDongSon == "Đang SC") { additembienso(r.BienSoXe, r.MaSo, "success", r.CongDoanDongSon, r.TrangThaiDongSon); }
       if (r.TrangThaiDongSon == "Dừng SC") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.CongDoanDongSon, r.TrangThaiDongSon); }
-      var mau, mau1, mau2, mau3, mau4, mau5, edit, edit1, edit2, edit3, edit4, edit5, group, edit0 = {
+      var mau, mauDong, mauLap, mauNen, mauSon, mauPass, edit, edit1, edit2, edit3, edit4, edit5, group, edit0 = {
         add: false, // add new items by double tapping
         updateTime: true, // drag items horizontally
         updateGroup: true, // drag items from one group to another
         remove: false, // delete an item by tapping the delete button top right
         overrideItems: true, // allow these options to override item.editable
       };
-      mau1 = mau;
-      mau2 = mau;
-      mau3 = mau;
-      mau4 = mau;
-      mau5 = mau;
+      mauDong = mau;
+      mauLap = mau;
+      mauNen = mau;
+      mauSon = mau;
+      mauPass = mau;
 
       timeNow = new Date();
       var time =
@@ -210,34 +206,34 @@ function LoadTimeLine() {
           (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
             new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)))) *
         100;
-      if (r.HTDong === "Okie") { mau1 = "orange"; edit1 = false; group = "groupHT"; } else { edit1 = edit0; group = "groupDS"; }
-      if (r.HTNen === "Okie") { mau3 = "orange"; edit2 = false; group = "groupHT"; } else { edit3 = edit0; group = "groupDS"; }
-      if (r.HTSon === "Okie") { mau4 = "orange"; edit3 = false; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
-      if (r.HTLap === "Okie") { mau2 = "orange"; edit4 = false; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
-      if (r.HTPass === "Okie") { mau5 = "orange"; edit5 = false; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
+      if (r.HTDong === "Okie") { mauDong = "orange"; edit1 = false; group = "groupHT"; } else { edit1 = edit0; group = "groupDS"; }
+      if (r.HTNen === "Okie") { mauNen = "orange"; edit2 = false; group = "groupHT"; } else { edit3 = edit0; group = "groupDS"; }
+      if (r.HTSon === "Okie") { mauSon = "orange"; edit3 = false; group = "groupHT"; } else { edit4 = edit0; group = "groupDS"; }
+      if (r.HTLap === "Okie") { mauLap = "orange"; edit4 = false; group = "groupHT"; } else { edit2 = edit0; group = "groupDS"; }
+      if (r.HTPass === "Okie") { mauPass = "orange"; edit5 = false; group = "groupHT"; } else { edit5 = edit0; group = "groupDS"; }
       if (r.TimeStartBody && r.TimeEndBody) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartBody))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()>timeNow.valueOf()){mau1="green"}
-        //if((new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()<timeNow.valueOf()){mau1="orange"}
+        //if((new Date(DoiNgayDangKy(r.TimeStartBody))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()>timeNow.valueOf()){mauDong="green"}
+        //if((new Date(DoiNgayDangKy(r.TimeEndBody))).valueOf()<timeNow.valueOf()){mauDong="orange"}
         if (r.CongDoanDongSon == "Đồng") {
-          if (r.TrangThaiDongSon == "Đang SC") { mau1 = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mau1 = "red"; }
-        } else { mau1 = mau; }
+          if (r.TrangThaiDongSon == "Đang SC") { mauDong = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mauDong = "red"; }
+        } else { mauDong = mau; }
         if (r.CongDoanDongSon == "Nền") {
-          if (r.TrangThaiDongSon == "Đang SC") { mau3 = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mau3 = "red"; }
-        } else { mau3 = mau; }
+          if (r.TrangThaiDongSon == "Đang SC") { mauNen = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mauNen = "red"; }
+        } else { mauNen = mau; }
         if (r.CongDoanDongSon == "Sơn") {
-          if (r.TrangThaiDongSon == "Đang SC") { mau4 = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mau4 = "red"; }
-        } else { mau4 = mau; }
+          if (r.TrangThaiDongSon == "Đang SC") { mauSon = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mauSon = "red"; }
+        } else { mauSon = mau; }
         if (r.CongDoanDongSon == "Lắp Ráp") {
-          if (r.TrangThaiDongSon == "Đang SC") { mau2 = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mau2 = "red"; }
-        } else { mau2 = mau; }
+          if (r.TrangThaiDongSon == "Đang SC") { mauLap = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mauLap = "red"; }
+        } else { mauLap = mau; }
         if (r.CongDoanDongSon == "Pass") {
-          if (r.TrangThaiDongSon == "Đang SC") { mau5 = "green"; }
-          if (r.TrangThaiDongSon == "Dừng SC") { mau5 = "red"; }
-        } else { mau5 = mau; }
+          if (r.TrangThaiDongSon == "Đang SC") { mauPass = "green"; }
+          if (r.TrangThaiDongSon == "Dừng SC") { mauPass = "red"; }
+        } else { mauPass = mau; }
         var GiaoTN = "";
         if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).getDate() == new Date().getDate()) { GiaoTN = kytu1; }
         if (new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() < new Date().valueOf()) { GiaoTN = kytu2; }
@@ -249,7 +245,7 @@ function LoadTimeLine() {
             starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
             endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
-          if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
+          if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
           items.update({
             className: "orange",
             id: r.BienSoXe + "_Dong",
@@ -266,14 +262,13 @@ function LoadTimeLine() {
         if (r.HTDong !== "Okie") {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartBody));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-
           if (starttime.getDay() == 0) {
             starttime = new Date(DoiNgayDangKy(r.TimeStartBody) * 1 + 24 * 60 * 60 * 1000);
             endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 24 * 60 * 60 * 1000);
           }
-          if (endtime.getHours() > 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
+          if (endtime.getHours() >= 17) { endtime = new Date(DoiNgayDangKy(r.TimeEndBody) * 1 + 15 * 60 * 60 * 1000); }
           items.update({
-            className: mau1,
+            className: mauDong,
             id: r.BienSoXe + "_Dong",
             group: r.KyThuatVienDong,
             start: starttime,
@@ -287,13 +282,12 @@ function LoadTimeLine() {
         }
       }
       if (r.TimeStartLap && r.TimeEndLap) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartLap))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndLap))).valueOf()>timeNow.valueOf()){mau2="green"}
-        //if((new Date(r.TimeEndLap)).valueOf()<timeNow.valueOf()){mau2="orange"}
+        //if((new Date(DoiNgayDangKy(r.TimeStartLap))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndLap))).valueOf()>timeNow.valueOf()){mauLap="green"}
+        //if((new Date(r.TimeEndLap)).valueOf()<timeNow.valueOf()){mauLap="orange"}
         if (hoanthanh && r.HTLap == "Okie") {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndLap));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartLap));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndBody));
-
           if (starttime.getDay() == 0) {
             starttime = new Date(
               DoiNgayDangKy(r.TimeStartLap) * 1 + 24 * 60 * 60 * 1000
@@ -339,7 +333,7 @@ function LoadTimeLine() {
             );
           }
           items.update({
-            className: mau2,
+            className: mauLap,
             id: r.BienSoXe + "_Lap",
             group: r.KyThuatVienLap,
             start: starttime,
@@ -353,8 +347,8 @@ function LoadTimeLine() {
         }
       }
       if (r.TimeStartNen && r.TimeEndNen) {
-        // if((new Date(DoiNgayDangKy(r.TimeStartNen))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndNen))).valueOf()>timeNow.valueOf()){mau3="green"}
-        // if((new Date(r.TimeEndNen)).valueOf()<timeNow.valueOf()){mau3="orange"}
+        // if((new Date(DoiNgayDangKy(r.TimeStartNen))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndNen))).valueOf()>timeNow.valueOf()){mauNen="green"}
+        // if((new Date(r.TimeEndNen)).valueOf()<timeNow.valueOf()){mauNen="orange"}
         if (hoanthanh && r.HTNen == "Okie") {
           var starttime = new Date(DoiNgayDangKy(r.TimeStartNen));
           var endtime = new Date(DoiNgayDangKy(r.TimeEndNen));
@@ -402,7 +396,7 @@ function LoadTimeLine() {
             );
           }
           items.update({
-            className: mau3,
+            className: mauNen,
             id: r.BienSoXe + "_Nen",
             group: r.NhomSon,
             start: starttime,
@@ -416,8 +410,8 @@ function LoadTimeLine() {
         }
       }
       if (r.TimeStartPaint && r.TimeEndPaint) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartPaint))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPaint))).valueOf()>timeNow.valueOf()){mau4="green"}
-        //if((new Date(r.TimeEndPaint)).valueOf()<timeNow.valueOf()){mau4="orange"}
+        //if((new Date(DoiNgayDangKy(r.TimeStartPaint))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPaint))).valueOf()>timeNow.valueOf()){mauSon="green"}
+        //if((new Date(r.TimeEndPaint)).valueOf()<timeNow.valueOf()){mauSon="orange"}
         if (hoanthanh && r.HTSon == "Okie") {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndPaint));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartPaint));
@@ -465,7 +459,7 @@ function LoadTimeLine() {
             );
           }
           items.update({
-            className: mau4,
+            className: mauSon,
             id: r.BienSoXe + "_Paint",
             group: r.PhongSon,
             start: starttime,
@@ -479,8 +473,8 @@ function LoadTimeLine() {
         }
       }
       if (r.TimeStartPass && r.TimeEndPass) {
-        //if((new Date(DoiNgayDangKy(r.TimeStartPass))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()>timeNow.valueOf()){mau5="green"}
-        //if((new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()<timeNow.valueOf()){mau5="orange"}
+        //if((new Date(DoiNgayDangKy(r.TimeStartPass))).valueOf()<timeNow.valueOf()&&(new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()>timeNow.valueOf()){mauPass="green"}
+        //if((new Date(DoiNgayDangKy(r.TimeEndPass))).valueOf()<timeNow.valueOf()){mauPass="orange"}
         if (hoanthanh && r.HTPass == "Okie") {
           var endtime = new Date(DoiNgayDangKy(r.TimeEndPass));
           var starttime = new Date(DoiNgayDangKy(r.TimeStartPass));
@@ -529,7 +523,7 @@ function LoadTimeLine() {
             );
           }
           items.update({
-            className: mau5,
+            className: mauPass,
             id: r.BienSoXe + "_Pass",
             group: "Pass",
             start: starttime,

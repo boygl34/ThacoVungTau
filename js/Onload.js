@@ -29,7 +29,6 @@ function getData() {
     type: "GET",
     success: function (data) {
       useCaher = data;
-
       LoadTimeLine()
 
     },

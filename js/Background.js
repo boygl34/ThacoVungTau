@@ -39,6 +39,7 @@ var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
 var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
 var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất Đỏ", "Châu Đức", "Xuyên Mộc", "Côn Đảo", "KV Khác"];
 var useCaher;
+var MasterData
 var TenCoVan = localStorage.getItem("Ten");
 var PhanQuyen = localStorage.getItem("PhanQuyen");
 var emailnhanvienhen = "quipham@toyotavungtau.com";
@@ -181,10 +182,13 @@ function ngayGiohen(ngayhen) {
 }
 
 function suabienso(myValue) {
+
   var myValue2 = myValue.toUpperCase();
   myValue = myValue.replace(" ", "");
   myValue = myValue.replace("-", "");
   myValue = myValue.replace(".", "");
+
+  checkvaluebienso(myValue)
   if (myValue.length > 5) {
     myValue = myValue.replace("[h] ", "");
     myValue = myValue.replace("[H] ", "");
@@ -281,4 +285,9 @@ function canhBaoThanhCong(tieude, noidung) {
     "<p>Đăng Ký Thành công biến số xe</p>" +
     "</div>" +
     $("#alert").html($("#alert").html() + alert);
+}
+var thongtinkhachhang
+function checkvaluebienso(bienso) {
+  thongtinkhachhang = MasterData.filter(function (r) { return r.BienSoXe == bienso })
+
 }

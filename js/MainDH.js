@@ -336,6 +336,7 @@ function HuyHen() {
 
 
 function changvalue() {
+  console.log(thongtinkhachhang)
   var ojb = useCaher
   for (var a in ojb) {
     $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>")
@@ -358,12 +359,14 @@ function changvalue() {
       }
     }
   }
+
 }
 
 
 
 
 function changvalueBS() {
+  console.log(thongtinkhachhang[0])
   var ojb = useCaher
   for (var a in ojb) {
     $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>")
@@ -378,7 +381,13 @@ function changvalueBS() {
       $("#buttonDK").html("")
       return false
     }
+    var thongtin = thongtinkhachhang[0]
+    if (thongtin.BienSoXe) {
+      document.getElementById("SoDT").value = thongtin.DTNMangXe
+      document.getElementById("KhuVuc").value = thongtin.KhuVuc
+      document.getElementById("TenKH").value = thongtin.NguoiMangXe
 
+    }
   }
 }
 

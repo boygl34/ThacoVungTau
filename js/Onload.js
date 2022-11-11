@@ -9,7 +9,7 @@ $.ajax({
   }
 })
 startWorker()
-startWorker2()
+//startWorker2()
 // getData();
 
 // var timerRunner = 0

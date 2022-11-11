@@ -2,19 +2,18 @@
   <div class="card mb-4">
     <div class="card-header">
       <div class="row">
-        <div class="col-7" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-          aria-controls="collapseExample">
-          <i class="fas fa-table me-1"></i>
-          Đặt Hẹn TVT
+        <div class="col-7">
+          <i class="fas fa-table me-1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample"></i>
+          Đặt Hẹn TVT <i onclick="backwardtime()" style="position: relative;left: 12px;" class="fa fa-backward"
+            aria-hidden="true"></i>
+          <input class="inputdate" style="position: relative;left: 12px;" type="date" id="datefield"
+            onchange="changdate(this.value)">
+          <i onclick="forwardtime()" style="position: relative;left: 12px;" class="fa fa-forward"
+            aria-hidden="true"></i>
         </div>
 
-        <div class="container input-group">
-          <a><i onclick="backwardtime()" class="fa fa-backward" aria-hidden="true"></i></a>
-          <input style="width: 20%" class="form-control" type="date" id="datefield" onchange="changdate(this.value)"
-            aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-          <a>
-            <i onclick="forwardtime()" class="fa fa-forward" aria-hidden="true"></i></a>
-        </div>
+
       </div>
     </div>
 

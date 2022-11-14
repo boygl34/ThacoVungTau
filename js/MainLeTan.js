@@ -63,7 +63,7 @@ function getValueALL() {
     TrangThaiHen: $("#TrangThaiHen").val(),
     LoaiHinhSuaChua: $("#LoaiHinh").val(),
     LoaiHinhDongSon: $("#LoaiHinhBP").val(),
-    TDGapLeTan: TimesClick(),
+    TDGapLeTan: new Date().toISOString(),
     TrangThaiXuong: "02 Chờ Tiếp Nhận",
     CoVanDichVu: $("#CoVanDichVu").val(),
   };
@@ -134,7 +134,7 @@ function DangTiepNhan() {
   );
   var use = {
     TrangThaiXuong: "03 Đang Tiếp Nhận",
-    TDBDTiepKhach: TimesClick(),
+    TDBDTiepKhach: new Date().toISOString(),
   };
   postData(use, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
 }
@@ -295,9 +295,9 @@ function LoadTimeLine() {
   });
   var ngaygiaoxebc = new Date();
   dataArraycb = dataArraycb.filter(function (r) {
-    var daygx = DoiNgayDangKy(r.TDHenGiaoXe).getDate();
-    var monthgx = DoiNgayDangKy(r.TDHenGiaoXe).getMonth();
-    var yeargx = DoiNgayDangKy(r.TDHenGiaoXe).getYear();
+    var daygx = new Date(r.TDHenGiaoXe).getDate();
+    var monthgx = new Date(r.TDHenGiaoXe).getMonth();
+    var yeargx = new Date(r.TDHenGiaoXe).getYear();
     return (
       daygx == ngaygiaoxebc.getDate() &&
       monthgx == ngaygiaoxebc.getMonth() &&
@@ -333,8 +333,8 @@ function LoadTimeLine() {
   });
 
   dataArray0 = dataArray0.sort(function (a, b) {
-    return new Date(DoiNgayDangKy(a.ThoiGianHen)).valueOf() >
-      new Date(DoiNgayDangKy(b.ThoiGianHen)).valueOf()
+    return new Date(a.ThoiGianHen).valueOf() >
+      new Date(b.ThoiGianHen).valueOf()
       ? 1
       : -1;
   });

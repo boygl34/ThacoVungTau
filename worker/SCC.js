@@ -1,6 +1,6 @@
 
 
-var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
+var urlTX = "https://morning-chill-hammer.glitch.me/XeTrongXuong";
 getData()
 setInterval(getData, 90000)
 function getData() {

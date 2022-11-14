@@ -5,23 +5,10 @@ $.ajax({
   type: 'GET',
   success: function (data) {
     localStorage.setItem("ThongSo", JSON.stringify(data))
-
   }
 })
 startWorker()
-startWorker2()
-// getData();
-
-// var timerRunner = 0
-// setInterval(function () {
-//   timerRunner++
-//   if (timerRunner >= 30) {
-//     timerRunner = 0
-//     getData();
-//   }
-// }, 3000);
-
-
+//startWorker2()
 function getData() {
   document.getElementById("loading").style.display = "block"
   $.ajax({
@@ -30,7 +17,6 @@ function getData() {
     success: function (data) {
       useCaher = data;
       LoadTimeLine()
-
     },
   });
 }
@@ -61,6 +47,67 @@ function startWorker2() {
       MasterData = event.data
     };
   }
+}
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  // Toggle the side navigation
+  const sidebarToggle = document.body.querySelector("#sidebarToggle");
+  if (localStorage.getItem("TabDaDong") !== "") {
+    gethtml(localStorage.getItem("TabDaDong"));
+  } else {
+    localStorage.setItem("TabDaDong", "html/Home.html");
+    gethtml(localStorage.getItem("TabDaDong"));
+  }
+
+
+
+  if (sidebarToggle) {
+    //Uncomment Below to persist sidebar toggle between refreshes
+    if (localStorage.getItem("sb|sidebar-toggle") === "true") {
+      document.body.classList.toggle("sb-sidenav-toggled");
+    }
+    sidebarToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.body.classList.toggle("sb-sidenav-toggled");
+      localStorage.setItem("sb|sidebar-toggle", document.body.classList.contains("sb-sidenav-toggled")
+      );
+    });
+  }
+});
+
+
+
+
+
+function hidemodal() {
+  $(".modal").modal("hide");
+}
+
+function gethtml(value) {
+  localStorage.setItem("TabDaDong", value);
+  $("#layoutSidenav_content").html("")
+  $.ajax({
+    url: value,
+    cache: false,
+  })
+    .done(function (html) {
+      $("#layoutSidenav_content").html("")
+      $("#layoutSidenav_content").html(html);
+    })
+    .then(function () {
+      LoadTimeLine();
+    });
+}
+
+function Logout() {
+  localStorage.setItem("userName", "");
+  localStorage.setItem("Password", "");
+  localStorage.setItem("Ten", "");
+  localStorage.setItem("id", "");
+  localStorage.setItem("PhanQuyen", "");
+  localStorage.setItem("BoPhan", "");
+  console.log("logout");
+  window.location = "login.html";
 }
 
 

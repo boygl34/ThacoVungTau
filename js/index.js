@@ -1,6 +1,6 @@
 
-var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong";
-var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao";
+var urlTX = "https://morning-chill-hammer.glitch.me/XeTrongXuong";
+var urlDG = "https://morning-chill-hammer.glitch.me/XeDaGiao";
 var urlThongSo = "https://big-road-newsstand.glitch.me/ThongSo/";
 var dataTX
 var dataDG
@@ -23,7 +23,6 @@ var options = {
     stack: true,
 };
 var ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
-
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
 var NhomCV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomCV" })[0].value)
 var NhomDH = Object.values(ThongSo.filter(function (r) { return r.id == "GruopTDDatHen" })[0].value)
@@ -47,119 +46,158 @@ var KhuVucVT = ["Bà Rịa", "Vũng Tàu", "Long Điền", "Phú Mỹ", "Đất 
 var TenCoVan = localStorage.getItem("Ten");
 var PhanQuyen = localStorage.getItem("PhanQuyen");
 var emailnhanvienhen = "quipham@toyotavungtau.com";
-for (a in KhoangSC) { groups.add({ id: KhoangSC[a], content: KhoangSC[a], }) }
-for (b in KTVDong) { groups.add({ id: KTVDong[b], content: KTVDong[b], }) }
-for (c in NhomSon) { groups.add({ id: NhomSon[c], content: "Nhóm " + NhomSon[c], }) }
-for (c in PhongSon) { groups.add({ id: PhongSon[c], content: PhongSon[c], }) }
-groups.add({ id: "Pass", content: "Pass" })
+// for (a in KhoangSC) { groups.add({ id: KhoangSC[a], content: KhoangSC[a], }) }
+// for (b in KTVDong) { groups.add({ id: KTVDong[b], content: KTVDong[b], }) }
+// for (c in NhomSon) { groups.add({ id: NhomSon[c], content: "Nhóm " + NhomSon[c], }) }
+// for (c in PhongSon) { groups.add({ id: PhongSon[c], content: PhongSon[c], }) }
+// groups.add({ id: "Pass", content: "Pass" })
 //$.get(urlDG, function (data) { dataDG = data; ; });
-$.get(urlThongSo, function (data) { localStorage.setItem("ThongSo", JSON.stringify(data)) });
-$.get(urlTX, function (data) { dataTX = data; LoadTimeLine() });
-var timeline = new vis.Timeline(container, items, groups, options);
-function redraw() { timeline.redraw(); LoadTimeLine() }
 
-function LoadTimeLine() {
-    items.clear()
-    var edit1 = {
-        add: false, // add new items by double tapping
-        updateTime: true, // drag items horizontally
-        updateGroup: true, // drag items from one group to another
-        remove: false, // delete an item by tapping the delete button top right
-        overrideItems: true, // allow these options to override item.editable
-    };
-    for (a in dataTX) {
-        var r = dataTX[a]
-        if (r.LoaiHinhSuaChua && r.TrangThaiSCC && r.TimeStartGJ && r.TimeEndGJ) {
-            items.update({
-                className: trangthaichip(r.TrangThaiSCC),
-                group: r.KhoangSuaChua,
-                start: DoiNgayDangKy(r.TimeStartGJ),
-                end: DoiNgayDangKy(r.TimeEndGJ),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.KyThuatVien1,
-                content: r.BienSoXe,
-            });
-        }
-        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartBody && r.TimeEndBody && r.KyThuatVienDong && r.HTDong) {
-            items.update({
-                className: trangthaichipds(r.HTDong),
-                group: r.KyThuatVienDong,
-                start: DoiNgayDangKy(r.TimeStartBody),
-                end: DoiNgayDangKy(r.TimeEndBody),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.KyThuatVienDong,
-                content: r.BienSoXe + "_Đ",
-            });
-        }
-        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartNen && r.TimeEndNen && r.NhomSon && r.HTNen) {
-            items.update({
-                className: trangthaichipds(r.HTNen),
-                group: r.NhomSon,
-                start: DoiNgayDangKy(r.TimeStartNen),
-                end: DoiNgayDangKy(r.TimeEndNen),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.NhomSon,
-                content: r.BienSoXe + "_N",
-            });
-        }
-        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartLap && r.TimeEndLap && r.KyThuatVienLap && r.HTLap) {
-            items.update({
-                className: trangthaichipds(r.HTLap),
-                group: r.KyThuatVienLap,
-                start: DoiNgayDangKy(r.TimeStartNen),
-                end: DoiNgayDangKy(r.TimeEndNen),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.KyThuatVienLap,
-                content: r.BienSoXe + "_L",
-            });
-        }
-        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartPaint && r.TimeEndPaint && r.NhomSon && r.HTSon && r.PhongSon) {
-            items.update({
-                className: trangthaichipds(r.HTSon),
-                group: r.PhongSon,
-                start: DoiNgayDangKy(r.TimeStartPaint),
-                end: DoiNgayDangKy(r.TimeEndPaint),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.NhomSon,
-                content: r.BienSoXe + "_S",
-            });
-        }
-        if (r.LoaiHinhDongSon && r.CongDoanDongSon && r.TrangThaiDongSon && r.TimeStartPass && r.TimeEndPass && r.NhomSon && r.HTPass) {
-            items.update({
-                className: trangthaichipds(r.HTPass),
-                group: "Pass",
-                start: DoiNgayDangKy(r.TimeStartPass),
-                end: DoiNgayDangKy(r.TimeEndPass),
-                editable: edit1,
-                title: r.CoVanDichVu + " " + r.NhomSon,
-                content: r.BienSoXe + "_P",
-            });
-        }
+//svar timeline = new vis.Timeline(container, items, groups, options);
+// function LoadTimeLine() {
+//     document.getElementById("loading").style.display = "none"
+//     items.clear()
+//     var edit1 = {
+//         add: false, // add new items by double tapping
+//         updateTime: true, // drag items horizontally
+//         updateGroup: true, // drag items from one group to another
+//         remove: false, // delete an item by tapping the delete button top right
+//         overrideItems: true, // allow these options to override item.editable
+//     };
+//     for (a in useCaher) {
+//         var r = useCaher[a]
+//         if (r.LoaiHinhSuaChua && r.TrangThaiSCC && r.TimeStartGJ && r.TimeEndGJ) {
+//             items.update({
+//                 className: trangthaichip(r.TrangThaiSCC),
+//                 group: r.KhoangSuaChua,
+//                 start: r.TimeStartGJ,
+//                 end: r.TimeEndGJ,
+//                 editable: edit1,
+//                 title: r.CoVanDichVu + " " + r.KyThuatVien1,
+//                 content: r.BienSoXe,
+//             });
+//         }
 
+
+//     }
+// }
+
+// trangthaichip = value => {
+//     if (value == `Đang SC`) { return `green` }
+//     if (value == "Chờ SC") { return "orange" }
+//     if (value == "Đã SC") { return "magenta" }
+//     if (value == "Dừng CV") { return "red" }
+// }
+// trangthaichipds = value => {
+//     if (value == `SC`) { return `green` }
+//     if (value == "KH") { return "orange" }
+//     if (value == "Okie") { return "magenta" }
+// }
+function postData(data, url, methor) {
+    fetch(url, {
+        method: methor,
+        //mode: 'cors', // no-cors, *cors, same-origin
+        //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        // credentials: 'omit', // or 'PUT'
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            getData();
+        });
+}
+function deleteData(url) {
+    fetch(url, {
+        method: "DELETE", // or 'PUT'
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            getData(urlTX);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+function checkID(MaSo) {
+    var ojb = useCaher;
+    for (var a in ojb) {
+        if (ojb[a].MaSo == MaSo) {
+            return ojb[a].id;
+        }
     }
 }
 
-trangthaichip = value => {
-    if (value == `Đang SC`) { return `green` }
-    if (value == "Chờ SC") { return "orange" }
-    if (value == "Đã SC") { return "magenta" }
-    if (value == "Dừng CV") { return "red" }
-}
-trangthaichipds = value => {
-    if (value == `SC`) { return `green` }
-    if (value == "KH") { return "orange" }
-    if (value == "Okie") { return "magenta" }
-}
-DoiNgayDangKy = ngayhen => {
-    if (ngayhen) {
-        var Thang = ngayhen.slice(3, 5);
-        var Ngay = ngayhen.slice(0, 2);
-        var Nam = ngayhen.slice(6, 10);
-        var Gio = ngayhen.slice(11, 13);
-        var Phut = ngayhen.slice(14, 16);
-        var ThoiGianMoi = `${Nam}-${Thang}-${Ngay}T${Gio}:${Phut}:00Z`;
-        var aa = new Date(ThoiGianMoi);
-        aa = new Date(aa - 7 * 60 * 60 * 1000);
+function suabienso(myValue) {
+
+    var myValue2 = myValue.toUpperCase();
+    myValue = myValue.replace(" ", "");
+    myValue = myValue.replace("-", "");
+    myValue = myValue.replace(".", "");
+
+    checkvaluebienso(myValue)
+    if (myValue.length > 5) {
+        myValue = myValue.replace("[h] ", "");
+        myValue = myValue.replace("[H] ", "");
+        myValue = myValue.replace("[L] ", "");
+        var ins = myValue.indexOf("-");
+        var BiensoLD = myValue.slice(2, 4).toUpperCase();
+        if (ins == "-1" && BiensoLD == "LD") {
+            myValue = myValue.slice(0, 4) + "-" + myValue.slice(4, myValue.length);
+        }
+        if (ins == "-1" && BiensoLD != "LD") {
+            myValue = myValue.slice(0, 3) + "-" + myValue.slice(3, myValue.length);
+        }
+        var myValue1 = myValue.replace(myValue.charAt(myValue.indexOf(".")), "");
+        var soxe = myValue1.slice(myValue1.indexOf("-") + 1, myValue1.length);
+        var aa = myValue1.slice(myValue1.length - 2, myValue1.length);
+        if (soxe.length == 5) {
+            var aaaa =
+                soxe.charAt(0) +
+                soxe.charAt(1) +
+                soxe.charAt(2) +
+                soxe.charAt(3) +
+                soxe.charAt(4);
+            var bbbb =
+                soxe.charAt(0) +
+                soxe.charAt(1) +
+                soxe.charAt(2) +
+                "." +
+                soxe.charAt(3) +
+                soxe.charAt(4);
+            var myValue2 = myValue1.toString(6).replace(aaaa, bbbb).toUpperCase();
+        } else {
+            var myValue2 = myValue1.toUpperCase();
+        }
     }
-    return aa;
+    return myValue2;
 }
+
+$(".Ngay").datetimepicker({
+    format: "dd/mm/yyyy HH:MM:00 ",
+    uiLibrary: "bootstrap4",
+    modal: true,
+    footer: true,
+    datepicker: {
+        disableDates: function (date) {
+            const currentDate = new Date().setHours(0, 0, 0, 0);
+            return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+        },
+    },
+});
+$(".Ngay2").datetimepicker({
+    format: "dd/mm/yyyy HH:MM:00 ",
+    uiLibrary: "bootstrap4",
+    modal: true,
+    footer: true,
+    datepicker: {
+        disableDates: function (date) {
+            const currentDate = new Date().setHours(0, 0, 0, 0);
+            return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+        },
+    },
+});
+
+

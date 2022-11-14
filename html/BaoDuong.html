@@ -154,15 +154,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Sữa Chữa Chung</h5>
-                <h5 style="float: right" id="biensoscc"></h5>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="FormSCC" autocomplete="off">
-                    <div id="mesenge">
-                        <div class="alert alert-success">WellCome!!</div>
-                    </div>
 
                     <div class="form-row">
                         <div class="form-group col-6" style="display: none">
@@ -196,36 +191,15 @@
                             <input required class="form-control" id="TrangThai" disabled name="TrangThai" />
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-9">
-                            <label for="GioBatDauSCC">Giờ Bắt Đầu</label>
-                            <input required type="text" class="form-control" id="GioBatDauSCC"
-                                onchange="GioKetThucSCC()" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12">
-                            <div class="slidecontainer">
-                                <label class="control-label" for="ThoiGianSC">Thời Gian SCT</label>
-                                <input style="width: 100%; height: 5%" type="range" min="1" max="60" class="slider"
-                                    id="rangerThoiGianSCC" />
-                                <input required type="number" id="inputThoiGianSCC" onchange="GioKetThucSCC()"
-                                    class="form-control col-4" />
-                            </div>
-                        </div>
-                    </div>
+
+
                     <div class="form-row">
                         <div class="form-group col-8">
                             <label for="GioKetThucSC">Giờ Kết Thúc</label>
-                            <input required type="text" class="form-control Ngay" id="GioKetThucSC" />
+                            <input required type="datetime-local" class="form-control" name="TimeEndGJ "
+                                id="TimeEndGJ" />
                         </div>
-                        <div class="form-group col-4">
-                            <label for="KhachRuaXe">Rửa Xe</label>
-                            <select class="form-control" id="KhachRX" required onchange="RuaXechange()">
-                                <option value="Không Rửa"></option>
-                                <option value="Rửa Xe">Rửa Xe</option>
-                            </select>
-                        </div>
+
                     </div>
                     <div class="form-row col-12">
                         <div class="form-group col-4">
@@ -301,11 +275,7 @@
         </div>
     </div>
 </div>
-
-<script src="js/Background.js"></script>
-<script src="js/Onload.js"></script>
-<script src="js/TimelineScc.js"></script>
-<script src="js/MainSCC.js"></script>
+<script src="js/BaoDuong.js"></script>
 <script>
     var today = new Date();
     var dd = today.getDate();

@@ -1,71 +1,20 @@
-//getData(urlTX).then(DanhSachCoVan()).then(loadData ())
 
-DanhSachCoVan2();
 
-function postData(data, url, methor) {
-  fetch(url, {
-    method: methor, // or 'PUT'
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      getData();
-      $("#mesenge").html(
-        "<div class='alert alert-success'>Đăng Ký Thành Công</div>"
-      );
-      document.getElementById("myForm").reset();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-function deleteData(url) {
-  fetch(url, {
-    method: "DELETE", // or 'PUT'
-    headers: { "Content-Type": "application/json" },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      getData();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
 
-function checkID(MaSo) {
-  var ojb = useCaher;
-  for (var a in ojb) {
-    if (ojb[a].MaSo == MaSo) {
-      return ojb[a].id;
-    }
-  }
-}
-
-function DanhSachCoVan2() {
-  var values = NhomCV;
-  var list = document.getElementById("CoVanDichVu");
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
-  }
-}
 
 function getValueALL() {
   var use = {
     MaSo: $("#MaSo").val(),
     BienSoXe: $("#BienSoXe").val(),
-    TenKH: $("#TenKH").val(),
-    SoThe: $("#SoThe").val(),
-    TrangThaiHen: $("#TrangThaiHen").val(),
+    // TenKH: $("#TenKH").val(),
+    // SoThe: $("#SoThe").val(),
+    //TrangThaiHen: $("#TrangThaiHen").val(),
+    TDHenGiaoXe: $("#TDHenGiaoXe").val(),
     LoaiHinhSuaChua: $("#LoaiHinh").val(),
     LoaiHinhDongSon: $("#LoaiHinhBP").val(),
     TDGapLeTan: new Date().toISOString(),
     TrangThaiXuong: "02 Chờ Tiếp Nhận",
-    CoVanDichVu: $("#CoVanDichVu").val(),
+    CoVanDichVu: localStorage.getItem("Ten"),
   };
   if (LoaiHinh.value) {
     use["TrangThaiSCC"] = "Chờ SC";
@@ -83,61 +32,21 @@ function getValueALL() {
 }
 
 function DangKy() {
-  if ($("#TenKH").val() == "") {
-    $("#mesenge").html("<div class='alert alert-danger'>Chưa Có Tên KH</div>");
-    return false;
-  }
-  if ($("#SoThe").val() == "") {
-    $("#mesenge").html("<div class='alert alert-danger'>Chưa Số Thẻ</div>");
-    return false;
-  }
   if ($("#LoaiHinh").val() == "" && $("#LoaiHinhBP").val() == "") {
     $("#mesenge").html("<div class='alert alert-danger'>Chưa Loại Hình</div>");
     return false;
   }
-  if ($("#CoVan").val() == "") {
-    $("#mesenge").html(
-      "<div class='alert alert-danger'>Chưa Chọn Cố Vấn</div>"
-    );
+  if ($("#TDHenGiaoXe").val() == "") {
+    $("#mesenge").html("<div class='alert alert-danger'>Chưa có Giờ Giao Xe</div>");
     return false;
   }
-  $("#mesenge").html(
-    "<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Đăng Ký</div>"
-  );
   if (checkID($("#MaSo").val())) {
     postData(getValueALL(), urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
   } else {
     postData(getValueALL(), urlTX, "POST");
   }
 }
-function ChuanBi() {
-  $("#mesenge").html(
-    "<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Chuyển Trạng Thái</div>"
-  );
-  var use = {
-    TrangThaiXuong: "02 Chuẩn Bị Tiếp",
-  };
-  postData(use, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
-}
-function ChoTiepNhan() {
-  $("#mesenge").html(
-    "<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Chuyển Trạng Thái</div>"
-  );
-  var use = {
-    TrangThaiXuong: "02 Chờ Tiếp Nhận",
-  };
-  postData(use, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
-}
-function DangTiepNhan() {
-  $("#mesenge").html(
-    "<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Chuyển Trạng Thái</div>"
-  );
-  var use = {
-    TrangThaiXuong: "03 Đang Tiếp Nhận",
-    TDBDTiepKhach: new Date().toISOString(),
-  };
-  postData(use, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
-}
+
 function HuyDK() {
   let text = "Hủy Tiếp Nhận";
   if (confirm(text) == true) {
@@ -279,243 +188,46 @@ function changvalue() {
   }
 }
 
+LoadTimeLine()
 //---------------------------------------------------------------------------------------------
 function LoadTimeLine() {
-  // tieude.innerHTML = "Cố Vấn "+ Doingay()
-  var dataArray = useCaher;
-  var dataArraycb = dataArray.filter(function (r) {
-    return r.KhachHangDoi === "Khách Đợi";
+  var dataArray0 = useCaher;
+  var CoVan = TenCoVan;
+  var dataArray = dataArray0.filter(function (r) {
+    return r.CoVanDichVu === CoVan && r.TrangThaiXuong !== "09 Đã Giao Xe";
   });
-  dataArraycb = dataArraycb.filter(function (r) {
-    return (
-      r.TrangThaiXuong !== "09 Đã Giao Xe" &&
-      r.TDHenGiaoXe &&
-      r.CoVanDichVu == localStorage.getItem("Ten")
-    );
-  });
-  var ngaygiaoxebc = new Date();
-  dataArraycb = dataArraycb.filter(function (r) {
-    var daygx = new Date(r.TDHenGiaoXe).getDate();
-    var monthgx = new Date(r.TDHenGiaoXe).getMonth();
-    var yeargx = new Date(r.TDHenGiaoXe).getYear();
-    return (
-      daygx == ngaygiaoxebc.getDate() &&
-      monthgx == ngaygiaoxebc.getMonth() &&
-      yeargx == ngaygiaoxebc.getYear()
-    );
-  });
-  if (localStorage.getItem("PhanQuyen") != "LeTan") {
-    dataArraycb.forEach(function (r) {
-      if (r.TrangThaiXuong == "07 Đang Rửa Xe") {
-        canhBao2(
-          "Rửa Xe",
-          r.CoVanDichVu + " Có Xe " + r.BienSoXe + " Đang Rửa ",
-          "success"
-        );
+
+  $("#tableTrongXuong").DataTable({
+    data: dataArray,
+    paging: false,
+    destroy: true,
+    ordering: true,
+    info: false,
+    searching: false,
+    createdRow: function (row, data, dataIndex, cells) {
+      if (data.TrangThaiDongSon == "Đang SC") {
+        $(row).addClass("DangSuaChua");
       }
-      if (r.TrangThaiXuong == "08 Chờ Giao Xe") {
-        canhBao2(
-          "Giao Xe",
-          r.CoVanDichVu + " Có Xe " + r.BienSoXe + " Đang Chờ Giao",
-          "danger"
-        );
+      if (data.TrangThaiDongSon == "Chờ SC") {
+        $(row).addClass("ChoSuaChua");
       }
-    });
-    document.getElementById("loading").style.display = "none"
-  }
-
-  var dataArray0 = dataArray.filter(function (r) {
-    return (
-      r.TrangThaiXuong === "02 Chờ Tiếp Nhận" ||
-      r.TrangThaiXuong === "02 Chuẩn Bị Tiếp" ||
-      r.TrangThaiXuong === "03 Đang Tiếp Nhận"
-    );
-  });
-
-  dataArray0 = dataArray0.sort(function (a, b) {
-    return new Date(a.ThoiGianHen).valueOf() >
-      new Date(b.ThoiGianHen).valueOf()
-      ? 1
-      : -1;
-  });
-  dataArray0 = dataArray0.sort(function (a, b) {
-    return a.TrangThaiXuong.toLowerCase() > b.TrangThaiXuong.toLowerCase()
-      ? 1
-      : -1;
-  });
-  var tbodyTim = document.getElementById("table-body-Tim-xe");
-  tbodyTim.innerHTML = "";
-
-  dataArray0.forEach(function (r) {
-    var row = document.createElement("tr");
-    var BienSo = document.createElement("td");
-    BienSo.innerHTML = r.BienSoXe;
-    if (r.TrangThaiHen == "Đúng Giờ") {
-      BienSo.innerHTML = "[H] " + r.BienSoXe;
-    }
-    if (r.TrangThaiHen == "Đến Trễ") {
-      BienSo.innerHTML = "[T] " + r.BienSoXe;
-    }
-    if (r.TrangThaiHen == "Đến Sớm") {
-      BienSo.innerHTML = "[S] " + r.BienSoXe;
-    }
-    if (r.TrangThaiHen == "Không Đúng Hẹn") {
-      BienSo.innerHTML = "[h] " + r.BienSoXe;
-    }
-    if (r.NoiDungHen && r.NoiDungHen.toUpperCase().indexOf("VIP") >= 0) {
-      BienSo.innerHTML = "[V] " + r.BienSoXe;
-    }
-    row.appendChild(BienSo);
-    var SoThe = document.createElement("td");
-    SoThe.innerHTML = r.SoThe;
-    row.appendChild(SoThe);
-    var TenKH = document.createElement("td");
-    TenKH.innerHTML = r.TenKH;
-    row.appendChild(TenKH);
-    var GioHen = document.createElement("td");
-    if (r.ThoiGianHen) {
-      GioHen.innerHTML = Doingay(DoiNgayDangKy(r.ThoiGianHen));
-    } else {
-      GioHen.innerHTML = "";
-    }
-    row.appendChild(GioHen);
-    var LHGJ = document.createElement("td");
-    if (r.LoaiHinhSuaChua) {
-      LHGJ.innerHTML = r.LoaiHinhSuaChua;
-    } else {
-      LHGJ.innerHTML = "";
-    }
-    row.appendChild(LHGJ);
-    var LHBP = document.createElement("td");
-    if (r.LoaiHinhDongSon) {
-      LHBP.innerHTML = r.LoaiHinhDongSon;
-    } else {
-      LHBP.innerHTML = "";
-    }
-    row.appendChild(LHBP);
-    var CoVan = document.createElement("td");
-    if (r.CoVanDichVu) {
-      CoVan.innerHTML = r.CoVanDichVu;
-    } else {
-      CoVan.innerHTML = "";
-    }
-    row.appendChild(CoVan);
-    var trangtx = document.createElement("td");
-    if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận") {
-      trangtx.innerHTML = "Chờ Tiếp Nhận";
-      row.setAttribute("class", "ChoTiepNhan");
-    } else if (r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-      trangtx.innerHTML = "Chuẩn Bị Tiếp";
-      row.setAttribute("class", "SapTiepNhan");
-    } else if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
-      trangtx.innerHTML = "Đang Tiếp Nhận";
-      row.setAttribute("class", "DangTiepNhan");
-    } else {
-      trangtx.innerHTML = "";
-    }
-    row.appendChild(trangtx);
-    var TGCHO = document.createElement("td");
-    if (r.TrangThaiXuong == "02 Chờ Tiếp Nhận") {
-      TGCHO.innerHTML =
-        Math.round(
-          ((new Date().valueOf() -
-            new Date(DoiNgayDangKy(r.TDGapLeTan)).valueOf()) /
-            (60 * 1000)) *
-          1
-        ) / 1;
-    }
-    if (r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") {
-      TGCHO.innerHTML =
-        Math.round(
-          ((new Date().valueOf() -
-            new Date(DoiNgayDangKy(r.TDGapLeTan)).valueOf()) /
-            (60 * 1000)) *
-          1
-        ) / 1;
-    }
-    if (r.TrangThaiXuong == "03 Đang Tiếp Nhận") {
-      TGCHO.innerHTML =
-        Math.round(
-          ((new Date().valueOf() -
-            new Date(DoiNgayDangKy(r.TDBDTiepKhach)).valueOf()) /
-            (60 * 1000)) *
-          1
-        ) / 1;
-    }
-    row.appendChild(TGCHO);
-
-    var MaSo = document.createElement("td");
-    if (r.MaSo) {
-      MaSo.innerHTML = r.MaSo;
-    } else {
-      MaSo.innerHTML = "";
-    }
-    row.appendChild(MaSo);
-    tbodyTim.appendChild(row);
-  });
-
-  var dataArrayhen = dataArray.filter(function (r) {
-    return r.TrangThaiXuong === "00 Có Hẹn";
-  });
-  dataArrayhen = dataArrayhen.sort(function (a, b) {
-    return a.ThoiGianHen.toLowerCase() > b.ThoiGianHen.toLowerCase() ? 1 : -1;
-  });
-  var tbodyhen = document.getElementById("table-body-hen");
-  tbodyhen.innerHTML = "";
-  dataArrayhen.forEach(function (r) {
-    var row = document.createElement("tr");
-    var GioHen = document.createElement("td");
-    if (r.ThoiGianHen) {
-      GioHen.innerHTML = Doingay(DoiNgayDangKy(r.ThoiGianHen));
-    } else {
-      GioHen.innerHTML = "";
-    }
-    row.appendChild(GioHen);
-    var BienSo = document.createElement("td");
-    BienSo.innerHTML = r.BienSoXe;
-    row.appendChild(BienSo);
-    var TenKH = document.createElement("td");
-    TenKH.innerHTML = r.TenKH;
-    row.appendChild(TenKH);
-    var CoVan = document.createElement("td");
-    if (r.CoVanDichVu) {
-      CoVan.innerHTML = r.CoVanDichVu;
-    } else {
-      CoVan.innerHTML = "";
-    }
-    row.appendChild(CoVan);
-    var LHGJ = document.createElement("td");
-    if (r.LoaiHinhSuaChua) {
-      LHGJ.innerHTML = r.LoaiHinhSuaChua;
-    } else {
-      LHGJ.innerHTML = "";
-    }
-    row.appendChild(LHGJ);
-    var LHBP = document.createElement("td");
-    if (r.LoaiHinhDongSon) {
-      LHBP.innerHTML = r.LoaiHinhDongSon;
-    } else {
-      LHBP.innerHTML = "";
-    }
-    row.appendChild(LHBP);
-    var NoiDungCV = document.createElement("td");
-    if (r.NoiDungHen) {
-      NoiDungCV.innerHTML = r.NoiDungHen;
-    } else {
-      NoiDungCV.innerHTML = "";
-    }
-    row.appendChild(NoiDungCV);
-    var MaSo = document.createElement("td");
-    if (r.MaSo) {
-      MaSo.innerHTML = r.MaSo;
-    } else {
-      MaSo.innerHTML = "";
-    }
-    row.appendChild(MaSo);
-    tbodyhen.appendChild(row);
+      if (data.TrangThaiDongSon == "Dừng SC") {
+        $(row).addClass("DungSuaChua");
+      }
+      // $(cells[5]).html(data.TDHenGiaoXe.replace("T", " "));
+      // $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)));
+    },
+    columns: [
+      { data: "BienSoXe", defaultContent: "" },
+      { data: "LoaiHinhSuaChua", defaultContent: "" },
+      { data: "TrangThaiSCC", defaultContent: "" },
+      { data: "LoaiHinhDongSon", defaultContent: "" },
+      { data: "TrangThaiDongSon", defaultContent: "" },
+      { data: "TDHenGiaoXe", defaultContent: "" },
+      { data: "id", defaultContent: "" },
+    ],
   });
 }
-
 function clickTableTiepNhan() {
   var table = document.getElementById("data-table");
   for (var i = 1; i < table.rows.length; i++) {

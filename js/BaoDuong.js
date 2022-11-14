@@ -1,7 +1,7 @@
 var items = new vis.DataSet();
 var container = document.getElementById("mytimeline");
 var groups = new vis.DataSet();
-var today = vis.moment(vis.moment.utc("+7:00").format('YYYY-MM-DDT00:00'));
+
 
 var options = {
   hiddenDates: [
@@ -54,7 +54,7 @@ var options = {
   editable: true,
   autoResize: true,
   zoomable: false,
-  moveable: false,
+  //moveable: false,
   margin: {
     item: 0.5, // distance between items
     axis: 0.5, // distance between items and the time axis
@@ -123,6 +123,7 @@ timeline.on("contextmenu", function (props) {
       }
     }
     $("#TTHuyChip").val(props.item);
+
   }
   props.event.preventDefault();
 });
@@ -148,8 +149,10 @@ function LoadTimeLine() {
   var dataArray0 = useCaher;
   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
+
   for (var a in dataArray1) {
     r = dataArray1[a];
+
     var hoanthanh = document.getElementById("checkbox-3").checked;
     var tthen = "";
     var start = new Date(r.TimeStartGJ);
@@ -181,6 +184,7 @@ function LoadTimeLine() {
     if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
     if (r.TimeEndGJ) { var endRX = new Date((r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
     if (new Date(r.TimeEndGJ).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
+
     if (r.TrangThaiSCC !== "Dừng CV") {
       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
         items.update({
@@ -204,6 +208,7 @@ function LoadTimeLine() {
           content: r.BienSoXe,
         });
       }
+
       // if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
       //   var classname2 = "orange";
       //   if (r.TrangThaiXuong == "07 Đang Rửa Xe") { classname2 = "green"; }
@@ -266,7 +271,7 @@ function handleDragStart(event) {
     TimeStartGJ: new Date(timelineProperties.time),
     TrangThaiSCC: "Chờ SC",
     KhoangSuaChua: timelineProperties.group,
-    TimeEndGJ: formatDatetime(new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf()))
+    TimeEndGJ: new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf())
   };
   postData(json2, urlTX + "/" + id, "PATCH");
 }
@@ -303,6 +308,21 @@ function huyChip(item) {
       }
     }
   }
+}
+function BatDauSC2(item) {
+  item = $("#TTHuyChip").val();
+  console.log($("#ChieuDaiChip").val());
+  var start = new Date().toJSON()
+  var end = new Date(new Date(start).valueOf() + $("#ChieuDaiChip").val() * 1).toJSON()
+  var json2 = {
+    TimeStartGJ: formatDatetime(start),
+    TimeEndGJ: formatDatetime(end),
+    TrangThaiSCC: "Đang SC",
+    TrangThaiXuong: "05 Đang Sửa Chữa"
+  };
+  console.log(json2);
+  postData(json2, urlTX + "/" + item, "PATCH");
+
 }
 function redraw() {
   timeline.redraw();

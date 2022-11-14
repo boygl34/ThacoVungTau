@@ -1,7 +1,7 @@
 var items = new vis.DataSet();
 var container = document.getElementById("mytimeline");
 var groups = new vis.DataSet();
-var today = vis.moment(vis.moment.utc("+7:00").format('YYYY-MM-DDT00:00:00.000Z'));
+var today = vis.moment(vis.moment.utc("+7:00").format('YYYY-MM-DDT00:00'));
 
 var options = {
   hiddenDates: [
@@ -18,9 +18,11 @@ var options = {
   ],
   onMove: function (item) {
     document.getElementById("loading").style.display = "block"
+    var start = item.start.toJSON()
+    var end = item.end.toJSON()
     var json2 = {
-      TimeStartGJ: item.start,
-      TimeEndGJ: item.end,
+      TimeStartGJ: formatDatetime(start),
+      TimeEndGJ: formatDatetime(end),
       KhoangSuaChua: item.group
     };
     postData(json2, urlTX + "/" + item.id, "PATCH")
@@ -35,10 +37,10 @@ var options = {
         var value = Object.values(data)
         for (a in key) {
           $(`#${key[a]}`).val(value[a])
-          if (key[a] == "TimeEndGJ") {
-            var TimeEndGJ = new Date(new Date(value[a]).valueOf() + 7 * 60 * 60 * 1000).toJSON().slice(0, value[a].length - 8);
-            $(`#${key[a]}`).val(TimeEndGJ)
-          }
+          // if (key[a] == "TimeEndGJ") {
+          //   var TimeEndGJ = new Date(new Date(value[a]).valueOf() + 7 * 60 * 60 * 1000).toJSON().slice(0, value[a].length - 8);
+          //   $(`#${key[a]}`).val(TimeEndGJ)
+          // }
         }
         $("#ModalSCC").modal("show")
       }
@@ -53,7 +55,6 @@ var options = {
   autoResize: true,
   zoomable: false,
   moveable: false,
-
   margin: {
     item: 0.5, // distance between items
     axis: 0.5, // distance between items and the time axis
@@ -265,7 +266,7 @@ function handleDragStart(event) {
     TimeStartGJ: new Date(timelineProperties.time),
     TrangThaiSCC: "Chờ SC",
     KhoangSuaChua: timelineProperties.group,
-    TimeEndGJ: new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf())
+    TimeEndGJ: formatDatetime(new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf()))
   };
   postData(json2, urlTX + "/" + id, "PATCH");
 }
@@ -390,12 +391,13 @@ function NhomSC(values) {
     list.appendChild(option);
   }
 }
+
 function changeNhom() {
   var nhom = document.getElementById("NhomKTV").value;
   var json2 = {
     NhomKTV: $("#NhomKTV").val(),
   };
-  postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
+  postData(json2, urlTX + "/" + $('#id').val(), "PATCH");
   if (nhom == "Bạo") {
     NhanVienDropDown(KTVBao);
   }
@@ -407,7 +409,17 @@ function changeNhom() {
   }
 }
 
+formatDatetime = (value) => {
+  return new Date(new Date(value).valueOf() + 7 * 60 * 60 * 1000).toJSON().slice(0, value.length - 8);
+}
+changeTimeEnd = () => {
+  var json2 = {
+    TimeEndGJ: $("#TimeEndGJ").val(),
+  };
+  postData(json2, urlTX + "/" + $('#id').val(), "PATCH");
+}
 KhoangSuaChua(KhoangSC);
+
 function KhoangSuaChua(values) {
   var list = document.getElementById("KhoangSuaChua");
   for (var i = 0; i < values.length; i++) {
@@ -417,6 +429,7 @@ function KhoangSuaChua(values) {
     list.appendChild(option);
   }
 }
+
 CoVanlist(NhomCV);
 function CoVanlist(values) {
   var list = document.getElementById("CoVanDichVu");
@@ -427,15 +440,3 @@ function CoVanlist(values) {
     list.appendChild(option);
   }
 }
-$(".Ngay").datetimepicker({
-  format: "yyyy-mm-dd HH:MM:00",
-  uiLibrary: "bootstrap4",
-  modal: true,
-  footer: true,
-  datepicker: {
-    disableDates: function (date) {
-      const currentDate = new Date().setHours(0, 0, 0, 0);
-      return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
-    },
-  },
-});

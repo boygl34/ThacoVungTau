@@ -158,7 +158,7 @@
             </div>
             <div class="modal-body">
                 <form id="FormSCC" autocomplete="off">
-
+                    <input id="id" name="id" style="display: none;">
                     <div class="form-row">
                         <div class="form-group col-6" style="display: none">
                             <label for="MaSo">Mã Số</label>
@@ -196,8 +196,8 @@
                     <div class="form-row">
                         <div class="form-group col-8">
                             <label for="GioKetThucSC">Giờ Kết Thúc</label>
-                            <input required type="datetime-local" class="form-control" name="TimeEndGJ "
-                                id="TimeEndGJ" />
+                            <input required type="datetime-local" class="form-control" name="TimeEndGJ " id="TimeEndGJ"
+                                onchange="changeTimeEnd()">
                         </div>
 
                     </div>

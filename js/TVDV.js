@@ -16,12 +16,12 @@ function getValueALL() {
     TrangThaiXuong: "02 Chờ Tiếp Nhận",
     CoVanDichVu: localStorage.getItem("Ten"),
   };
-  if (LoaiHinh.value) {
+  if ($("#LoaiHinhSuaChua").val()) {
     use["TrangThaiSCC"] = "Chờ SC";
   } else {
     use["TrangThaiSCC"] = "";
   }
-  if (LoaiHinhBP.value) {
+  if ($("#LoaiHinhDongSon").val()) {
     use["CongDoanDongSon"] = "Chờ SC";
     use["TrangThaiDongSon"] = "Chờ SC";
   } else {
@@ -47,74 +47,40 @@ function DangKy() {
   }
 }
 
-function HuyDK() {
-  let text = "Hủy Tiếp Nhận";
-  if (confirm(text) == true) {
-    var MaSo = $("#MaSo").val();
+function GiaoXe() {
 
-    try {
-      json3 = { TrangThaiXuong: "02 Hủy Tiếp Nhận" };
-
-      fetch(urlTX + "/" + checkID(MaSo), {
-        method: "PATCH", // or 'PUT'
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(json3),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbxIfaWmzDpVW3erjRGP6y-da5aEOKaG5tKrQYz-wrqSpHKqPU0zNqsc_BUxZ-bhEnKL/exec",
-            method: "GET",
-            mode: "no-cors",
-            credentials: "omit",
-            referrerPolicy: "no-referrer",
-            dataType: "json",
-            data: data,
-          });
-
-          var data2 = data;
-          delete data2.id;
-          postData(data2, urlDG, "POST");
-          deleteData(urlTX + "/" + checkID(data.MaSo));
-        });
-    } catch (error) {
-      alert("Lỗi : " + error);
+  var json2 = {
+    TrangThaiXuong: "09 Đã Giao Xe",
+    TDRaKhoicong: new Date().toJSON()
+  }
+  $.ajax({
+    url: urlTX + '/' + $("#id").val(),
+    method: "PATCH",
+    data: json2,
+    success: function (data) {
+      delete data.id;
+      $.ajax({
+        url: urlDG,
+        method: "POST",
+        data: data,
+        success: function (data2) {
+          deleteData(urlTX + "/" + $("#id").val());
+          getData()
+        }
+      });
     }
-  }
+  });
+
+
+
+
+
 }
-function CapNhat() {
-  $("#mesenge").html(
-    "<div class='alert alert-success'><div class='spinner-border text-success' role='status'><span class='sr-only'>Loading...</span></div>Đang Cập Nhật</div>"
-  );
-  var use = {
-    MaSo: $("#MaSo").val(),
-    BienSoXe: $("#BienSoXe").val(),
-    TenKH: $("#TenKH").val(),
-    SoThe: $("#SoThe").val(),
-    TrangThaiHen: $("#TrangThaiHen").val(),
-    LoaiHinhSuaChua: $("#LoaiHinh").val(),
-    LoaiHinhDongSon: $("#LoaiHinhBP").val(),
-    TrangThaiXuong: "02 Chờ Tiếp Nhận",
-    CoVanDichVu: $("#CoVanDichVu").val(),
-  };
-  if (LoaiHinh.value) {
-    use["TrangThaiSCC"] = "Chờ SC";
-  } else {
-    use["TrangThaiSCC"] = "";
-  }
-  if (LoaiHinhBP.value) {
-    use["CongDoanDongSon"] = "Chờ SC";
-    use["TrangThaiDongSon"] = "Chờ SC";
-  } else {
-    use["CongDoanDongSon"] = "";
-    use["TrangThaiDongSon"] = "";
-  }
-  postData(use, urlTX + "/" + checkID($("#MaSo").val()), "PATCH");
-}
+
 
 function changvalue() {
   var ojb = useCaher;
-  getValueALL();
+  //getValueALL();
   NutNhan.innerHTML = "";
   document.getElementById("MaSo").value = TaoMaSo() + $("#BienSoXe").val();
   $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
@@ -128,36 +94,14 @@ function changvalue() {
       if (ojb[a].MaSo) {
         document.getElementById("MaSo").value = ojb[a].MaSo;
       }
-      if (ojb[a].CoVanDichVu) {
-        document.getElementById("CoVanDichVu").value = ojb[a].CoVanDichVu;
-      }
       if (ojb[a].LoaiHinhDongSon) {
         document.getElementById("LoaiHinhBP").value = ojb[a].LoaiHinhDongSon;
       }
       if (ojb[a].LoaiHinhSuaChua) {
         document.getElementById("LoaiHinh").value = ojb[a].LoaiHinhSuaChua;
       }
-      if (ojb[a].ThoiGianHen) {
-        document.getElementById("GioHen").value = Doingay(
-          DoiNgayDangKy(ojb[a].ThoiGianHen)
-        );
-      }
-      if (ojb[a].CoVanDichVu) {
-        document.getElementById("CoVanDichVu").value = ojb[a].CoVanDichVu;
-      }
-      if (ojb[a].NoiDungHen) {
-        document.getElementById("NoiDungCV").value = ojb[a].NoiDungHen;
-      }
-      if (ojb[a].TenKH) {
-        document.getElementById("TenKH").value = ojb[a].TenKH;
-      }
       if (ojb[a].SoThe) {
         document.getElementById("SoThe").value = ojb[a].SoThe;
-      }
-      if (ojb[a].ThoiGianHen) {
-        document.getElementById("TrangThaiHen").value = TrangThaiHen(
-          ojb[a].ThoiGianHen
-        );
       }
       if (ojb[a].TrangThaiXuong) {
         document.getElementById("ThongTin").value = ojb[a].TrangThaiXuong;
@@ -248,6 +192,7 @@ function clickTableTiepNhan() {
           for (a in key) {
             $(`#${key[a]}`).val(value[a])
           }
+          $("#NutNhan").html('<button type="button" class="btn btn-primary" onclick="GiaoXe()" >Giao Xe</button>')
         }
       })
     };
@@ -255,25 +200,7 @@ function clickTableTiepNhan() {
 }
 
 
-function TrangThaiHen(NgayHen) {
-  var TDhen = new Date(DoiNgayDangKy(NgayHen));
-  var DenSom = (TDhen.getTime() - new Date().getTime()) / (60 * 1000);
-  var DenTre = (new Date().getTime() - TDhen.getTime()) / (60 * 1000);
-  var TrangThaiHen = "Không Có Hẹn";
-  if ((DenSom >= 0 && DenSom <= 30) || (DenTre >= 0 && DenTre <= 0)) {
-    TrangThaiHen = "Đúng Giờ";
-  }
-  if (DenSom <= 60 && DenSom > 30) {
-    TrangThaiHen = "Đến Sớm";
-  }
-  if (DenTre <= 60 && DenTre > 0) {
-    TrangThaiHen = "Đến Trễ";
-  }
-  if (DenSom > 60 || DenTre > 60) {
-    TrangThaiHen = "Không Đúng Hẹn";
-  }
-  return TrangThaiHen;
-}
+
 
 function suabienso(myValue) {
   var myValue2 = myValue.toUpperCase();
@@ -386,46 +313,45 @@ function Doingay(use) {
   var ThoiGian = Ngay + "/" + Thang + " " + Gio + ":" + Phut;
   return ThoiGian;
 }
-setInterval(canhBao, 60000);
-canhBao();
-function canhBao() {
-  $("#alert").html("");
-  for (let a in NhomCV) {
-    try {
-      $.get(
-        "https://big-road-newsstand.glitch.me/Setting/" + NhomCV[a],
-        function (ketqua) {
-          if (ketqua.TrangThai == "DungTN") {
-            var alert =
-              '<div class="alert alert-warning alert-dismissible fade show"  role="alert"style="z-index: 20;">' +
-              "<strong>" +
-              NhomCV[a] +
-              "! </strong>" +
-              "<br>Dừng Tiếp nhận từ : " +
-              ketqua.ThoiGianDung +
-              "<br>Lý Do :" +
-              ketqua.LyDo +
-              '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-              '<span aria-hidden="true">&times;</span>' +
-              "</button></div>";
-            $("#alert").html($("#alert").html() + alert);
-          }
-        }
-      );
-    } catch { }
-  }
-}
-function canhBao2(tieude, noidung, canhbao) {
-  var alert =
-    '<div class="alert alert-' +
-    canhbao +
-    ' alert-dismissible fade show"  role="alert">' +
-    "<strong>" +
-    tieude +
-    "! </strong>" +
-    noidung +
-    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-    '<span aria-hidden="true">&times;</span>' +
-    "</button></div>";
-  $("#alert").html($("#alert").html() + alert);
-}
+// setInterval(canhBao, 60000);
+// canhBao();
+// function canhBao() {
+//   $("#alert").html("");
+//   for (let a in NhomCV) {
+//     try {
+//       $.get("https://big-road-newsstand.glitch.me/Setting/" + NhomCV[a],
+//         function (ketqua) {
+//           if (ketqua.TrangThai == "DungTN") {
+//             var alert =
+//               '<div class="alert alert-warning alert-dismissible fade show"  role="alert"style="z-index: 20;">' +
+//               "<strong>" +
+//               NhomCV[a] +
+//               "! </strong>" +
+//               "<br>Dừng Tiếp nhận từ : " +
+//               ketqua.ThoiGianDung +
+//               "<br>Lý Do :" +
+//               ketqua.LyDo +
+//               '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+//               '<span aria-hidden="true">&times;</span>' +
+//               "</button></div>";
+//             $("#alert").html($("#alert").html() + alert);
+//           }
+//         }
+//       );
+//     } catch { }
+//   }
+// }
+// function canhBao2(tieude, noidung, canhbao) {
+//   var alert =
+//     '<div class="alert alert-' +
+//     canhbao +
+//     ' alert-dismissible fade show"  role="alert">' +
+//     "<strong>" +
+//     tieude +
+//     "! </strong>" +
+//     noidung +
+//     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+//     '<span aria-hidden="true">&times;</span>' +
+//     "</button></div>";
+//   $("#alert").html($("#alert").html() + alert);
+// }

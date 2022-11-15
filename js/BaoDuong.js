@@ -368,14 +368,24 @@ function BatDauSC2(item) {
 
 }
 function DungCongViecGJ(item) {
-  item = $("#TTHuyChip").val();
-  console.log($("#ChieuDaiChip").val());
+  item = $("#TTHuyChip").val();;
   var start = new Date().toJSON()
-
   var json2 = {
     TimeStopGJ: formatDatetime(start),
     TrangThaiSCC: "Dừng CV",
     TrangThaiXuong: "05 Dừng Công Việc"
+  };
+
+  postData(json2, urlTX + "/" + item, "PATCH");
+
+}
+function KetThuc(item) {
+  item = $("#TTHuyChip").val();
+  var start = new Date().toJSON()
+  var json2 = {
+    TimeEndGJ: formatDatetime(start),
+    TrangThaiSCC: "Đã SC",
+    TrangThaiXuong: "08 Chờ Giao Xe"
   };
   console.log(json2);
   postData(json2, urlTX + "/" + item, "PATCH");

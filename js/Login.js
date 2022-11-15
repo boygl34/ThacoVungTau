@@ -1,5 +1,6 @@
 function DangNhap() {
-  var urluser = "https://big-road-newsstand.glitch.me/User/"
+  var urluser = "https://morning-chill-hammer.glitch.me/User/"
+  var urlThongSo = "https://morning-chill-hammer.glitch.me/ThongSo/";
   var password = $("#password_use").val()
   fetch(urluser + $("#USER").val())
     .then(response => response.json())
@@ -15,7 +16,7 @@ function DangNhap() {
         localStorage.setItem("TabDaDong", "html/Home.html");
         window.location = "index.html";
         $.ajax({
-          url: "https://big-road-newsstand.glitch.me/ThongSo/",
+          url: urlThongSo,
           type: 'GET',
           success: function (data) {
             localStorage.setItem("ThongSo", JSON.stringify(data))

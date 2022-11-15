@@ -10,8 +10,8 @@ function getValueALL() {
     // SoThe: $("#SoThe").val(),
     //TrangThaiHen: $("#TrangThaiHen").val(),
     TDHenGiaoXe: $("#TDHenGiaoXe").val(),
-    LoaiHinhSuaChua: $("#LoaiHinh").val(),
-    LoaiHinhDongSon: $("#LoaiHinhBP").val(),
+    LoaiHinhSuaChua: $("#LoaiHinhSuaChua").val(),
+    LoaiHinhDongSon: $("#LoaiHinhDongSon").val(),
     TDGapLeTan: new Date().toISOString(),
     TrangThaiXuong: "02 Chờ Tiếp Nhận",
     CoVanDichVu: localStorage.getItem("Ten"),
@@ -227,72 +227,33 @@ function LoadTimeLine() {
       { data: "id", defaultContent: "" },
     ],
   });
+  document.getElementById("loading").style.display = "none"
+
 }
+
+
 function clickTableTiepNhan() {
-  var table = document.getElementById("data-table");
+  var table = document.getElementById("tableTrongXuong");
   for (var i = 1; i < table.rows.length; i++) {
     table.rows[i].onclick = function () {
-      var BienSoXe = this.cells[0].innerHTML;
+      var id = this.cells[6].innerHTML;
       $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
-      NutNhan.innerHTML = "";
-      NutNhan2.innerHTML = "";
-      document.getElementById("myForm").reset();
-      document.getElementById("MaSo").value = this.cells[9].innerHTML;
-      if (BienSoXe.indexOf(" ") != -1) {
-        document.getElementById("BienSoXe").value = BienSoXe.slice(
-          BienSoXe.indexOf(" ") + 1,
-          BienSoXe.length
-        );
-      } else {
-        document.getElementById("BienSoXe").value = this.cells[0].innerHTML;
-      }
-      document.getElementById("SoThe").value = this.cells[1].innerHTML;
-      document.getElementById("TenKH").value = this.cells[2].innerHTML;
-      document.getElementById("GioHen").value = this.cells[3].innerHTML;
-      document.getElementById("LoaiHinh").value = this.cells[4].innerHTML;
-      document.getElementById("LoaiHinhBP").value = this.cells[5].innerHTML;
-      document.getElementById("CoVanDichVu").value = this.cells[6].innerHTML;
-      changvalue();
-      if (this.cells[7].innerHTML == "Chờ Tiếp Nhận") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChuanBi()" >Chuẩn Bị Tiếp</button>';
-        NutNhan2.innerHTML =
-          '<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
-      }
-      if (this.cells[7].innerHTML == "Chuẩn Bị Tiếp") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>';
-        NutNhan2.innerHTML =
-          '<button type="button" class="btn btn-success" onclick="DangTiepNhan()" >Bắt Đầu Tiếp Khách</button>&emsp;<button type="button" class="btn btn-danger" onclick="HuyDK()" >Hủy TN</button>';
-      }
-      if (this.cells[7].innerHTML == "Đang Tiếp Nhận") {
-        NutNhan.innerHTML =
-          '<button type="button" class="btn btn-primary" onclick="CapNhat()" >Cập Nhật</button>&emsp;<button type="button" class="btn btn-primary" onclick="ChoTiepNhan()" >Chờ Tiếp Nhận</button>';
-        NutNhan2.innerHTML = "";
-      }
+      $.ajax({
+        url: urlTX + "/" + id,
+        type: 'GET',
+        success: function (data) {
+          console.log(data)
+          var key = Object.keys(data)
+          var value = Object.values(data)
+          for (a in key) {
+            $(`#${key[a]}`).val(value[a])
+          }
+        }
+      })
     };
   }
 }
-function clickTableTiepNhanHen() {
-  var table = document.getElementById("data-table-hen");
-  $("#mesenge").html("<div class='alert alert-success'>Hello!!</div>");
-  for (var i = 1; i < table.rows.length; i++) {
-    table.rows[i].onclick = function () {
-      document.getElementById("myForm").reset();
-      NutNhan.innerHTML = "";
-      document.getElementById("BienSoXe").value = this.cells[1].innerHTML;
-      document.getElementById("GioHen").value = this.cells[0].innerHTML;
-      document.getElementById("LoaiHinh").value = this.cells[4].innerHTML;
-      document.getElementById("CoVanDichVu").value = this.cells[3].innerHTML;
-      document.getElementById("TenKH").value = this.cells[2].innerHTML;
-      document.getElementById("NoiDungCV").value = this.cells[5].innerHTML;
-      document.getElementById("MaSo").value = this.cells[7].innerHTML;
-      changvalue();
-      NutNhan.innerHTML =
-        '<button type="button" class="btn btn-primary" onclick="DangKy()" >Đăng Ký</button>';
-    };
-  }
-}
+
 
 function TrangThaiHen(NgayHen) {
   var TDhen = new Date(DoiNgayDangKy(NgayHen));

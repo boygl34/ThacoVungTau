@@ -1,10 +1,11 @@
 
 
 $.ajax({
-  url: "https://big-road-newsstand.glitch.me/ThongSo/",
+  url: urlThongSo,
   type: 'GET',
   success: function (data) {
     localStorage.setItem("ThongSo", JSON.stringify(data))
+
   }
 })
 startWorker()

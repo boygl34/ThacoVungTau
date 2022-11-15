@@ -5,7 +5,7 @@ function LoadTimeLine() {
   document.getElementById("loading").style.display = "none"
   var dataArray = useCaher
   var dataArrayhen = dataArray.filter(function (r) { return ((r.TrangThaiXuong !== "00 Có Hẹn" && r.LoaiHinhDongSon !== "Báo Giá BH" && r.LoaiHinhSuaChua !== "Báo Giá SCC")) })
-  dataArrayhen.sort(function (a, b) { return (new Date(DoiNgayDangKy(a.TDHenGiaoXe)).valueOf() < new Date(DoiNgayDangKy(b.TDHenGiaoXe)).valueOf() ? 1 : -1); })
+  dataArrayhen.sort(function (a, b) { return (new Date((a.TDHenGiaoXe)).valueOf() < new Date((b.TDHenGiaoXe)).valueOf() ? 1 : -1); })
   dataArrayhen.sort(function (a, b) { return (a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1); })
   var tbodyhen = document.getElementById('TbodyBaoCao')
   tbodyhen.innerHTML = ""
@@ -56,7 +56,7 @@ function LoadTimeLine() {
     var TimeCD = document.createElement("td");
     TimeCD.innerHTML = ""
     if (r.TDHenGiaoXe) {
-      TG = Math.round((new Date(DoiNgayDangKy(r.TDHenGiaoXe)).valueOf() - new Date().valueOf()) / (60 * 60 * 1000) * 10) / 10
+      TG = Math.round((new Date((r.TDHenGiaoXe)).valueOf() - new Date().valueOf()) / (60 * 60 * 1000) * 10) / 10
       if (TG < 0) { TG = "GX Trễ"; GXTR = GXTR + 1 }
       TimeCD.innerHTML = TG
     }

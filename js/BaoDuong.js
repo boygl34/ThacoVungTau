@@ -135,106 +135,36 @@ function showtime(event) {
   );
 }
 
-// function LoadTimeLine() {
-//   items.clear();
-//   $("#XeChoSuaChua").html("");
-//   $("#XeDungCV").html("");
-//   var dataArray0 = useCaher;
-//   var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
-//   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
-
-//   for (var a in dataArray1) {
-//     r = dataArray1[a];
-
-//     var hoanthanh = document.getElementById("checkbox-3").checked;
-//     var tthen = "";
-//     var start = new Date(r.TimeStartGJ);
-//     var timeNow = new Date();
-//     var end = new Date(r.TimeEndGJ);
-//     if (end.getHours() >= 17) { end = new Date(end.valueOf() + 18 * 60 * 60 * 1000); end.setHours(8) }
-//     var khoang, mau = "", edit1 = {
-//       add: false, // add new items by double tapping
-//       updateTime: true, // drag items horizontally
-//       updateGroup: true, // drag items from one group to another
-//       remove: false, // delete an item by tapping the delete button top right
-//       overrideItems: true, // allow these options to override item.editable
-//     };
-//     if (r.TrangThaiSCC == "Đang SC") { mau = "green"; }
-//     if (r.TrangThaiSCC == "Dừng SC") { mau = "red"; }
-//     if (r.TrangThaiSCC == "Chờ SC") { mau = "orange"; }
-//     if (r.TrangThaiSCC == "Đã SC") { mau = "magenta"; }
-//     if (r.TrangThaiHen == "Đúng Giờ") { tthen = "DungGio"; }
-//     if (r.TrangThaiHen == "Đến Sớm") { tthen = "DenSom"; }
-//     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
-//       additembienso(r.BienSoXe, r.id, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
-//     }
-//     if (r.TrangThaiXuong == "03 Đang Tiếp Nhận" && r.TimeStartGJ == null) {
-//       additembienso(r.BienSoXe, r.id, "success", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
-//     }
-//     if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
-//       additembienso(r.BienSoXe, r.id, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
-//     }
-//     if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
-//     if (r.TimeEndGJ) { var endRX = new Date((r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
-//     if (new Date(r.TimeEndGJ).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
-
-//     if (r.TrangThaiSCC !== "Dừng CV") {
-//       if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
-//         items.update({
-//           className: mau,
-//           id: r.id,
-//           group: r.KhoangSuaChua,
-//           start: start,
-//           end: end,
-//           editable: edit1,
-//           content: r.BienSoXe,
-//         });
-//       }
-//       if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
-//         items.update({
-//           className: mau,
-//           id: r.id,
-//           group: r.KhoangSuaChua,
-//           start: start,
-//           end: end,
-//           editable: edit1,
-//           content: r.BienSoXe,
-//         });
-//       }
-
-//       // if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
-//       //   var classname2 = "orange";
-//       //   if (r.TrangThaiXuong == "07 Đang Rửa Xe") { classname2 = "green"; }
-//       //   items.update({
-//       //     className: classname2,
-//       //     id: r.BienSoXe + "_RuaXe",
-//       //     group: "Rửa Xe",
-//       //     start: end,
-//       //     end: endRX,
-//       //     type: "point",
-//       //     editable: edit1,
-//       //     content: r.BienSoXe + " " + r.CoVanDichVu,
-//       //   });
-//       // }
-//     }
-//   }
-//   timeline.redraw();
-//   document.getElementById("loading").style.display = "none"
-// }
 function LoadTimeLine() {
-  items.clear()
+  items.clear();
   $("#XeChoSuaChua").html("");
   $("#XeDungCV").html("");
-  var edit1 = {
-    add: false, // add new items by double tapping
-    updateTime: true, // drag items horizontally
-    updateGroup: true, // drag items from one group to another
-    remove: false, // delete an item by tapping the delete button top right
-    overrideItems: false, // allow these options to override item.editable
-  };
-  for (a in useCaher) {
+  var dataArray0 = useCaher;
+  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
+  dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
+
+  for (var a in dataArray1) {
+    r = dataArray1[a];
+
+    var hoanthanh = document.getElementById("checkbox-3").checked;
     var tthen = "";
-    var r = useCaher[a]
+    var start = new Date(r.TimeStartGJ);
+    var timeNow = new Date();
+    var end = new Date(r.TimeEndGJ);
+    if (end.getHours() >= 17) { end = new Date(end.valueOf() + 18 * 60 * 60 * 1000); end.setHours(8) }
+    var khoang, mau = "", edit1 = {
+      add: false, // add new items by double tapping
+      updateTime: true, // drag items horizontally
+      updateGroup: true, // drag items from one group to another
+      remove: false, // delete an item by tapping the delete button top right
+      overrideItems: true, // allow these options to override item.editable
+    };
+    if (r.TrangThaiSCC == "Đang SC") { mau = "green"; }
+    if (r.TrangThaiSCC == "Dừng SC") { mau = "red"; }
+    if (r.TrangThaiSCC == "Chờ SC") { mau = "orange"; }
+    if (r.TrangThaiSCC == "Đã SC") { mau = "magenta"; }
+    if (r.TrangThaiHen == "Đúng Giờ") { tthen = "DungGio"; }
+    if (r.TrangThaiHen == "Đến Sớm") { tthen = "DenSom"; }
     if (r.TrangThaiXuong == "04 Đã Tiếp Nhận" && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.id, "success Datiepnhan", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
@@ -244,22 +174,54 @@ function LoadTimeLine() {
     if ((r.TrangThaiXuong == "02 Chờ Tiếp Nhận" || r.TrangThaiXuong == "02 Chuẩn Bị Tiếp") && r.TimeStartGJ == null) {
       additembienso(r.BienSoXe, r.id, "outline-secondary btn-sm", tthen, r.LoaiHinhSuaChua, r.CoVanDichVu);
     }
-    if (r.TrangThaiXuong == "05 Dừng Công Việc" && r.TrangThaiSCC == "Dừng CV") { additembiensodung(r.BienSoXe, r.id, "danger", r.LoaiHinhSuaChua); }
-    if (r.LoaiHinhSuaChua && r.TrangThaiSCC !== "Dừng CV" && r.TimeStartGJ && r.TimeEndGJ) {
-      items.update({
-        className: trangthaichip(r.TrangThaiSCC),
-        id: r.id,
-        group: r.KhoangSuaChua,
-        start: r.TimeStartGJ,
-        end: r.TimeEndGJ,
-        editable: edit1,
-        //title: r.CoVanDichVu + " " + r.KyThuatVien1,
-        content: r.BienSoXe,
-      });
+    if (r.TrangThaiXuong == "05 Dừng Công Việc") { additembiensodung(r.BienSoXe, r.MaSo, "danger", r.LoaiHinhSuaChua); }
+    if (r.TimeEndGJ) { var endRX = new Date((r.TimeEndGJ).valueOf() + 15 * 60 * 1000); }
+    if (new Date(r.TimeEndGJ).valueOf() < timeNow.valueOf()) { mau = "magenta"; }
+
+    if (r.TrangThaiSCC !== "Dừng CV") {
+      if (hoanthanh && r.TrangThaiSCC == "Đã SC" && r.TimeStartGJ) {
+        items.update({
+          className: mau,
+          id: r.id,
+          group: r.KhoangSuaChua,
+          start: start,
+          end: end,
+          editable: edit1,
+          content: r.BienSoXe,
+        });
+      }
+      if (r.TrangThaiSCC != "Đã SC" && r.TimeStartGJ) {
+        items.update({
+          className: mau,
+          id: r.id,
+          group: r.KhoangSuaChua,
+          start: start,
+          end: end,
+          editable: edit1,
+          content: r.BienSoXe,
+        });
+      }
+
+      // if (r.KhachRuaXe == "Rửa Xe" && r.TrangThaiXuong != "08 Chờ Giao Xe" && r.TimeEndGJ) {
+      //   var classname2 = "orange";
+      //   if (r.TrangThaiXuong == "07 Đang Rửa Xe") { classname2 = "green"; }
+      //   items.update({
+      //     className: classname2,
+      //     id: r.BienSoXe + "_RuaXe",
+      //     group: "Rửa Xe",
+      //     start: end,
+      //     end: endRX,
+      //     type: "point",
+      //     editable: edit1,
+      //     content: r.BienSoXe + " " + r.CoVanDichVu,
+      //   });
+      // }
     }
   }
+  timeline.redraw();
   document.getElementById("loading").style.display = "none"
 }
+
 
 trangthaichip = value => {
   if (value == `Đang SC`) { return `green` }

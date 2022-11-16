@@ -138,7 +138,7 @@ function checkPhanQuyen() {
     document.getElementById("PQManHinh").style.display = "block"
   }
   if (BoPhan == "Dịch Vụ") {
-    document.getElementById("PQDichVu").style.display = "block"
+    document.getElementById("PQDichVu2").style.display = "block"
   }
   if (BoPhan == "Phụ Kien") {
     document.getElementById("PQPhuKien").style.display = "block"

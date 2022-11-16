@@ -39,6 +39,18 @@ function checkID(MaSo) {
   }
 }
 
+for (i in LoaiHinhSCC) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhSCC[i];
+  option.text = LoaiHinhSCC[i];
+  document.getElementById('LoaiHinh').appendChild(option);
+}
+for (i in LoaiHinhBP) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhBP[i];
+  option.text = LoaiHinhBP[i];
+  document.getElementById('LoaiHinhBP').appendChild(option);
+}
 function LoadTimeLine() {
   loadDataCV();
   var CoHen = 0,

@@ -162,7 +162,7 @@
   min-height: 32.5px;
 }
 
-.vis-foreground .vis-group.EM {
+.vis-foreground .vis-group.BDN {
   min-height: 218px;
 }
 
@@ -178,7 +178,7 @@
   min-height: 72px;
 }
 
-.vis-labelset .vis-label.EM {
+.vis-labelset .vis-label.BDN {
   min-height: 218px;
 }
 
@@ -195,7 +195,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .vis-foreground .vis-group.EM {
+  .vis-foreground .vis-group.BDN {
     max-height: 161.85px;
   }
 

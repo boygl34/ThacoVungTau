@@ -133,7 +133,7 @@ function LoadTimeLine() {
   setgiaoxe()
   var dataArray0 = useCaher;
 
-  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === "EM" || r.LoaiHinhSuaChua === "SCC" || r.LoaiHinhSuaChua === "EM60"); });
+  var dataArray1 = dataArray0.filter(function (r) { return (r.LoaiHinhSuaChua === LoaiHinhSCC[0] || r.LoaiHinhSuaChua === LoaiHinhSCC[1]); });
   dataArray1.sort(function (a, b) { return a.TrangThaiXuong < b.TrangThaiXuong ? 1 : -1; });
   console.log("update");
   for (var a in dataArray1) {
@@ -306,61 +306,11 @@ function handleDragStart(event) {
   var timelineProperties = timeline.getEventProperties(event);
   var maso = event.target.attributes.value.textContent;
   let text = "Chạy Chip Tiến Độ Xe " + dragSrcEl.innerHTML;
-  var KTV1 = "None",
-    KTV2 = "None",
-    NhomSC = "None";
+  // var KTV1 = "None",
+  //   KTV2 = "None",
+  //   NhomSC = "None";
   document.getElementById("contextMenu2").style.display = "none";
-  if (timelineProperties.group == "EM 01") {
-    NhomSC = "EM";
-    KTV1 = "Vinh";
-    KTV2 = "Hưng";
-  }
-  console.log(timelineProperties.group);
-  if (timelineProperties.group == "EM 02") {
-    NhomSC = "EM";
-    KTV1 = "Đ Anh";
-    KTV2 = "Khoa";
-  }
-  if (timelineProperties.group == "EM 03") {
-    NhomSC = "EM";
-    KTV1 = "Hiển";
-    KTV2 = "Cường";
-  }
-  if (timelineProperties.group == "EM 04") {
-    NhomSC = "EM";
-    KTV1 = "Trí";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 05") {
-    NhomSC = "Bạo";
-    KTV1 = "Phước";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 06") {
-    NhomSC = "Bạo";
-    KTV1 = "Hiếu";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 07") {
-    NhomSC = "Bạo";
-    KTV1 = "Duy";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 08") {
-    NhomSC = "Hoan";
-    KTV1 = "Lâm";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 09") {
-    NhomSC = "Hoan";
-    KTV1 = "Sơn";
-    KTV2 = "";
-  }
-  if (timelineProperties.group == "SCC 10") {
-    NhomSC = "Hoan";
-    KTV1 = "Thiên";
-    KTV2 = "";
-  }
+
 
   //if (confirm(text) == true) {
   var json2 = {
@@ -371,9 +321,9 @@ function handleDragStart(event) {
     TimeEndGJ: TimesClick(
       new Date(1000 * 60 * ChipGJ + new Date(timelineProperties.time).valueOf())
     ),
-    KyThuatVien1: KTV1,
-    KyThuatVien2: KTV2,
-    NhomKTV: NhomSC,
+    // KyThuatVien1: KTV1,
+    // KyThuatVien2: KTV2,
+    // NhomKTV: NhomSC,
   };
   postData(json2, urlTX + "/" + checkID(maso), "PATCH");
 }

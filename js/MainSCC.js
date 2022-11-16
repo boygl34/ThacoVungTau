@@ -320,30 +320,30 @@ function BatDauSC2() {
   }
 }
 
-NhomSC(NhomKTV);
-function NhomSC(values) {
-  var list = document.getElementById("NhomKTV");
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
-  }
+
+
+for (i in NhomKTV) {
+  var option = document.createElement("option");
+  option.value = NhomKTV[i];
+  option.text = NhomKTV[i];
+  document.getElementById("NhomKTV").appendChild(option);
 }
+
 function changeNhom() {
   var nhom = document.getElementById("NhomKTV").value;
   var json2 = {
     NhomKTV: $("#NhomKTV").val(),
   };
   postData(json2, urlTX + "/" + checkID($(MaSo).val()), "PATCH");
-  if (nhom == "Bạo") {
-    NhanVienDropDown(KTVBao);
+
+  if (nhom == NhomKTV[0]) {
+    NhanVienDropDown(KTVSC01);
   }
-  if (nhom == "Hoan") {
-    NhanVienDropDown(KTVHoan);
+  if (nhom == NhomKTV[1]) {
+    NhanVienDropDown(KTVSC02);
   }
-  if (nhom == "EM") {
-    NhanVienDropDown(KTVEM);
+  if (nhom == NhomKTV[2]) {
+    NhanVienDropDown(KTVSC03);
   }
 }
 function NhanVienDropDown(values) {

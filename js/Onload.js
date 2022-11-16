@@ -24,8 +24,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 
-  checkdangnhap();
 
+  checkdangnhap();
 
 });
 
@@ -71,7 +71,7 @@ function Logout() {
 
 
 function checkdangnhap() {
-
+  var urlUser = "https://morning-chill-hammer.glitch.me/User/"
   var password = localStorage.getItem("Password");
   var use = localStorage.getItem("id");
   if (use == null) {

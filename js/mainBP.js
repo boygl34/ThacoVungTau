@@ -37,178 +37,8 @@ function checkID(MaSo) {
   }
 }
 
-function dataTableTimXe(value) {
-  let dataArray0 = useCaher;
-  let dataArray1 = dataArray0.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn";
-  });
 
-  // for (var a in dataArray1) {
-  //   dataArray1[a].TDHenGiaoXe = Doingay( DoiNgayDangKy(dataArray1[a].TDHenGiaoXe))
-  //   dataArray1[a].TDKetThucSX = Doingay( DoiNgayDangKy(dataArray1[a].TDKetThucSX))
-  // }
-  let dataArrayDangSC = dataArray0.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiDongSon == "Đang SC";
-  });
-  $("#table-TimXe").DataTable({
-    data: dataArrayDangSC,
-    paging: false,
-    destroy: true,
-    ordering: true,
-    info: false,
-    searching: false,
-    createdRow: function (row, data, dataIndex, cells) {
-      if (data.TrangThaiDongSon == "Đang SC") {
-        $(row).addClass("DangSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Chờ SC") {
-        $(row).addClass("ChoSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Dừng SC") {
-        $(row).addClass("DungSuaChua");
-      }
-      $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)));
-      $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)));
-    },
-    columns: [
-      { data: "BienSoXe", defaultContent: "" },
-      { data: "CoVanDichVu", defaultContent: "" },
-      { data: "KieuXe", defaultContent: "" },
-      { data: "NhomSon", defaultContent: "" },
-      { data: "CongDoanDongSon", defaultContent: "" },
-      { data: "TrangThaiDongSon", defaultContent: "" },
-      { data: "TDHenGiaoXe", defaultContent: "" },
-      { data: "TDKetThucSX", defaultContent: "" },
-    ],
-  });
-  let dataArrayChoSC = dataArray0.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiDongSon == "Chờ SC";
-  });
-  $("#table-ChoSC").DataTable({
-    data: dataArrayChoSC,
-    paging: false,
-    destroy: true,
-    info: false,
-    searching: false,
-    createdRow: function (row, data, dataIndex, cells) {
-      if (data.TrangThaiDongSon == "Đang SC") {
-        $(row).addClass("DangSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Chờ SC") {
-        $(row).addClass("ChoSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Dừng SC") {
-        $(row).addClass("DungSuaChua");
-      }
-      $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)));
-      $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)));
-    },
-    columns: [
-      { data: "BienSoXe", defaultContent: "" },
-      { data: "CoVanDichVu", defaultContent: "" },
-      { data: "KieuXe", defaultContent: "" },
-      { data: "NhomSon", defaultContent: "" },
-      { data: "CongDoanDongSon", defaultContent: "" },
-      { data: "TrangThaiDongSon", defaultContent: "" },
-      { data: "TDHenGiaoXe", defaultContent: "" },
-      { data: "TDKetThucSX", defaultContent: "" },
-    ],
-  });
-  let dataArrayDung = dataArray0.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiDongSon == "Dừng SC";
-  });
-  $("#table-Dung").DataTable({
-    data: dataArrayDung,
-    paging: false,
-    destroy: true,
-    info: false,
-    searching: false,
-    createdRow: function (row, data, dataIndex, cells) {
-      if (data.TrangThaiDongSon == "Đang SC") {
-        $(row).addClass("DangSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Chờ SC") {
-        $(row).addClass("ChoSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Dừng SC") {
-        $(row).addClass("DungSuaChua");
-      }
-      $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)));
-      $(cells[7]).html(Doingay(DoiNgayDangKy(data.TimeStopBP)));
-    },
-    columns: [
-      { data: "BienSoXe", defaultContent: "" },
-      { data: "CoVanDichVu", defaultContent: "" },
-      { data: "KieuXe", defaultContent: "" },
-      { data: "NhomSon", defaultContent: "" },
-      { data: "CongDoanDongSon", defaultContent: "" },
-      { data: "TrangThaiDongSon", defaultContent: "" },
-      { data: "TDHenGiaoXe", defaultContent: "" },
-      { data: "TimeStopBP", defaultContent: "" },
-      { data: "GhiChu", defaultContent: "" },
-    ],
-  });
-}
-function BaoCao() {
-  let dataArray0 = useCaher;
 
-  let dataArray1 = dataArray0.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn" && r.TDHenGiaoXe;
-  });
-  var checktrehen = document.getElementById("TreHen").checked;
-  var ngaygiaoxebc = new Date(document.getElementById("NgayGiaoXeBC").value);
-  var homnay = new Date();
-  let dataArrayDangSC = dataArray1.filter(function (r) {
-    var daygx = DoiNgayDangKy(r.TDHenGiaoXe).getDate();
-    var monthgx = DoiNgayDangKy(r.TDHenGiaoXe).getMonth();
-    var yeargx = DoiNgayDangKy(r.TDHenGiaoXe).getYear();
-    return (
-      r.LoaiHinhDongSon === "Đồng Sơn" &&
-      daygx == ngaygiaoxebc.getDate() &&
-      monthgx == ngaygiaoxebc.getMonth() &&
-      yeargx == ngaygiaoxebc.getYear()
-    );
-  });
-  if (checktrehen) {
-    dataArrayDangSC = dataArray1.filter(function (r) {
-      var daygx = DoiNgayDangKy(r.TDHenGiaoXe).valueOf();
-
-      return r.LoaiHinhDongSon === "Đồng Sơn" && daygx < homnay.valueOf();
-    });
-  }
-  $("#table-BaoCao").DataTable({
-    data: dataArrayDangSC,
-    paging: false,
-    destroy: true,
-    ordering: true,
-    info: false,
-    searching: false,
-    createdRow: function (row, data, dataIndex, cells) {
-      if (data.TrangThaiDongSon == "Đang SC") {
-        $(row).addClass("DangSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Chờ SC") {
-        $(row).addClass("ChoSuaChua");
-      }
-      if (data.TrangThaiDongSon == "Dừng SC") {
-        $(row).addClass("DungSuaChua");
-      }
-      $(cells[6]).html(Doingay(DoiNgayDangKy(data.TDHenGiaoXe)));
-      $(cells[7]).html(Doingay(DoiNgayDangKy(data.TDKetThucSX)));
-    },
-    columns: [
-      { data: "BienSoXe", defaultContent: "" },
-      { data: "CoVanDichVu", defaultContent: "" },
-      { data: "KieuXe", defaultContent: "" },
-      { data: "NhomSon", defaultContent: "" },
-      { data: "CongDoanDongSon", defaultContent: "" },
-      { data: "TrangThaiDongSon", defaultContent: "" },
-      { data: "TDHenGiaoXe", defaultContent: "" },
-      { data: "TDKetThucSX", defaultContent: "" },
-      { data: "GhiChu", defaultContent: "" },
-    ],
-  });
-}
 function clickbienso(value) {
   $("#BienSoXe").val(value)
   changvalue()
@@ -340,237 +170,8 @@ function changvalue() {
     }
   }
 }
-function sortTable() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("table-TimXe");
-  switching = true;
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < rows.length - 1; i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[5];
-      y = rows[i + 1].getElementsByTagName("TD")[5];
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        shouldSwitch = true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
-function Chenraiting(BienSo) {
-  var DivHTLM = "<div>";
-  var dataArray = useCaher;
-  for (var a = 0; a < dataArray.length; a++) {
-    var r = dataArray[a];
-    if (dataArray[a].BienSoXe == BienSo) {
-      if (r.CongDoanDongSon == "Đồng") {
-        DivHTLM += '<span class="fa fa-star fa-spin fa-1x  BigStar"></span>';
-      } else if (r.HTDong == "Okie") {
-        DivHTLM += '<span class="fa fa-star checked"></span>';
-      } else if (r.HTDong == "KH") {
-        DivHTLM +=
-          '<i class="fa fa-star-half-o checked" aria-hidden="true"></i>';
-      } else if (r.HTDong == "") {
-        ('<span class="fa fa-star unchecked"></span>');
-      } else {
-        DivHTLM += '<span class="fa fa-star unchecked"></span>';
-      }
 
-      if (r.CongDoanDongSon == "Nền") {
-        DivHTLM += '<span class="fa fa-star fa-spin fa-1x  BigStar"></span>';
-      } else if (r.HTNen == "Okie") {
-        DivHTLM += '<span class="fa fa-star checked"></span>';
-      } else if (r.HTNen == "KH") {
-        DivHTLM +=
-          '<i class="fa fa-star-half-o checked" aria-hidden="true"></i>';
-      } else if (r.HTNen == "") {
-        ('<span class="fa fa-star unchecked"></span>');
-      } else {
-        DivHTLM += '<span class="fa fa-star unchecked"></span>';
-      }
 
-      if (r.CongDoanDongSon == "Sơn") {
-        DivHTLM += '<span class="fa fa-star fa-spin fa-1x  BigStar"></span>';
-      } else if (r.HTSon == "Okie") {
-        DivHTLM += '<span class="fa fa-star checked"></span>';
-      } else if (r.HTSon == "KH") {
-        DivHTLM +=
-          '<i class="fa fa-star-half-o checked" aria-hidden="true"></i>';
-      } else if (r.HTSon == "") {
-        ('<span class="fa fa-star unchecked"></span>');
-      } else {
-        DivHTLM += '<span class="fa fa-star unchecked"></span>';
-      }
-
-      if (r.CongDoanDongSon == "Lắp Ráp") {
-        DivHTLM += '<span class="fa fa-star fa-spin fa-1x  BigStar"></span>';
-      } else if (r.HTLap == "Okie") {
-        DivHTLM += '<span class="fa fa-star checked"></span>';
-      } else if (r.HTLap == "KH") {
-        DivHTLM +=
-          '<i class="fa fa-star-half-o checked" aria-hidden="true"></i>';
-      } else if (r.HTLap == "") {
-        ('<span class="fa fa-star unchecked"></span>');
-      } else {
-        DivHTLM += '<span class="fa fa-star unchecked"></span>';
-      }
-
-      if (r.CongDoanDongSon == "Pass") {
-        DivHTLM += '<span class="fa fa-star fa-spin fa-1x  BigStar"></span>';
-      } else if (r.HTPass == "Okie") {
-        DivHTLM += '<span class="fa fa-star checked"></span>';
-      } else if (r.HTPass == "KH") {
-        DivHTLM +=
-          '<i class="fa fa-star-half-o checked" aria-hidden="true"></i>';
-      } else if (r.HTPass == "") {
-        ('<span class="fa fa-star unchecked"></span>');
-      } else {
-        DivHTLM += '<span class="fa fa-star unchecked"></span>';
-      }
-
-      return DivHTLM;
-    }
-  }
-}
-function chentimeline(BienSo) {
-  var dataArray = useCaher;
-  for (var a = 0; a < dataArray.length; a++) {
-    var r = dataArray[a];
-    var timeNow = new Date();
-    if (r.BienSoXe == BienSo) {
-      if (r.CongDoanDongSon == "Đồng" && r.TrangThaiDongSon == "Đang SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStartBody))) /
-            (new Date(DoiNgayDangKy(r.TimeEndBody)) -
-              new Date(DoiNgayDangKy(r.TimeStartBody)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.CongDoanDongSon == "Nền" && r.TrangThaiDongSon == "Đang SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStartNen))) /
-            (new Date(DoiNgayDangKy(r.TimeEndNen)) -
-              new Date(DoiNgayDangKy(r.TimeStartNen)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.CongDoanDongSon == "Sơn" && r.TrangThaiDongSon == "Đang SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStartPaint))) /
-            (new Date(DoiNgayDangKy(r.TimeEndPaint)) -
-              new Date(DoiNgayDangKy(r.TimeStartPaint)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.CongDoanDongSon == "Pass" && r.TrangThaiDongSon == "Đang SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStartPass))) /
-            (new Date(DoiNgayDangKy(r.TimeEndPass)) -
-              new Date(DoiNgayDangKy(r.TimeStartPass)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.CongDoanDongSon == "Lắp Ráp" && r.TrangThaiDongSon == "Đang SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStartLap))) /
-            (new Date(DoiNgayDangKy(r.TimeEndLap)) -
-              new Date(DoiNgayDangKy(r.TimeStartLap)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.TrangThaiDongSon == "Chờ SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TDKetThucTiepKhach))) /
-            (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
-              new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.TrangThaiDongSon == "Dừng SC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TimeStopBP))) /
-            (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
-              new Date(DoiNgayDangKy(r.TimeStopBP)))) *
-          100;
-
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-      if (r.CongDoanDongSon == "QC") {
-        var time =
-          ((timeNow - new Date(DoiNgayDangKy(r.TDKetThucTiepKhach))) /
-            (new Date(DoiNgayDangKy(r.TDHenGiaoXe)) -
-              new Date(DoiNgayDangKy(r.TDKetThucTiepKhach)))) *
-          100;
-        return addtimeline(
-          Math.round(time),
-          r.CongDoanDongSon,
-          r.TrangThaiDongSon
-        );
-      }
-    }
-  }
-}
-
-function addtimeline(value, CongDoan, TrangThai) {
-  var Div;
-  if (value < 75) {
-    Div =
-      '<div class="progress " style="height: 25px;" ><div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width:' +
-      value +
-      '%; color: yellow;" aria-valuemin="0" aria-valuemax="100">' +
-      CongDoan +
-      " " +
-      TrangThai +
-      "  " +
-      value +
-      "%</div></div>";
-  } else {
-    Div =
-      '<div class="progress " style="height: 25px;" ><div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width:' +
-      value +
-      '%;"" aria-valuemin="0" aria-valuemax="100">' +
-      CongDoan +
-      " " +
-      TrangThai +
-      "  " +
-      value +
-      "%</div></div>";
-  }
-  return Div;
-}
 
 function CongDoanDongSon(congdoan, trangthai) {
   $("#ButEnd").html(
@@ -1530,14 +1131,14 @@ function tennhanvien(CongDoan, NhomSon) {
     NhanVienDropDown(KTVDong);
   }
   if (CongDoan === "Nền" || CongDoan === "Sơn" || CongDoan === "Pass") {
-    if (NhomSon === "Thành") {
-      NhanVienDropDown(KTVSonThanh);
+    if (NhomSon === NhomSon[0]) {
+      NhanVienDropDown(KTVSon01);
     }
-    if (NhomSon === "Đình") {
-      NhanVienDropDown(KTVSonDinh);
+    if (NhomSon === NhomSon[1]) {
+      NhanVienDropDown(KTVSon02);
     }
-    if (NhomSon === "Thiên") {
-      NhanVienDropDown(KTVSonThien);
+    if (NhomSon === NhomSon[2]) {
+      NhanVienDropDown(KTVSon03);
     }
   }
 }
@@ -1556,142 +1157,34 @@ function NhanVienDropDown(values) {
     list.appendChild(option);
   }
 }
-CoVanDropDown();
-function CoVanDropDown(values) {
-  var values = NhomCV;
-  // var list = document.getElementById('CoVanFilter');
-  //     for (var i = 0; i < values.length; i++) {
-  //       var option = document.createElement("option");
-  //       option.value = values[i];
-  //       option.text = values[i];
-  //       list.appendChild(option);
-  //     }
-  var list2 = document.getElementById("CoVanDK");
-  for (var i = 0; i < values.length; i++) {
-    var option2 = document.createElement("option");
-    option2.value = values[i];
-    option2.text = values[i];
-    list2.appendChild(option2);
-  }
+for (i in PhongSon) {
+  var option2 = document.createElement("option");
+  option2.value = PhongSon[i];
+  option2.text = PhongSon[i];
+  document.getElementById("PhongSon").appendChild(option2);
 }
-nhonsonDropDown();
-
-function nhonsonDropDown(values) {
-  var values = NhomSon;
-  var list = document.getElementById("NhomSonDK");
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
-  }
+for (i in NhomSon) {
+  var option2 = document.createElement("option");
+  option2.value = NhomSon[i];
+  option2.text = NhomSon[i];
+  document.getElementById("NhomSon").appendChild(option2);
 }
-KieuXeDropDown(ListXe);
-function KieuXeDropDown(values) {
-  var list = document.getElementById("listKieuXe");
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
-  }
+for (i in NhomCV) {
+  var option2 = document.createElement("option");
+  option2.value = NhomCV[i];
+  option2.text = NhomCV[i];
+  document.getElementById("CoVanDK").appendChild(option2);
 }
 
-function BienSoDropDown() {
-  var values = useCaher.Object.filter(function (r) {
-    return r.LoaiHinhDongSon === "Đồng Sơn" && r.TrangThaiXuong !== "00 Có Hẹn";
-  });
-  var values = values.map(function (r) {
-    return r.BienSoXe;
-  });
-  var list = document.getElementById("BienSoXeList");
-  list.innerHTML = "";
-  for (var i = 0; i < values.length; i++) {
-    if (values[i] != undefined) {
-      var option = document.createElement("option");
-      option.value = values[i];
-      option.text = values[i];
-      list.appendChild(option);
-    }
-  }
-}
-function changeNhom() {
-  document.getElementById("CoVanFilter").value = "";
-  dataTableTimXe();
-  myFunctionNhom();
-}
-function changeCoVan() {
-  document.getElementById("NhomFilter").value = "";
-  myFunctionCoVan();
+
+
+for (i in ListXe) {
+  var option = document.createElement("option");
+  option.value = ListXe[i];
+  option.text = ListXe[i];
+  document.getElementById("listKieuXe").appendChild(option);
 }
 
-function myFunctionCoVan() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("CoVanFilter");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table-TimXe");
-  tr = table.getElementsByTagName("tr");
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-function myFunctionNhom() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("NhomFilter");
-  if (input.value == "Đồng") {
-    return false;
-  }
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table-TimXe");
-  tr = table.getElementsByTagName("tr");
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-function myFunctionBienSo() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("selection");
-  if (input.value == "Đồng") {
-    return false;
-  }
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table-TimXe");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
 
 function ngayGiohen(ngayhen) {
   var use = new Date(ngayhen);

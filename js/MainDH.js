@@ -26,7 +26,7 @@ function deleteData(url) {
   })
     .then(response => response.json())
     .then(data => {
-      getData(urlTX)
+      getData()
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -42,27 +42,23 @@ function checkID(MaSo) {
   }
 }
 
-KhuVuc()
-function KhuVuc() {
-  var values = KhuVucVT;
-  var list = document.getElementById('KhuVuc');
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
 
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
 
-  }
+
+for (i in LoaiHinhSCC) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhSCC[i];
+  option.text = LoaiHinhSCC[i];
+  document.getElementById('LoaiHinhSuaChua').appendChild(option);
 }
-function ChangKhuVuc() {
-  var MaSo = $('#MaSo').val()
-  console.log(MaSo)
-  var json2 = {
-    KhuVuc: $('#KhuVuc').val(),
-  }
-  postData(json2, urlTX + "/" + checkID(MaSo), "PATCH")
+for (i in LoaiHinhBP) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhBP[i];
+  option.text = LoaiHinhBP[i];
+  document.getElementById('LoaiHinhDongSon').appendChild(option);
 }
+
+
 
 function DanhSachCoVan2() {
   var values = NhomCV;
@@ -153,20 +149,19 @@ function CoVanDuocDatHen(tencovan) {
 
 
 function checkloaihinhGJ() {
-  var LoaiHinhSCC = $('#LoaiHinhSuaChua').val()
+  var LoaiHinhcheck = $('#LoaiHinhSuaChua').val()
   var giodathen = new Date(DoiNgayDangKy($("#ThoiGianHen").val()))
-  if (LoaiHinhSCC == "EM60") { LoaiHinhSCC = "EM" }
-  if (LoaiHinhSCC == "FIR") { LoaiHinhSCC = "SCC" }
-  if (LoaiHinhSCC == "SCC") { giodathen.setMinutes(0) }
+
+  if (LoaiHinhcheck == "SCC") { giodathen.setMinutes(0) }
   var dataArray1 = useCaher;
   var dataArrayhen = dataArray1.filter(function (r) {
-    if (r.LoaiHinhSuaChua == "EM60") { r.LoaiHinhSuaChua = "EM" }
-    if (r.LoaiHinhSuaChua == "FIR") { r.LoaiHinhSuaChua = "SCC" }
-    return r.TrangThaiXuong == "00 Có Hẹn" && r.LoaiHinhSuaChua == LoaiHinhSCC && (new Date(DoiNgayDangKy(r.ThoiGianHen)).valueOf() == giodathen.valueOf())
+    // if (r.LoaiHinhSuaChua == "EM60") { r.LoaiHinhSuaChua = "EM" }
+    // if (r.LoaiHinhSuaChua == "FIR") { r.LoaiHinhSuaChua = "SCC" }
+    return r.TrangThaiXuong == "00 Có Hẹn" && r.LoaiHinhSuaChua == LoaiHinhcheck && (new Date(DoiNgayDangKy(r.ThoiGianHen)).valueOf() == giodathen.valueOf())
   })
   var soluong = dataArrayhen.length
-  if (LoaiHinhSCC == "EM" && soluong >= 3) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe EM. Tối đa 3 xe") }
-  if (LoaiHinhSCC == "SCC" && soluong >= 2) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe SCC. Tối đa 2 xe") }
+  if (LoaiHinhcheck == LoaiHinhSCC[0] && soluong >= 3) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe EM. Tối đa 3 xe") }
+  if (LoaiHinhcheck == LoaiHinhSCC[0] && soluong >= 2) { $('#LoaiHinhSuaChua').val(""); alert("Quá Số lượng đặt hẹn cho xe SCC. Tối đa 2 xe") }
   return soluong
 }
 
@@ -287,7 +282,6 @@ function CapNhatHenKeo(MaSo, ThoiGianHenMoi) {
 
 function XacNhanHen() {
   var MaSo = $('#MaSo').val()
-
   var json2 = {
     TrangThaiHen: $('#TrangThaiHen').val(),
     TDXacNhanHen: TimesClick()
@@ -299,7 +293,6 @@ function HuyHen() {
   let text = "Hủy Hẹn Xe";
   if (confirm(text) == true) {
     var MaSo = $('#MaSo').val()
-
     try {
       json3 = {
         TrangThaiHen: "Hủy Hẹn",
@@ -385,12 +378,12 @@ function changvalueBS() {
 
 
   }
-  var thongtin = checkMasterData($("#BienSoXe").val())[0]
-  if (thongtin) {
-    document.getElementById("SoDT").value = thongtin.DTNMangXe
-    document.getElementById("KhuVuc").value = thongtin.KhuVuc
-    document.getElementById("TenKH").value = thongtin.NguoiMangXe
-  }
+  // var thongtin = checkMasterData($("#BienSoXe").val())[0]
+  // if (thongtin) {
+  //   document.getElementById("SoDT").value = thongtin.DTNMangXe
+  //   document.getElementById("KhuVuc").value = thongtin.KhuVuc
+  //   document.getElementById("TenKH").value = thongtin.NguoiMangXe
+  // }
 }
 
 

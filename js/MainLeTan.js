@@ -1,6 +1,6 @@
 //getData(urlTX).then(DanhSachCoVan()).then(loadData ())
 
-DanhSachCoVan2();
+
 
 function postData(data, url, methor) {
   fetch(url, {
@@ -42,16 +42,23 @@ function checkID(MaSo) {
     }
   }
 }
-
-function DanhSachCoVan2() {
-  var values = NhomCV;
-  var list = document.getElementById("CoVanDichVu");
-  for (var i = 0; i < values.length; i++) {
-    var option = document.createElement("option");
-    option.value = values[i];
-    option.text = values[i];
-    list.appendChild(option);
-  }
+for (i in LoaiHinhSCC) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhSCC[i];
+  option.text = LoaiHinhSCC[i];
+  document.getElementById('LoaiHinh').appendChild(option);
+}
+for (i in LoaiHinhBP) {
+  var option = document.createElement("option");
+  option.value = LoaiHinhBP[i];
+  option.text = LoaiHinhBP[i];
+  document.getElementById('LoaiHinhBP').appendChild(option);
+}
+for (i in NhomCV) {
+  var option = document.createElement("option");
+  option.value = NhomCV[i];
+  option.text = NhomCV[i];
+  document.getElementById("CoVanDichVu").appendChild(option);
 }
 
 function getValueALL() {

@@ -5,34 +5,29 @@ $.ajax({
   type: 'GET',
   success: function (data) {
     localStorage.setItem("ThongSo", JSON.stringify(data))
-
   }
 })
 
 var ThongSo = JSON.parse(localStorage.getItem("ThongSo"))
-
 var NhomTN = ["Có Hẹn", "Tiếp Nhận"];
-//var NhomCV = ["Toàn", "Tài", "Rôn", "Mẫn", "Sang", "Vinh", "Triêng", "Lộc", "Hiệp", "None"];
-
-
-//var NhomDH = ["EM", "SCC", "Đồng Sơn", "Báo Giá BH"];
-var NhomCV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomCV" })[0].value)
-var NhomDH = Object.values(ThongSo.filter(function (r) { return r.id == "GruopTDDatHen" })[0].value)
-var KhoangSC = Object.values(ThongSo.filter(function (r) { return r.id == "KhoangScc" })[0].value)
-var KTVDong = Object.values(ThongSo.filter(function (r) { return r.id == "KTVDong" })[0].value)
-var KTVSonDinh = Object.values(ThongSo.filter(function (r) { return r.id == "KTVSon1" })[0].value)
-var KTVSonThien = Object.values(ThongSo.filter(function (r) { return r.id == "KTVSon2" })[0].value)
-var PhongSon = Object.values(ThongSo.filter(function (r) { return r.id == "PhongSon" })[0].value)
-var NhomSon = Object.values(ThongSo.filter(function (r) { return r.id == "NhomSon" })[0].value)
+var NhomCV = ["Trực", "Khải"]
+var NhomDH = ["BDN", "SCC", "Đồng Sơn", "Báo Giá BH"]
+var LoaiHinhSCC = ["BDN", "SCC"];
+var LoaiHinhBP = ["Đồng Sơn", "Báo Giá BH"];
+var KhoangSC = ["BD01", "BD02", "BD03", "BD04", "BD05"]
+var KTVDong = ["Body01", "Body02", "Body03", "Body04", "Body05"]
+var KTVSon01 = ["Paint101", "Paint102", "Paint103", "Paint104"]
+var KTVSon02 = ["Paint201", "Paint202", "Paint203", "Paint204"]
+var NhomSon = ["KTVSon01", "KTVSon02"]
+var PhongSon = ["Phòng Sơn 01", "Phòng Sơn 02",]
 var KhoangKoSuDung = Object.values(ThongSo.filter(function (r) { return r.id == "KhoangKoSuDung" })[0].value)
-var ChipGJ = Object.values(ThongSo.filter(function (r) { return r.id == "ChieuDaiChipGJ" })[0].value)[0]
-var ChipDS = Object.values(ThongSo.filter(function (r) { return r.id == "ChieuDaiChipDong" })[0].value)[0]
+var ChipGJ = 30
+var ChipDS = 60
 var KTVDongSon = ["Châu", "Trường", "Phúc", "Trương", "Định", "Đình", "Thành", "Lưu", "Hùng", "Lâm", "Duy", "Tài", "Thiên", "Dũng", "Lực", "Tú", "Chương", "Đồng", "Quốc", "Lưu"];
-//var KhoangSC = ["EM 01", "EM 02", "EM 03", "EM 04", "SCC 05", "SCC 06", "SCC 07", "SCC 08", "SCC 09", "SCC 10", "4 Trụ", "K Ngoài"];
-var NhomKTV = Object.values(ThongSo.filter(function (r) { return r.id == "NhomSCC" })[0].value)
-var KTVBao = Object.values(ThongSo.filter(function (r) { return r.id == "KTVScc1" })[0].value)
-var KTVHoan = Object.values(ThongSo.filter(function (r) { return r.id == "KTVScc2" })[0].value)
-var KTVEM = Object.values(ThongSo.filter(function (r) { return r.id == "KTVEM" })[0].value)
+var NhomKTV = ["BDN", "SCC01", "SCC02"]
+var KTVSC01 = ["BDN01", "BDN02", "BDN03"]
+var KTVSC02 = ["SCC101", "SCC102", "SCC103"]
+var KTVSC03 = ["SCC201", "SCC202", "SCC203"]
 var ThuTuEM = Object.values(ThongSo.filter(function (r) { return r.id == "ThuTuEM" })[0].value)
 var ListXe = ["Camry", "Inova", "Fortuner", "Altis", "Altis Cross", "Veloz", "Wigo", "Land Cruiser", "Land Prado", "Hilander", "Rav4", "Vios", "Rush", "Avanza", "Raize", "Lexus"];
 var urlTX = "https://morning-chill-hammer.glitch.me/XeTrongXuong";
@@ -294,11 +289,13 @@ function canhBaoThanhCong(tieude, noidung) {
     $("#alert").html($("#alert").html() + alert);
 }
 
-function checkMasterData(myValue) {
-  var thongtinkhachhang
-  myValue = myValue.replace(" ", "");
-  myValue = myValue.replace("-", "");
-  myValue = myValue.replace(".", "");
-  return thongtinkhachhang = MasterData.filter(function (r) { return r.BienSoXe == myValue })
+// function checkMasterData(myValue) {
+//   var thongtinkhachhang
+//   myValue = myValue.replace(" ", "");
+//   myValue = myValue.replace("-", "");
+//   myValue = myValue.replace(".", "");
+//   if (MasterData) {
+//     return thongtinkhachhang = MasterData.filter(function (r) { return r.BienSoXe == myValue })
+//   }
 
-}
+// }

@@ -272,6 +272,82 @@ select:invalid {
 
 
 
+table.dataTable td {
+  vertical-align: bottom;
+  font-size: 14px;
+}
+
+#tablehen td:nth-child(0) {
+  width: 10%;
+
+}
+
+#table-TimXe td {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1200 - 300)));
+  vertical-align: middle;
+
+  text-align: left;
+  border: 1px solid black;
+  border-bottom: 1px solid blue;
+  margin: auto;
+}
+
+#table-TimXe .DangSuaChua {
+  color: #00ff00;
+}
+
+#table-TimXe .ChoSuaChua {
+  color: yellow;
+}
+
+#table-TimXe .ChuaSuaChua {
+  color: gray;
+}
+
+#table-TimXe .DungSuaChua {
+  color: red;
+}
+
+.DangRuaXe {
+  color: #00ff00;
+}
+
+.ChoRuaXe {
+  color: #ff6d01;
+}
+
+#tableRuaXe td {
+  font-size: 30px;
+  vertical-align: middle;
+  text-align: left;
+  border: 1px solid black;
+  border-bottom: 1px solid blue;
+  margin: auto;
+}
+
+#tableRuaXe td:nth-child(8) {
+  width: 1%;
+  font-size: 1px;
+}
+
+#tableRuaXe td:nth-child(5) {
+  width: 7%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(4) {
+  width: 7%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(3) {
+  width: 4%;
+  font-size: 14px;
+}
+
+#tableRuaXe td:nth-child(2) {
+  font-size: 50px;
+}
 
 @media (min-width: 2160px) {
   #TabChoSC {

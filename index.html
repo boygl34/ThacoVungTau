@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>ThacoVT</title>
-    <link rel="stylesheet" type="text/css" href="ScriptJS/all.css" />
+    <title>Thaco Vũng Tàu</title>
+    <link rel="icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" type="text/css" href="ScriptJS/all.css" /> -->
     <script src="ScriptJS/all.js" crossorigin="anonymous"></script>
+
     <script src="ScriptJS/vis-timeline-graph2d.min.js" type="text/javascript"></script>
     <link href="ScriptJS/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
     <link href="ScriptJS/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="ScriptJS/jquery-3.5.1.js"></script>
-    <!-- <script src="ScriptJS/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"> -->
+    <script src="ScriptJS/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css">
     <!-- <link href="ScriptJS/gijgo.min.css" rel="stylesheet" type="text/css" /> -->
-    <script src="ScriptJS/jquery.dataTables.min.js"></script>
-    <link href="ScriptJS/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" /> -->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/styleItem.css" rel="stylesheet" />
     <link href="css/styleTimeline.css" rel="stylesheet" />
@@ -29,10 +31,10 @@
     <div id="contextMenu" class="context-menu" style="display: none">
         <ul>
             <a id="biensomenu"></a>
-            <li><a onclick="BatDauSC2()">Bắt Đầu</a></li>
-            <li><a id="TimXe" onclick="KetThuc()">Kết Thúc</a></li>
-            <li><a id="TimXe" onclick="DungCongViecGJ()">Dừng CV</a></li>
-            <li><a id="TTHuyChip" onclick="huyChip()">Xoá Chíp</a></li>
+            <li><button type="button" class="btn btn-success" onclick="BatDauSC2()">Bắt Đầu</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="KetThuc()">Kết Thúc</button></li>
+            <li><button type="button" class="btn btn-warning" onclick="DungCongViecGJ()">Dừng CV</button></li>
+            <li><button type="button" class="btn btn-danger" id="TTHuyChip" onclick="huyChip()">Xoá Chíp</button></li>
         </ul>
     </div>
     <div id="contextMenu2" class="timeshow" style="display: none">
@@ -40,7 +42,9 @@
     </div>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark ">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">ThacoVT</a>
+        <a class="navbar-brand ps-3" href="index.html">
+            Thaco Vũng Tàu
+        </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
@@ -100,11 +104,11 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <!-- <a class="nav-link" onclick="gethtml('html/LeTan.html')">Lễ Tân</a> -->
+                                <a class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt Hẹn</a>
+                                <a class="nav-link" onclick="gethtml('html/LeTan.html')">Lễ Tân</a>
                                 <a class="nav-link" onclick="gethtml('html/CoVan.html')">Cố Vấn</a>
-                                <!-- <a class="nav-link" onclick="gethtml('html/DatHen.html')">Đặt Hẹn</a> -->
-                                <a class="nav-link" onclick="gethtml('html/BaoDuong.html')">Tiến Độ SCC</a>
-                                <!-- <a class="nav-link" onclick="gethtml('html/TienDoDongSon.html')">Tiến Độ ĐS</a> -->
+                                <a class="nav-link" onclick="gethtml('html/TienDoScc.html')">Tiến Độ SCC</a>
+                                <a class="nav-link" onclick="gethtml('html/TienDoDongSon.html')">Tiến Độ ĐS</a>
                             </nav>
                         </div>
 
@@ -146,7 +150,7 @@
                             </nav>
                         </div>
                         <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-mh"
-                            aria-expanded="false" aria-controls="collapseLayouts-mh" style="display: none ;">
+                            aria-expanded="false" aria-controls="collapseLayouts-mh">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-columns"></i>
                             </div>
@@ -214,7 +218,7 @@
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html" style="display: none;">
+                        <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-chart-area"></i>
                             </div>
@@ -236,42 +240,14 @@
 
     <!--Modal SCCC-->
     <script>
-        checkdangnhap();
 
-        function checkdangnhap() {
-            var urluser = "https://morning-chill-hammer.glitch.me/User/"
-            //var urluser = "login.json"
-            var password = localStorage.getItem("Password");
-            var use = localStorage.getItem("id");
-            if (use == null) {
-                window.location = "login.html";
-            }
-            if (password !== "" && use !== "") {
-                fetch(urluser + use)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (password == data.Password) {
-                            //document.getElementById("TrangDangNhap").hidden=true
-                            // document.getElementById("BaoCao").hidden=false
-                            document.getElementById("navbarDropdown").innerHTML =
-                                localStorage.getItem("userName");
-                            //  checkPhanQuyen()
-                            console.log("login");
-                        }
-                    });
-            } else {
-                window.location = "login.html";
-                $("#layoutSidenav").html(
-                    '<a class="btn btn-primary" href="login.html">Login</a>'
-                );
-                console.log("out");
-            }
-        }
     </script>
     <script src="/ScriptJS/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="ScriptJS/popper.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/Background.js"></script>
     <script src="js/Onload.js"></script>
+    <script src="ScriptJS/popper.js"></script>
+    <!-- <script src="js/scripts.js"></script> -->
+
 </body>
 
 </html>

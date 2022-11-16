@@ -50,21 +50,9 @@
 
 
 <script>
-    var useCaher
-    var urlTX = "https://deciduous-pentagonal-powder.glitch.me/XeTrongXuong"
-    var urlDG = "https://deciduous-pentagonal-powder.glitch.me/XeDaGiao"
-    getData(urlTX)
-    setInterval(function () { getData(urlTX) }, 30000);
-    //DanhSachCoVan();
-    function getData(url) {
-        $.get(url, function (ketqua) {
-            useCaher = ketqua
-            showData()
-        });
-    }
 
-    function showData() {
-
+    function LoadTimeLine() {
+        document.getElementById("loading").style.display = "none"
         var dataArray = useCaher
         var dataArray0 = dataArray.filter(function (r) { return r.KhachHangDoi === "Khách Đợi" })
         dataArray0 = dataArray0.filter(function (r) { return r.TrangThaiXuong !== "09 Đã Giao Xe" && r.TDHenGiaoXe })

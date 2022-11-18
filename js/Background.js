@@ -134,10 +134,10 @@ function checkPhanQuyen() {
   }
   if (BoPhan == "admin" || PhanQuyen == "admin") {
     $("#PQDichVu2").show()
-    $("#PQPhuKien").show()
-    $("#PQKinhDoanh").show()
+    // $("#PQPhuKien").show()
+    // $("#PQKinhDoanh").show()
 
-    $("#PQCoVan").show()
+    // $("#PQCoVan").show()
 
   }
   if (BoPhan == "Dịch Vụ") {
